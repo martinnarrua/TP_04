@@ -12,10 +12,14 @@ namespace EJ03
         static void ImprimirLineas(StreamReader pStreamTexto, String pRutaArchivo)
         {
             Console.WriteLine("Contenidos del Archivo '{0}': \n", pRutaArchivo);
-            int i = 1;
+            int i = 0;
             while (!pStreamTexto.EndOfStream)
             {
-                Console.WriteLine("Linea {0}:\t {1}\n",i.ToString("D4"),pStreamTexto.ReadLine());
+                Console.WriteLine("{0}:\t {1}",(i++).ToString("D4"),pStreamTexto.ReadLine());
+                if (i % 20 == 0)
+                {
+                    Console.ReadKey();
+                }
             }
             Console.WriteLine("\t\t\t Fin de archivo...\n");
         }
@@ -87,19 +91,19 @@ namespace EJ03
             try
             {
                 String lRuta = args[0];
-                ImprimirArchivoExcepciones(lRuta);
+                ImprimirArchivoUsing(lRuta);
             }
-            catch (ArgumentOutOfRangeException aoorE)
+            catch (IndexOutOfRangeException aoorE)
             {
                 Console.WriteLine("No se proporciono ningun Archivo");
             }
-            catch (ArgumentException aE)
-            {
-                Console.WriteLine(aE.Message);
-            }
             catch (FileNotFoundException fnfE)
             {
-                Console.WriteLine(fnfE.Message);
+                Console.WriteLine(fnfE.Message);    
+            }
+            catch (DirectoryNotFoundException dnfE)
+            {
+                Console.WriteLine(dnfE.Message);
             }
             catch (Exception e)
             {
