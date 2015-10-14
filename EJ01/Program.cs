@@ -8,7 +8,7 @@ namespace EJ01
 {
     class Program
     {
-        static void Main(string[] args )
+        static void Main(string[] argumento )
         {
             CapaVista vista = new CapaVista();
             vista.Ejecutar();
