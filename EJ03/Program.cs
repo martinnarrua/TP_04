@@ -14,12 +14,26 @@ namespace EJ03
 
         }
 
+        static void ImprimirArchivoUsing (string pRutaArchivo)
+        {
+            try
+            {
+                using ( FileInfo archivo = FileInfo(pRutaArchivo))
+                {
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
         static void Main(string[] args)
         {
             //holisssss
             // jiknm
 
-            //hola me llamo pacucito
+   
         }
     }
 }
