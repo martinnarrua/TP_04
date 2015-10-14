@@ -9,31 +9,48 @@ namespace EJ03
 {
     class Program
     {
-        static void ImprimirLineas(StreamReader pStreamTexto)
+        static void ImprimirLineas(StreamReader pStreamTexto, String pRutaArchivo)
         {
-
+            Console.WriteLine("Contenidos del Archivo '{0}': \n", pRutaArchivo);
+            int i = 1;
+            while (!pStreamTexto.EndOfStream)
+            {
+                Console.WriteLine("Linea {0}:\t {1}\n",i.ToString("D4"),pStreamTexto.ReadLine());
+            }
+            Console.WriteLine("\t\t\t Fin de archivo...\n");
         }
 
-        static void ImprimirArchivoExcepciones(string[] pArgumentos)
+        static void ImprimirArchivoExcepciones(string pRutaArchivo)
         {
+            StreamReader lSreader = null;
             try
             {
-
+                pRutaArchivo = Path.GetFullPath(pRutaArchivo);
+                lSreader = new StreamReader(pRutaArchivo);
+                ImprimirLineas(lSreader, pRutaArchivo);
             }
-            catch (FileNotFoundException nfE)
+            catch (ArgumentException aE)
             {
-                
-                throw;
+                ArgumentException lException = new ArgumentException(String.Format("La ruta proporcionada: '{0}' no es valida", pRutaArchivo), pRutaArchivo);
+                throw lException;
             }
-            catch (FileNotFoundException nfE)
+            catch (FileNotFoundException fnfE)
             {
-
-                throw;
+                FileNotFoundException lException = new FileNotFoundException(String.Format("No existe el archivo '{0}'",pRutaArchivo), pRutaArchivo);
+                throw lException;
+            }
+            catch (Exception e)
+            {
+                Exception lException = new Exception(String.Format("La aplicacion arrojo una excepcion no manejada: '{0}'", e.Message),e);
+                throw lException;
             }
             finally
-        {
-
-        }
+            {
+                if (lSreader != null)
+                {
+                    lSreader.Dispose();
+                }
+            }
         }
 
         static void ImprimirArchivoUsing (string pRutaArchivo)
@@ -64,15 +81,24 @@ namespace EJ03
             try
             {
                 String lRuta = args[0];
-                ImprimirArchivoExcepciones(args);
+                ImprimirArchivoExcepciones(lRuta);
+            }
+            catch (ArgumentOutOfRangeException aoorE)
+            {
+                Console.WriteLine("No se proporciono ningun Archivo");
             }
             catch (ArgumentException aE)
             {
-
-                throw;
+                Console.WriteLine(aE.Message);
             }
-
-            //hola me llamo pacucito
+            catch (FileNotFoundException fnfE)
+            {
+                Console.WriteLine(fnfE.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }
