@@ -29,14 +29,14 @@ namespace EJ03
                 lSreader = new StreamReader(pRutaArchivo);
                 ImprimirLineas(lSreader, pRutaArchivo);
             }
-            catch (ArgumentException aE)
+            catch (DirectoryNotFoundException aE)
             {
-                ArgumentException lException = new ArgumentException(String.Format("La ruta proporcionada: '{0}' no es valida", pRutaArchivo), pRutaArchivo);
+                DirectoryNotFoundException lException = new DirectoryNotFoundException(String.Format("La ruta proporcionada: '{0}' no es valida", pRutaArchivo),aE);
                 throw lException;
             }
             catch (FileNotFoundException fnfE)
             {
-                FileNotFoundException lException = new FileNotFoundException(String.Format("No existe el archivo '{0}'",pRutaArchivo), pRutaArchivo);
+                FileNotFoundException lException = new FileNotFoundException(String.Format("No existe el archivo '{0}'",pRutaArchivo), pRutaArchivo,fnfE);
                 throw lException;
             }
             catch (Exception e)
@@ -64,14 +64,10 @@ namespace EJ03
                     ImprimirLineas(texto,pRutaArchivo);
                 }
             }
-            catch (ArgumentNullException sinArgumento)
-            {
-                sinArgumento = new ArgumentNullException("No se ingreso una ruta");
-                throw sinArgumento;
-            }
             catch (DirectoryNotFoundException noExisteDirectorio)
             {
                 noExisteDirectorio = new DirectoryNotFoundException("El directorio especificado no existe");
+                throw noExisteDirectorio;
             }
             catch(FileNotFoundException noExisteArchivo)
             {
@@ -81,6 +77,7 @@ namespace EJ03
             catch(Exception e)
             {
                 e = new Exception("Ha ocurrido una excepcion no reconocida");
+                throw e;
             }
         }
 
@@ -108,6 +105,7 @@ namespace EJ03
             {
                 Console.WriteLine(e.Message);
             }
+            Console.ReadKey();
         }
     }
 }
