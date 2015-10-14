@@ -18,7 +18,7 @@ namespace EJ03
         {
             try
             {
-                using ( FileInfo archivo = FileInfo(pRutaArchivo))
+                using (FileInfo archivo = new FileInfo(pRutaArchivo));
                 {
                 }
             }
