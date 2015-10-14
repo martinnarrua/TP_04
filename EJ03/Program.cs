@@ -61,7 +61,7 @@ namespace EJ03
                 FileInfo archivo = new FileInfo(pRutaArchivo);
                 using (StreamReader texto = archivo.OpenText())
                 {
-                    ImprimirLineas(texto);
+                    ImprimirLineas(texto,pRutaArchivo);
                 }
             }
             catch (ArgumentNullException sinArgumento)
@@ -74,8 +74,13 @@ namespace EJ03
                 noExisteArchivo = new FileNotFoundException("El archivo especificado no existe");
                 throw noExisteArchivo;
             }
-            catch()
+            catch(Exception e)
+            {
+
+            }
         }
+
+
         static void Main(string[] args)
         {
             try
