@@ -40,15 +40,24 @@ namespace EJ03
         {
             try
             {
-                using (FileInfo archivo = new FileInfo(pRutaArchivo));
+                pRutaArchivo = Path.GetFullPath(pRutaArchivo);
+                FileInfo archivo = new FileInfo(pRutaArchivo);
+                using (StreamReader texto = archivo.OpenText())
                 {
+                    ImprimirLineas(texto);
                 }
             }
-            catch (Exception)
+            catch (ArgumentNullException sinArgumento)
             {
-
-                throw;
+                sinArgumento = new ArgumentNullException("No se ingreso una ruta");
+                throw sinArgumento;
             }
+            catch(FileNotFoundException noExisteArchivo)
+            {
+                noExisteArchivo = new FileNotFoundException("El archivo especificado no existe");
+                throw noExisteArchivo;
+            }
+            catch()
         }
         static void Main(string[] args)
         {
