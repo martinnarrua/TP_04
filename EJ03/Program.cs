@@ -31,11 +31,25 @@ namespace EJ03
                 throw;
             }
             finally
-            {
+        {
 
-            }
+        }
         }
 
+        static void ImprimirArchivoUsing (string pRutaArchivo)
+        {
+            try
+            {
+                using ( FileInfo archivo = FileInfo(pRutaArchivo))
+                {
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
         static void Main(string[] args)
         {
             try
@@ -48,7 +62,8 @@ namespace EJ03
 
                 throw;
             }
-           
+
+            //hola me llamo pacucito
         }
     }
 }
