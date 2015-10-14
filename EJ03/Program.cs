@@ -34,7 +34,7 @@ namespace EJ03
                 ArgumentException lException = new ArgumentException(String.Format("La ruta proporcionada: '{0}' no es valida", pRutaArchivo), pRutaArchivo);
                 throw lException;
             }
-            catch (FileNotFoundException nfE)
+            catch (FileNotFoundException fnfE)
             {
                 FileNotFoundException lException = new FileNotFoundException(String.Format("No existe el archivo '{0}'",pRutaArchivo), pRutaArchivo);
                 throw lException;
@@ -81,6 +81,14 @@ namespace EJ03
             catch (ArgumentException aE)
             {
                 Console.WriteLine(aE.Message);
+            }
+            catch (FileNotFoundException fnfE)
+            {
+                Console.WriteLine(fnfE.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
         }
     }
