@@ -69,6 +69,10 @@ namespace EJ03
                 sinArgumento = new ArgumentNullException("No se ingreso una ruta");
                 throw sinArgumento;
             }
+            catch (DirectoryNotFoundException noExisteDirectorio)
+            {
+                noExisteDirectorio = new DirectoryNotFoundException("El directorio especificado no existe");
+            }
             catch(FileNotFoundException noExisteArchivo)
             {
                 noExisteArchivo = new FileNotFoundException("El archivo especificado no existe");
@@ -76,7 +80,7 @@ namespace EJ03
             }
             catch(Exception e)
             {
-
+                e = new Exception("Ha ocurrido una excepcion no reconocida");
             }
         }
 
