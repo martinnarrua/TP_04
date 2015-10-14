@@ -10,7 +10,7 @@ namespace EJ01
     {
         public void Ejecutar()
         {
-            CapaAplicacion aplicacion = new CapaAplicacion();
+            CapaAplicacion aplicacion = new CapaAplicacion(); 
             aplicacion.Ejecutar();
         }
     }
