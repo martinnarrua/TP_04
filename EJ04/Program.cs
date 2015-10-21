@@ -65,6 +65,7 @@ namespace EJ04
                         try
                         {
                             cFachada.AcreditarSaldo(pCuenta, aux);
+                            Console.WriteLine("Saldo acreditado correctamente");
                         }
                         catch (MontoNegativoException e)
                         {
@@ -78,7 +79,8 @@ namespace EJ04
                         {
                             Console.WriteLine("Ocurrio una excepcion inesperada: '{0}'", e.Message);
                         }
-						Console.WriteLine();
+                        Console.ReadKey();
+                        Console.WriteLine();
 						break;
 					case 3:
 						Console.Write("Ingrese el saldo a Debitar: ");
@@ -87,20 +89,20 @@ namespace EJ04
                         {
                             cFachada.DebitarSaldo(pCuenta, aux); // Cambio: antes aqui se usaba un booleano para indicar si se podía realizar la operacion o no, ahora se realiza mediante excepciones
                         }
-                        catch (MontoNegativoException excepcion)
+                        catch (MontoNegativoException e)
                         {
-                            Console.WriteLine("Ocurrio el siguiente problema: {0}",excepcion.Message);
+                            Console.WriteLine("Ocurrio el siguiente problema: {0}",e.Message);
                         }
-                        catch (SaldoInsuficienteException excepcion)
+                        catch (SaldoInsuficienteException e)
                         {
-                            Console.WriteLine("Ocurrio el siguiente problema: {0}",excepcion.Message);
+                            Console.WriteLine("Ocurrio el siguiente problema: {0}",e.Message);
                         }
-                        catch (Exception)
+                        catch (Exception e)
                         {
-                            Console.WriteLine("Ocurrio una excepcion no prevista");
+                            Console.WriteLine("Ocurrio una excepcion inesperada: '{0}'", e.Message);
                         }
-						
-						Console.ReadKey();
+                        Console.WriteLine("Saldo debitado correctamente");
+                        Console.ReadKey();
 						Console.WriteLine();
 						break;
 					case 0:

@@ -56,7 +56,7 @@ namespace EJ04
 		public Cuenta(Moneda pMoneda) : this(0, pMoneda) { }
 
         /// <summary>
-        /// Acredita en la cuenta el monto ingresado
+        /// Acredita en la cuenta el monto ingresado. Cambio: 
         /// </summary>
         /// <param name="pSaldo">Monto a acreditar</param>
 		public void AcreditarSaldo (double pSaldo )
