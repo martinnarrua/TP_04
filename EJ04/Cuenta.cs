@@ -61,7 +61,12 @@ namespace EJ04
         /// <param name="pSaldo">Monto a acreditar</param>
 		public void AcreditarSaldo (double pSaldo )
 		{
-			Saldo += pSaldo;
+            if (pSaldo < 0)
+            {
+                MontoNegativoException excepcion = new MontoNegativoException("El monto que se desea acreditar no es valido ya que es un valor negativo");
+                throw excepcion;
+            }
+            Saldo += pSaldo;
 		}
 
         /// <summary>
@@ -70,15 +75,17 @@ namespace EJ04
         /// <param name="pSaldo">Monto de debitar</param>
 		public void DebitarSaldo (double pSaldo )
 		{
+            if (pSaldo < 0)
+            {
+                MontoNegativoException excepcion = new MontoNegativoException("El monto que se desea debitar no es valido ya que es un valor negativo");
+                throw excepcion;
+            }
 			if (Saldo < pSaldo)
 			{
                 SaldoInsuficienteException excepcion = new SaldoInsuficienteException("El monto que se desea debitar es mayor que el saldo disponible en la cuenta");
                 throw excepcion;
 			}
-			else
-			{
-				Saldo -= pSaldo;
-			}
-		}
+			Saldo -= pSaldo;
+   		}
     }
 }
