@@ -82,10 +82,14 @@ namespace EJ04
 						break;
 					case 3:
 						Console.Write("Ingrese el saldo a Debitar: ");
-						aux = int.Parse(Console.ReadLine());
+						aux = double.Parse(Console.ReadLine());
                         try
                         {
-                            cFachada.DebitarSaldo(pCuenta, aux); //Cambio: antes aqui se usaba un booleano para indicar si se podía realizar la operacion o no, ahora se realiza mediante excepciones
+                            cFachada.DebitarSaldo(pCuenta, aux); // Cambio: antes aqui se usaba un booleano para indicar si se podía realizar la operacion o no, ahora se realiza mediante excepciones
+                        }
+                        catch (MontoNegativoException excepcion)
+                        {
+                            Console.WriteLine("Ocurrio el siguiente problema: {0}", excepcion.Message);
                         }
                         catch (SaldoInsuficienteException excepcion)
                         {
