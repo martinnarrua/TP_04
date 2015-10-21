@@ -72,7 +72,7 @@ namespace EJ04
 		{
 			if (Saldo < pSaldo)
 			{
-                SaldoInsuficienteException excepcion = new SaldoInsuficienteException();
+                SaldoInsuficienteException excepcion = new SaldoInsuficienteException("El monto que se desea debitar es mayor que el saldo disponible en la cuenta");
                 throw excepcion;
 			}
 			else

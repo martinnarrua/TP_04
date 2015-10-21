@@ -31,14 +31,13 @@ namespace EJ04
 		}
 
         /// <summary>
-        /// Permite debitar dinero de una cuenta
+        /// Permite debitar dinero de una <see cref="Cuenta"/>
         /// </summary>
         /// <param name="pCuenta">Cuenta en la que se acreditara el dinero</param>
         /// <param name="pSaldo">Monto a decinar de la cuenta</param>
-        /// <returns>Devuelve un booleano que indica si se pudo debitar el saldo o no</returns>
-		public bool DebitarSaldo (Cuenta pCuenta, double pSaldo)
+		public void DebitarSaldo (Cuenta pCuenta, double pSaldo)
 		{
-			return pCuenta.DebitarSaldo(pSaldo);
+			pCuenta.DebitarSaldo(pSaldo);
 		}
 
         /// <summary>
