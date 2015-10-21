@@ -7,8 +7,8 @@
     <ProjectGuid>{74086D66-A66D-4611-A9E9-2D9ECDDBB0BF}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EJ02</RootNamespace>
-    <AssemblyName>EJ02</AssemblyName>
+    <RootNamespace>EJ04</RootNamespace>
+    <AssemblyName>EJ04</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -43,10 +43,13 @@
   <ItemGroup>
     <Compile Include="Cuenta.cs" />
     <Compile Include="Cuentas.cs" />
+    <Compile Include="DesbordamientoException.cs" />
     <Compile Include="Facade.cs" />
     <Compile Include="Moneda.cs" />
+    <Compile Include="MontoNegativoException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SaldoInsuficienteException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
