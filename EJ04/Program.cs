@@ -62,7 +62,22 @@ namespace EJ04
 					case 2:
 						Console.Write("Ingrese el saldo a Acreditar: ");
 						aux = int.Parse(Console.ReadLine());
-						cFachada.AcreditarSaldo(pCuenta, aux);
+                        try
+                        {
+                            cFachada.AcreditarSaldo(pCuenta, aux);
+                        }
+                        catch (MontoNegativoException e)
+                        {
+                            Console.WriteLine("Ocurrio el siguiente problema: '{0}'", e.Message);
+                        }
+                        catch (DesbordamientoException e)
+                        {
+                            Console.WriteLine("Ocurrio el siguiente problema: '{0}'", e.Message);
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("Ocurrio una excepcion inesperada: '{0}'", e.Message);
+                        }
 						Console.WriteLine();
 						break;
 					case 3:
