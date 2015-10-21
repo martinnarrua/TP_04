@@ -46,6 +46,7 @@
     <Compile Include="IRepositorioUsuarios.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositorioUsuarios.cs" />
     <Compile Include="Usuario.cs" />
   </ItemGroup>
   <ItemGroup>
