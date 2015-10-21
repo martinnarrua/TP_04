@@ -65,20 +65,19 @@ namespace EJ04
 		}
 
         /// <summary>
-        /// Debita de la cuenta el monto ingresado
+        /// Debita de la cuenta el monto ingresado. Cambio: incluye una excepcion en caso de que el monto a debitar sea mayor al saldo disponible
         /// </summary>
         /// <param name="pSaldo">Monto de debitar</param>
-        /// <returns>Devuelve un booleado que indica si se pudo debitar el saldo o no</returns>
-		public bool DebitarSaldo (double pSaldo )
+		public void DebitarSaldo (double pSaldo )
 		{
 			if (Saldo < pSaldo)
 			{
-				return false;
+                SaldoInsuficienteException excepcion = new SaldoInsuficienteException();
+                throw excepcion;
 			}
 			else
 			{
 				Saldo -= pSaldo;
-				return true;
 			}
 		}
     }

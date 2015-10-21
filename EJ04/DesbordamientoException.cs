@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace EJ02
 {
-    class DesbordamientoException
+    class DesbordamientoException: OverflowException
     {
+        public DesbordamientoException():base() { }
+
+
+        public DesbordamientoException(string pMensaje) : base(pMensaje) { }
     }
 }

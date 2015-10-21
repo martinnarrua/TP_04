@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace EJ04
 {
-    class SaldoInsuficienteException
+    class SaldoInsuficienteException : Exception
     {
+        public SaldoInsuficienteException() : base() { }
+        public SaldoInsuficienteException(string pMensaje): base(pMensaje) { }
     }
 }
