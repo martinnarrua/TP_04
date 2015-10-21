@@ -89,11 +89,15 @@ namespace EJ04
                         }
                         catch (MontoNegativoException excepcion)
                         {
-                            Console.WriteLine("Ocurrio el siguiente problema: {0}", excepcion.Message);
+                            Console.WriteLine("Ocurrio el siguiente problema: {0}",excepcion.Message);
                         }
                         catch (SaldoInsuficienteException excepcion)
                         {
                             Console.WriteLine("Ocurrio el siguiente problema: {0}",excepcion.Message);
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Ocurrio una excepcion no prevista");
                         }
 						
 						Console.ReadKey();
