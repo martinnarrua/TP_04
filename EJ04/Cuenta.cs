@@ -66,6 +66,15 @@ namespace EJ04
                 MontoNegativoException excepcion = new MontoNegativoException("El monto que se desea acreditar no es valido ya que es un valor negativo");
                 throw excepcion;
             }
+            unchecked
+            {
+                double lSuma = Saldo + pSaldo;
+                if (lSuma <= Saldo)
+                {
+                    DesbordamientoException lException = new DesbordamientoException("La suma del Monto actual y el monto a Acreditar es mayor que el valor maximo del tipo Double");
+                    throw lException;
+                }
+            }
             Saldo += pSaldo;
 		}
 
