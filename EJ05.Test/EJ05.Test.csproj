@@ -53,6 +53,12 @@
     <Compile Include="UserCodeAscendingComparerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EJ05\EJ05.csproj">
+      <Project>{bb444788-0482-4b62-852e-bf11a1e6be16}</Project>
+      <Name>EJ05</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
