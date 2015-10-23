@@ -14,12 +14,12 @@ namespace EJ05
         {
             iUsuarios = new SortedDictionary<string, Usuario>();
         }
-        void IRepositorioUsuarios.Agregar(Usuario pUsuario)
+        public void Agregar(Usuario pUsuario)
         {
             iUsuarios.Add(pUsuario.Codigo, pUsuario);
         }
 
-        void IRepositorioUsuarios.Actualizar(Usuario pUsuario)
+        public void Actualizar(Usuario pUsuario)
         {
             if (iUsuarios.ContainsKey(pUsuario.Codigo))
             {
@@ -31,7 +31,7 @@ namespace EJ05
             }
         }
 
-        void IRepositorioUsuarios.Eliminar(string pCodigo)
+        public void Eliminar(string pCodigo)
         {
             if (iUsuarios.ContainsKey(pCodigo))
             {
@@ -42,29 +42,32 @@ namespace EJ05
                 Exception excepcion = new Exception(String.Format("Usuario con el codigo {0} no encontrado", pCodigo));
             }
         }
-        IList<Usuario> IRepositorioUsuarios.ObtenerTodos()
+        public IList<Usuario> ObtenerTodos()
         {
             return iUsuarios.Values.ToList();
         }
 
         public Usuario ObtenerPorCodigo(string pCodigo)
         {
+            Usuario lUsuario = null;
             if (iUsuarios.ContainsKey(pCodigo))
             {
                 return iUsuarios[pCodigo];
             }
             else
             {
-                Exception excepcion = new Exception(String.Format("Usuario con el codigo {0} no encontrado", pCodigo));
-                return null; //revisar esto
+                KeyNotFoundException excepcion = new KeyNotFoundException(String.Format("Usuario con el codigo {0} no encontrado", pCodigo));
+                //revisar esto
+                // DOBLEMENTE REVISAR ESTO
             }
+            return lUsuario;
         }
 
-        IList<Usuario> IRepositorioUsuarios.ObtenerOrdenadosPor(IComparer<Usuario> pComparador)
+        public IList<Usuario> ObtenerOrdenadosPor(IComparer<Usuario> pComparador)
         {
-           // List<Usuario> lista = this.o
-
-                return null;
+            List<Usuario> lLista = iUsuarios.Values.ToList<Usuario>();
+            lLista.Sort(pComparador);
+            return lLista;
         }
     }
 }
