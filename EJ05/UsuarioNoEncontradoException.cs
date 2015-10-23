@@ -9,5 +9,7 @@ namespace EJ05
     public class UsuarioNoEncontradoException : KeyNotFoundException
     {
         public UsuarioNoEncontradoException() : base() { }
+
+        public UsuarioNoEncontradoException(string pMensaje) : base(pMensaje) { }
     }
 }
