@@ -53,6 +53,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="RepositorioUsuariosTest.cs" />
+    <Compile Include="UserCodeDescendingComparerTest.cs" />
     <Compile Include="UserCodeAscendingComparerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
