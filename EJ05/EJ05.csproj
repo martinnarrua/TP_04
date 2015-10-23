@@ -48,7 +48,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositorioUsuarios.cs" />
     <Compile Include="UserCodeAscendingComparer.cs" />
+    <Compile Include="UserCodeDescendingComparer.cs" />
+    <Compile Include="UserNullComparer.cs" />
     <Compile Include="Usuario.cs" />
+    <Compile Include="UsuarioNoEncontradoException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

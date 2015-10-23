@@ -14,7 +14,7 @@ namespace EJ05
     internal class UserCodeAscendingComparer : IComparer<Usuario>
     {
         /// <summary>
-        /// Compara dos <see cref="Usuario"/> segun su codigo
+        /// Compara dos <see cref="Usuario"/> segun su codigo, teniendo en cuenta la cultura actual e ignorando la capitalizacion
         /// </summary>
         /// <param name="pUsuario1">Primer <see cref="Usuario"/></param>
         /// <param name="pUsuario2">Segundo <see cref="Usuario"/></param>
