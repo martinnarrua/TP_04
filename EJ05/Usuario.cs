@@ -32,10 +32,10 @@ namespace EJ05
             set { this.iCorreoElectronico = value; }
         }
 
-        public int CompareTo(object pObj)
+        public int CompareTo (object pObj)
         {
-            Usuario lUsuario = (Usuario)pObj;
-            return String.Compare(this.Codigo, lUsuario.Codigo, true, Thread.CurrentThread.CurrentCulture);
+            Usuario lUsuario = (Usuario) pObj;
+            return (new UserCodeAscendingComparer()).Compare(this, lUsuario);
         }
 
 
