@@ -27,7 +27,7 @@ namespace EJ05
             }
             else
             {
-                Exception excepcion = new Exception(String.Format("Usuario con el codigo {0} no encontrado", pUsuario.Codigo));
+                UsuarioNoEncontradoException excepcion = new UsuarioNoEncontradoException(String.Format("Usuario con el codigo {0} no encontrado", pUsuario.Codigo));
             }
         }
 
@@ -39,14 +39,16 @@ namespace EJ05
             }
             else
             {
-                Exception excepcion = new Exception(String.Format("Usuario con el codigo {0} no encontrado", pCodigo));
+                UsuarioNoEncontradoException excepcion = new UsuarioNoEncontradoException(String.Format("Usuario con el codigo {0} no encontrado", pCodigo));
             }
         }
         public IList<Usuario> ObtenerTodos()
         {
-            return iUsuarios.Values.ToList();
+            List<Usuario> lLista = (List<Usuario>) this.ObtenerSinOrdenar();
+            lLista.Sort();
+            return lLista;
         }
-
+        
         public Usuario ObtenerPorCodigo(string pCodigo)
         {
             Usuario lUsuario = null;
@@ -56,17 +58,23 @@ namespace EJ05
             }
             else
             {
-                KeyNotFoundException excepcion = new KeyNotFoundException(String.Format("Usuario con el codigo {0} no encontrado", pCodigo));
+                UsuarioNoEncontradoException excepcion = new UsuarioNoEncontradoException(String.Format("Usuario con el codigo {0} no encontrado", pCodigo));
                 //revisar esto
-                // DOBLEMENTE REVISAR ESTO
+                //TODO: DOBLEMENTE REVISAR ESTO
             }
             return lUsuario;
         }
 
         public IList<Usuario> ObtenerOrdenadosPor(IComparer<Usuario> pComparador)
         {
-            List<Usuario> lLista = iUsuarios.Values.ToList<Usuario>();
+            List<Usuario> lLista = (List<Usuario>) this.ObtenerSinOrdenar();
             lLista.Sort(pComparador);
+            return lLista;
+        }
+
+        private IList<Usuario> ObtenerSinOrdenar()
+        {
+            List<Usuario> lLista = this.iUsuarios.Values.ToList();
             return lLista;
         }
     }
