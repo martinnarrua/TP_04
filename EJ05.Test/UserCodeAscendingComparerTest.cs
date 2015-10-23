@@ -16,10 +16,11 @@ namespace EJ05.Test
             string lCodigo2 = "0005";
             string lCorreoElectronico1 = "Ramarivera@gmail.com";
             string lCorreoElectronico2 = "Martin94.profugo@hotmail.com";
-            int lResultado;
+            int lResultado = 0;
             int lResultadoEsperado = 1;
 
-            Usuario lUsuario1 = new Usuario()
+            Usuario lUsuario1 = new Usuario { Codigo = lCodigo1, NombreCompleto = lNombreCompleto1, CorreoElectronico = lCorreoElectronico1 };
+            Usuario lUsuario2 = new Usuario { Codigo = lCodigo2, NombreCompleto = lNombreCompleto2, CorreoElectronico = lCorreoElectronico2 };
 
 
             Assert.AreEqual(lResultadoEsperado, lResultado);

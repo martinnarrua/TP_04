@@ -33,14 +33,14 @@ namespace EJ03
                 lSreader = new StreamReader(pRutaArchivo);
                 ImprimirLineas(lSreader, pRutaArchivo);
             }
-            catch (DirectoryNotFoundException aE)
+            catch (DirectoryNotFoundException e)
             {
-                DirectoryNotFoundException lException = new DirectoryNotFoundException(String.Format("La ruta proporcionada: '{0}' no es valida", pRutaArchivo),aE);
+                DirectoryNotFoundException lException = new DirectoryNotFoundException(String.Format("La ruta proporcionada: '{0}' no es valida", pRutaArchivo),e);
                 throw lException;
             }
-            catch (FileNotFoundException fnfE)
+            catch (FileNotFoundException e)
             {
-                FileNotFoundException lException = new FileNotFoundException(String.Format("No existe el archivo '{0}'",pRutaArchivo), pRutaArchivo,fnfE);
+                FileNotFoundException lException = new FileNotFoundException(String.Format("No existe el archivo '{0}'",pRutaArchivo), pRutaArchivo,e);
                 throw lException;
             }
             catch (Exception e)
@@ -93,17 +93,17 @@ namespace EJ03
                 String lRuta = args[0];
                 ImprimirArchivoUsing(lRuta);
             }
-            catch (IndexOutOfRangeException aoorE)
+            catch (IndexOutOfRangeException)
             {
                 Console.WriteLine("No se proporciono ningun Archivo");
             }
-            catch (FileNotFoundException fnfE)
+            catch (FileNotFoundException e)
             {
-                Console.WriteLine(fnfE.Message);    
+                Console.WriteLine(e.Message);    
             }
-            catch (DirectoryNotFoundException dnfE)
+            catch (DirectoryNotFoundException e)
             {
-                Console.WriteLine(dnfE.Message);
+                Console.WriteLine(e.Message);
             }
             catch (Exception e)
             {

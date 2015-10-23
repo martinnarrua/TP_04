@@ -62,7 +62,7 @@ namespace EJ05
 
         IList<Usuario> IRepositorioUsuarios.ObtenerOrdenadosPor(IComparer<Usuario> pComparador)
         {
-            List<Usuario> lista = this.o
+           // List<Usuario> lista = this.o
 
                 return null;
         }
