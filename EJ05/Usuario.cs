@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
+using System.Threading;
 
 namespace EJ05
 {
-    public class Usuario
+    public class Usuario : IComparable
     {
         private string iCodigo;
         private string iNombreCompleto;
@@ -28,6 +30,12 @@ namespace EJ05
         {
             get { return this.iCorreoElectronico; }
             set { this.iCorreoElectronico = value; }
+        }
+
+        public int CompareTo(object pObj)
+        {
+            Usuario lUsuario = (Usuario)pObj;
+            return String.Compare(this.Codigo, lUsuario.Codigo, true, Thread.CurrentThread.CurrentCulture);
         }
 
 
