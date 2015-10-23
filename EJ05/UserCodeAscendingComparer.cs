@@ -9,14 +9,22 @@ using System.Threading;
 namespace EJ05
 {
     /// <summary>
-    /// 
+    /// Comparador de <see cref="Usuario"/> por codigo, utilizandose para un ordenamiento por codigo ascendente
     /// </summary>
     internal class UserCodeAscendingComparer : IComparer<Usuario>
     {
-
-        int IComparer<Usuario>.Compare(Usuario pUsuario1, Usuario pUsuario2)
+        /// <summary>
+        /// Compara dos <see cref="Usuario"/> segun su codigo
+        /// </summary>
+        /// <param name="pUsuario1">Primer <see cref="Usuario"/></param>
+        /// <param name="pUsuario2">Segundo <see cref="Usuario"/></param>
+        /// <returns>0 si los usuarios ocupan la misma posicion en el ordenamiento.
+        /// Mayor a 1 si Usuario1 es posterior a Usuario2 en el ordenamiento
+        /// Menor a 1 si Usuario1 es anterior a Usuario2 en el ordenamiento
+        /// </returns>
+        public int Compare(Usuario pUsuario1, Usuario pUsuario2)
         {
-            return String.Compare(pUsuario1.Codigo, pUsuario1.Codigo, true, Thread.CurrentThread.CurrentCulture);        
+            return String.Compare(pUsuario1.Codigo, pUsuario2.Codigo, true, Thread.CurrentThread.CurrentCulture);        
         }
 
     }
