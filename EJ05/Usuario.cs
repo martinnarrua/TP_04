@@ -15,7 +15,7 @@ namespace EJ05
         private string iCorreoElectronico;
 
         public string Codigo
-        {
+        { 
             get { return this.iCodigo; }
             set { this.iCodigo = value; }
         }
@@ -31,9 +31,15 @@ namespace EJ05
             get { return this.iCorreoElectronico; }
             set { this.iCorreoElectronico = value; }
         }
-
+        /// <summary>
+        /// Implementacion de <see cref="IComparable{T}.CompareTo(T)"/>.
+        /// Implementa el ordenamiento por defecto para los objetos de la clase <see cref="Usuario"/>
+        /// </summary>
+        /// <param name="pObj">PObjeto a comparar con el actual</param>
+        /// <returns></returns>
         public int CompareTo (object pObj)
         {
+            //TODO: Implementacion de Excepciones
             Usuario lUsuario = (Usuario) pObj;
             return (new UserCodeAscendingComparer()).Compare(this, lUsuario);
         }
