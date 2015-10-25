@@ -54,7 +54,7 @@ namespace EJ05
             Usuario lUsuario = null;
             if (iUsuarios.ContainsKey(pCodigo))
             {
-                return iUsuarios[pCodigo];
+                lUsuario = iUsuarios[pCodigo];
             }
             else
             {

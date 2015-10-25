@@ -31,6 +31,7 @@ namespace EJ05
             get { return this.iCorreoElectronico; }
             set { this.iCorreoElectronico = value; }
         }
+
         /// <summary>
         /// Implementacion de <see cref="IComparable{T}.CompareTo(T)"/>.
         /// Implementa el ordenamiento por defecto para los objetos de la clase <see cref="Usuario"/>
