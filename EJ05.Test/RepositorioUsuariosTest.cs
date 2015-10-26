@@ -14,7 +14,7 @@ namespace EJ05.Test
             Usuario lUsuario1 = new Usuario { Codigo = "AAAA", NombreCompleto = "Martin Arrúa", CorreoElectronico = "Martin94.profugo@hotmail.com" };
             Usuario lUsuario2 = new Usuario { Codigo = "MMMM", NombreCompleto = "Ramiro Rivera", CorreoElectronico = "Ramarivera@gmail.com" };
             Usuario lUsuario3 = new Usuario { Codigo = "ZZZZ", NombreCompleto = "Agustina Mannise", CorreoElectronico = "Agusmn95@gmail.com" };
-            RepositorioUsuarios lRepositorio = new RepositorioUsuarios();
+            IRepositorioUsuarios lRepositorio = new RepositorioUsuarios();
             List<Usuario> lLista = new List<Usuario> { lUsuario1, lUsuario2, lUsuario3 };
             List<Usuario> lListaResultado = new List<Usuario>();
 
@@ -36,7 +36,7 @@ namespace EJ05.Test
             Usuario lUsuario1 = new Usuario { Codigo = "AAAA", NombreCompleto = "Martin Arrúa" , CorreoElectronico = "Martin94.profugo@hotmail.com" };
             Usuario lUsuario2 = new Usuario { Codigo = "MMMM", NombreCompleto = "Ramiro Rivera", CorreoElectronico = "Ramarivera@gmail.com" };
             Usuario lUsuario3 = new Usuario { Codigo = "ZZZZ", NombreCompleto = "Agustina Mannise", CorreoElectronico = "Agusmn95@gmail.com" };
-            RepositorioUsuarios lRepositorio = new RepositorioUsuarios();
+            IRepositorioUsuarios lRepositorio = new RepositorioUsuarios();
             List<Usuario> lLista = new List<Usuario> { lUsuario1, lUsuario2, lUsuario3 };
             List<Usuario> lListaResultado = new List<Usuario>();
 
@@ -59,7 +59,7 @@ namespace EJ05.Test
             Usuario lUsuario1 = new Usuario { Codigo = "AAAA", NombreCompleto = "Martin Arrúa", CorreoElectronico = "Martin94.profugo@hotmail.com" };
             Usuario lUsuario2 = new Usuario { Codigo = "MMMM", NombreCompleto = "Ramiro Rivera", CorreoElectronico = "Ramarivera@gmail.com" };
             Usuario lUsuario3 = new Usuario { Codigo = "ZZZZ", NombreCompleto = "Agustina Mannise", CorreoElectronico = "Agusmn95@gmail.com" };
-            RepositorioUsuarios lRepositorio = new RepositorioUsuarios();
+            IRepositorioUsuarios lRepositorio = new RepositorioUsuarios();
             List<Usuario> lLista = new List<Usuario> { lUsuario1, lUsuario2, lUsuario3 };
             List<Usuario> lListaResultado = new List<Usuario>();
 

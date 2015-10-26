@@ -12,18 +12,29 @@ namespace EJ05
 
         public RepositorioUsuarios()
         {
-            iUsuarios = new SortedDictionary<string, Usuario>();
-        }
-        public void Agregar(Usuario pUsuario)
-        {
-            iUsuarios.Add(pUsuario.Codigo, pUsuario);
+            this.Usuarios = new SortedDictionary<string, Usuario>();
         }
 
-        public void Actualizar(Usuario pUsuario)
+        private SortedDictionary<string, Usuario> Usuarios
         {
-            if (iUsuarios.ContainsKey(pUsuario.Codigo))
+            get { return this.iUsuarios; }
+            set { this.iUsuarios = value; }
+        }
+        private IRepositorioUsuarios AsIRepositorioUsuarios
+        {
+            get { return this; }
+        }
+
+        void IRepositorioUsuarios.Agregar(Usuario pUsuario)
+        {
+            Usuarios.Add(pUsuario.Codigo, pUsuario);
+        }
+
+        void IRepositorioUsuarios.Actualizar(Usuario pUsuario)
+        {
+            if (Usuarios.ContainsKey(pUsuario.Codigo))
             {
-                iUsuarios[pUsuario.Codigo] = pUsuario;
+                Usuarios[pUsuario.Codigo] = pUsuario;
             }
             else
             {
@@ -31,30 +42,31 @@ namespace EJ05
             }
         }
 
-        public void Eliminar(string pCodigo)
+        void IRepositorioUsuarios.Eliminar(string pCodigo)
         {
-            if (iUsuarios.ContainsKey(pCodigo))
+            if (Usuarios.ContainsKey(pCodigo))
             {
-                iUsuarios.Remove(pCodigo);
+                Usuarios.Remove(pCodigo);
             }
             else
             {
                 UsuarioNoEncontradoException excepcion = new UsuarioNoEncontradoException(String.Format("Usuario con el codigo {0} no encontrado", pCodigo));
             }
         }
-        public IList<Usuario> ObtenerTodos()
+        IList<Usuario> IRepositorioUsuarios.ObtenerTodos()
         {
             List<Usuario> lLista = (List<Usuario>) this.ObtenerSinOrdenar();
             lLista.Sort();
             return lLista;
         }
         
-        public Usuario ObtenerPorCodigo(string pCodigo)
+        Usuario IRepositorioUsuarios.ObtenerPorCodigo(string pCodigo)
         {
+            List<Usuario> lLista = (List<Usuario>) this.AsIRepositorioUsuarios.ObtenerTodos();
             Usuario lUsuario = null;
-            if (iUsuarios.ContainsKey(pCodigo))
+            if (Usuarios.ContainsKey(pCodigo))
             {
-                lUsuario = iUsuarios[pCodigo];
+                lUsuario = Usuarios[pCodigo];
             }
             else
             {
@@ -65,16 +77,17 @@ namespace EJ05
             return lUsuario;
         }
 
-        public IList<Usuario> ObtenerOrdenadosPor(IComparer<Usuario> pComparador)
+        IList<Usuario> IRepositorioUsuarios.ObtenerOrdenadosPor(IComparer<Usuario> pComparador)
         {
             List<Usuario> lLista = (List<Usuario>) this.ObtenerSinOrdenar();
             lLista.Sort(pComparador);
             return lLista;
         }
 
+
         private IList<Usuario> ObtenerSinOrdenar()
         {
-            List<Usuario> lLista = this.iUsuarios.Values.ToList();
+            List<Usuario> lLista = this.Usuarios.Values.ToList();
             return lLista;
         }
     }
