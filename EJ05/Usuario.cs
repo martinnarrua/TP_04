@@ -41,8 +41,27 @@ namespace EJ05
         public int CompareTo (object pObj)
         {
             //TODO: Implementacion de Excepciones
-            Usuario lUsuario = (Usuario) pObj;
-            return (new UserCodeAscendingComparer()).Compare(this, lUsuario);
+            //TODO: Revisar si esta bien implementado
+            if (pObj == null)
+                return 1;
+            Usuario lUsuario = pObj as Usuario;
+            if (lUsuario != null)
+            {
+                return (new UserCodeAscendingComparer()).Compare(this, lUsuario);
+            }
+            else
+            {
+                throw new ArgumentException("El objeto no es un Usuario");
+            }
+
+
+           /* if (obj == null) return 1;
+
+            Temperature otherTemperature = obj as Temperature;
+            if (otherTemperature != null)
+                return this.temperatureF.CompareTo(otherTemperature.temperatureF);
+            else
+                throw new ArgumentException("Object is not a Temperature");*/
         }
 
 
