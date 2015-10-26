@@ -24,7 +24,7 @@ namespace EJ05
         /// </returns>
         public int Compare(Usuario pUsuario1, Usuario pUsuario2)
         {
-            return (-1) * String.Compare(pUsuario1.Codigo, pUsuario2.Codigo, true, Thread.CurrentThread.CurrentCulture);        
+            return (-1) * ((new UserCodeAscendingComparer()).Compare(pUsuario1,pUsuario2));        
         }
 
     }
