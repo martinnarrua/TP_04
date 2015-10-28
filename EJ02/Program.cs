@@ -13,11 +13,11 @@ namespace EJ02
             Facade cFachada = new Facade();
             try
             {
+                Console.Write("Ingrese el diviendo de la operacion ");
                 int dividendo = int.Parse(Console.ReadLine());
-
+                Console.Write("Ingrese el divisor de la operacion ");
                 int divisor = int.Parse(Console.ReadLine());
-
-                Console.WriteLine(cFachada.Division(dividendo, divisor));
+                Console.WriteLine("El resultado de la division es: {0}",cFachada.Division(dividendo, divisor));
             }
             catch (DivisionPorCeroException exception)
             {
