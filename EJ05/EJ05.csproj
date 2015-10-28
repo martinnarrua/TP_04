@@ -51,6 +51,8 @@
     <Compile Include="UserCodeAscendingComparer.cs" />
     <Compile Include="UserCodeDescendingComparer.cs" />
     <Compile Include="UserEmailDescendingComparer.cs" />
+    <Compile Include="UserFullNameAscendingComparer.cs" />
+    <Compile Include="UserFullNameDescendingComparer.cs" />
     <Compile Include="UserNullComparer.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="UsuarioNoEncontradoException.cs" />
