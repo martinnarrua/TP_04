@@ -43,8 +43,12 @@ namespace EJ05
             //TODO: Implementacion de Excepciones
             //TODO: Revisar si esta bien implementado
             if (pObj == null)
+            {
                 return 1;
+            }
+                
             Usuario lUsuario = pObj as Usuario;
+
             if (lUsuario != null)
             {
                 return (new UserCodeAscendingComparer()).Compare(this, lUsuario);
