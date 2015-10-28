@@ -22,6 +22,18 @@ namespace EJ05
         /// </returns>
         public int Compare(Usuario pUsuario1, Usuario pUsuario2)
         {
+			if (pUsuario1== null && pUsuario2==null)
+            {
+                return 0;
+            }
+            else if (pUsuario1 == null)
+            {
+                return -1;
+            }
+            else if (pUsuario2 == null)
+            {
+                return 1;
+            }
             return String.Compare(pUsuario1.NombreCompleto, pUsuario2.NombreCompleto, false);
         }
 
