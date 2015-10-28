@@ -5,17 +5,46 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
 using System.Threading;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 namespace EJ06
 {
+    // [Serializable]
     public class Usuario : IComparable, IEquatable<Usuario>
     {
         private string iCodigo;
+
         private string iNombreCompleto;
+
         private string iCorreoElectronico;
 
-        public Usuario (Usuario pUsuario)
-        {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pUnUsuario"></param>
+        /// <returns></returns>
+       public static Usuario Copiar (Usuario pUnUsuario)
+       {
+            Usuario lUsuario = new Usuario();
+            lUsuario.Codigo = pUnUsuario.Codigo;
+            lUsuario.NombreCompleto = pUnUsuario.NombreCompleto;
+            lUsuario.CorreoElectronico = pUnUsuario.CorreoElectronico ;
+            return lUsuario;
+
+            /*      Otra opcion es usar un metodo Clone que se base en la serializacion del objeto
+            public Usuario Clone()
+            {
+                using (var lMemoryStream = new MemoryStream())
+                {
+                    var lFormatter = new BinaryFormatter();
+                    lFormatter.Serialize(lMemoryStream, this);
+                    lMemoryStream.Position = 0;
+
+                    return (Usuario)lFormatter.Deserialize(lMemoryStream);
+                }
+            } 
+            */
 
         }
 
@@ -134,6 +163,7 @@ namespace EJ06
             // Aplico logica particular
             return (this.Codigo == pUsuario.Codigo) && (this.NombreCompleto == pUsuario.NombreCompleto) && (this.CorreoElectronico == pUsuario.CorreoElectronico);
         }
+       
         /// <summary>
         /// Sobrecarga del metodo <see cref="object.GetHashCode()"/>.
         /// </summary>
@@ -159,5 +189,7 @@ namespace EJ06
             }
         }
         #endregion
+
+        
     }
 }
