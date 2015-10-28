@@ -51,8 +51,14 @@
     <Compile Include="UserCodeAscendingComparer.cs" />
     <Compile Include="UserCodeDescendingComparer.cs" />
     <Compile Include="UserEmailDescendingComparer.cs" />
+    <Compile Include="UserFullNameAscendingCaseSensitiveComparer.cs" />
     <Compile Include="UserFullNameAscendingComparer.cs" />
+    <Compile Include="UserFullNameAscendingNeutralCultureCaseSensitiveComparer.cs" />
+    <Compile Include="UserFullNameAscendingNeutralCultureComparer.cs" />
+    <Compile Include="UserFullNameDescendingCaseSensitiveComparer.cs" />
     <Compile Include="UserFullNameDescendingComparer.cs" />
+    <Compile Include="UserFullNameDescendingNeutralCultureCaseSensitiveComparer.cs" />
+    <Compile Include="UserFullNameDescendingNeutralCultureComparer.cs" />
     <Compile Include="UserNullComparer.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="UsuarioNoEncontradoException.cs" />
