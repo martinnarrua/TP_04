@@ -8,7 +8,7 @@ using System.Threading;
 
 namespace EJ05
 {
-    public class Usuario : IComparable
+    public class Usuario : IComparable<Usuario>
     {
         private string iCodigo;
         private string iNombreCompleto;
@@ -36,38 +36,11 @@ namespace EJ05
         /// Implementacion de <see cref="IComparable{T}.CompareTo(T)"/>.
         /// Implementa el ordenamiento por defecto para los objetos de la clase <see cref="Usuario"/>
         /// </summary>
-        /// <param name="pObj">PObjeto a comparar con el actual</param>
+        /// <param name="Usuario">Usuario a comparar con el actual</param>
         /// <returns></returns>
-        public int CompareTo (object pObj)
+        int IComparable<Usuario>.CompareTo(Usuario lUsuario)
         {
-            //TODO: Implementacion de Excepciones
-            //TODO: Revisar si esta bien implementado
-            if (pObj == null)
-            {
-                return 1;
-            }
-                
-            Usuario lUsuario = pObj as Usuario;
-
-            if (lUsuario != null)
-            {
-                return (new UserCodeAscendingComparer()).Compare(this, lUsuario);
-            }
-            else
-            {
-                throw new ArgumentException("El objeto no es un Usuario");
-            }
-
-
-           /* if (obj == null) return 1;
-
-            Temperature otherTemperature = obj as Temperature;
-            if (otherTemperature != null)
-                return this.temperatureF.CompareTo(otherTemperature.temperatureF);
-            else
-                throw new ArgumentException("Object is not a Temperature");*/
+            return (new UserCodeAscendingComparer()).Compare(this, lUsuario);
         }
-
-
     }
 }
