@@ -43,19 +43,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comparers\UserCodeAscendingComparer.cs" />
+    <Compile Include="Comparers\UserCodeDescendingComparer.cs" />
+    <Compile Include="Comparers\UserEMailAscendingComparer.cs" />
+    <Compile Include="Comparers\UserEMailDescendingComparer.cs" />
+    <Compile Include="Comparers\UserFullNameAscendingCaseSensitiveComparer.cs" />
+    <Compile Include="Comparers\UserFullNameAscendingComparer.cs" />
+    <Compile Include="Comparers\UserFullNameAscendingNeutralCultureCaseSensitiveComparer.cs" />
+    <Compile Include="Comparers\UserFullNameAscendingNeutralCultureComparer.cs" />
+    <Compile Include="Comparers\UserFullNameDescendingCaseSensitiveComparer.cs" />
+    <Compile Include="Comparers\UserFullNameDescendingComparer.cs" />
+    <Compile Include="Comparers\UserFullNameDescendingNeutralCultureCaseSensitiveComparer.cs" />
+    <Compile Include="Comparers\UserFullNameDescendingNeutralCultureComparer.cs" />
+    <Compile Include="Comparers\UserNullComparer.cs" />
+    <Compile Include="IRepositorioUsuarios.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserCodeAscendingComparer.cs" />
-    <Compile Include="UserCodeDescendingComparer.cs" />
-    <Compile Include="UserEMailAscendingComparer.cs" />
-    <Compile Include="UserEMailDescendingComparer.cs" />
-    <Compile Include="UserNullComparer.cs" />
+    <Compile Include="RepositorioUsuarios.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="UsuarioNoEncontradoException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
