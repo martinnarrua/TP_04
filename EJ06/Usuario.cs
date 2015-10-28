@@ -11,7 +11,7 @@ using System.IO;
 namespace EJ06
 {
     // [Serializable]
-    public class Usuario : IComparable, IEquatable<Usuario>
+    public class Usuario : IComparable<Usuario>, IEquatable<Usuario>
     {
         private string iCodigo;
 
@@ -72,34 +72,9 @@ namespace EJ06
         /// </summary>
         /// <param name="pObj">PObjeto a comparar con el actual</param>
         /// <returns></returns>
-        int IComparable.CompareTo(object pObj)
+        int IComparable<Usuario>.CompareTo(Usuario lUsuario)
         {
-            //TODO: Implementacion de Excepciones
-            //TODO: Revisar si esta bien implementado
-            if (pObj == null)
-            {
-                return 1;
-            }
- 
-            Usuario lUsuario = pObj as Usuario;
-
-            if (lUsuario != null)
-            {
-                return (new UserCodeAscendingComparer()).Compare(this, lUsuario);
-            }
-            else
-            {
-                throw new ArgumentException("El objeto no es un Usuario");
-            }
-
-
-            /* if (obj == null) return 1;
-
-             Temperature otherTemperature = obj as Temperature;
-             if (otherTemperature != null)
-                 return this.temperatureF.CompareTo(otherTemperature.temperatureF);
-             else
-                 throw new ArgumentException("Object is not a Temperature");*/
+            return (new UserCodeAscendingComparer()).Compare(this, lUsuario);
         }
 
         #region Usuario - Metodos Sobrecargados (Equals, ToString, GetHashCode)
@@ -188,8 +163,10 @@ namespace EJ06
                 return hash;
             }
         }
-        #endregion
 
         
+        #endregion
+
+
     }
 }

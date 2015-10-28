@@ -9,12 +9,12 @@ using System.Threading;
 namespace EJ06
 {
     /// <summary>
-    /// Comparador de <see cref="Usuario"/> por codigo, utilizandose para un ordenamiento por codigo ascendente
+    /// Comparador de <see cref="Usuario"/> por nombre completo, utilizandose para un ordenamiento por nombre completo en orden alfabetico
     /// </summary>
-    internal class UserCodeAscendingComparer : IComparer<Usuario>
+    internal class UserFullNameAscendingComparer : IComparer<Usuario>
     {
         /// <summary>
-        /// Compara dos <see cref="Usuario"/> segun su codigo, teniendo en cuenta la cultura actual e ignorando la capitalizacion
+        /// Compara dos <see cref="Usuario"/> segun su nombre completo, teniendo en cuenta la cultura actual e ignorando la capitalizacion
         /// </summary>
         /// <param name="pUsuario1">Primer <see cref="Usuario"/></param>
         /// <param name="pUsuario2">Segundo <see cref="Usuario"/></param>
@@ -24,7 +24,19 @@ namespace EJ06
         /// </returns>
         public int Compare(Usuario pUsuario1, Usuario pUsuario2)
         {
-            return String.Compare(pUsuario1.Codigo, pUsuario2.Codigo, true, Thread.CurrentThread.CurrentCulture);        
+			if (pUsuario1== null && pUsuario2==null)
+            {
+                return 0;
+            }
+            else if (pUsuario1 == null)
+            {
+                return -1;
+            }
+            else if (pUsuario2 == null)
+            {
+                return 1;
+            }
+            return String.Compare(pUsuario1.NombreCompleto, pUsuario2.NombreCompleto, true, Thread.CurrentThread.CurrentCulture);
         }
 
     }
