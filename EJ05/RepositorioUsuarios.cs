@@ -62,8 +62,8 @@ namespace EJ05
         
         Usuario IRepositorioUsuarios.ObtenerPorCodigo(string pCodigo)
         {
-            List<Usuario> lLista = (List<Usuario>) this.AsIRepositorioUsuarios.ObtenerTodos();
             Usuario lUsuario = null;
+
             if (Usuarios.ContainsKey(pCodigo))
             {
                 lUsuario = Usuarios[pCodigo];
