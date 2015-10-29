@@ -106,11 +106,12 @@ namespace EJ06
         {
             pBusqueda = pBusqueda.ToUpper();
             List<Usuario> lResultado = new List<Usuario>();
-            int lPor = 0;
+            double lPor = 0;
 
             foreach (Usuario lUsuario in this.Usuarios)
             {
-                lPor = LevenshteingDistance.Calcular(pBusqueda,lUsuario.NombreCompleto);
+                LevenshteingDistance Levenshteing = new LevenshteingDistance(pBusqueda, lUsuario.NombreCompleto);
+                lPor = Levenshteing.Calcular();
                 if (lPor < 1)
                 {
                     lResultado.Add(lUsuario.Copiar());
