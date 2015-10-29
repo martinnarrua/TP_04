@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="AdministradorCalendarios.cs" />
     <Compile Include="Calendario.cs" />
+    <Compile Include="Evento.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
