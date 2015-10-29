@@ -8,6 +8,7 @@ namespace EJ06
 {
     class Program
     {
+
         public static int LevenshteinDistance(string s, string t, out double porcentaje)
         {
             porcentaje = 0;
@@ -34,8 +35,8 @@ namespace EJ06
                 // recorre para j
                 for (int j = 1; j <= n; j++)
                 {
-                    /// si son iguales en posiciones equidistantes el peso es 0
-                    /// de lo contrario el peso suma a uno.
+                    // si son iguales en posiciones equidistantes el peso es 0
+                    // de lo contrario el peso suma a uno.
                     costo = (s[i - 1] == t[j - 1]) ? 0 : 1;
                     d[i, j] = System.Math.Min(System.Math.Min(d[i - 1, j] + 1,  //Eliminacion
                                   d[i, j - 1] + 1),                             //Inserccion 
@@ -43,7 +44,7 @@ namespace EJ06
                 }
             }
 
-            /// Calculamos el porcentaje de cambios en la palabra.
+            // Calculamos el porcentaje de cambios en la palabra.
             if (s.Length > t.Length)
                 porcentaje = ((double)d[m, n] / (double)s.Length);
             else
@@ -54,9 +55,8 @@ namespace EJ06
         {
             double por;
             int numero;
-            numero = LevenshteinDistance("Arrua","Gomez",out por);
-            Console.WriteLine(numero);
-            Console.WriteLine(por);
+            numero = LevenshteinDistance("me","Gomez",out por);
+            Console.WriteLine("La distancia es de {0} y las palabras son un {1}% distintas",numero,por*100);
             Console.ReadKey();
         }
     }

@@ -8,14 +8,14 @@ namespace EJ06
 {
     public class RepositorioUsuarios: IRepositorioUsuarios
     {
-        private SortedDictionary<string, Usuario> iUsuarios;
+        private List <Usuario> iUsuarios;
 
         public RepositorioUsuarios()
         {
-            this.Usuarios = new SortedDictionary<string, Usuario>();
+            this.Usuarios = new List<Usuario>();
         }
 
-        private SortedDictionary<string, Usuario> Usuarios
+        private List<Usuario> Usuarios
         {
             get { return this.iUsuarios; }
             set { this.iUsuarios = value; }
@@ -27,14 +27,17 @@ namespace EJ06
 
         void IRepositorioUsuarios.Agregar(Usuario pUsuario)
         {
-            Usuarios.Add(pUsuario.Codigo, pUsuario);
+            Usuario lUsuario = pUsuario.Copiar();
+            this.Usuarios.Add(lUsuario);
         }
 
         void IRepositorioUsuarios.Actualizar(Usuario pUsuario)
         {
-            if (Usuarios.ContainsKey(pUsuario.Codigo))
+            if (this.Usuarios.Contains(pUsuario))
             {
-                Usuarios[pUsuario.Codigo] = pUsuario;
+                int lIndice = this.Usuarios.IndexOf(pUsuario);
+                Usuario lUsuario = pUsuario.Copiar();
+                this.Usuarios[lIndice] = lUsuario;
             }
             else
             {
@@ -44,9 +47,11 @@ namespace EJ06
 
         void IRepositorioUsuarios.Eliminar(string pCodigo)
         {
-            if (Usuarios.ContainsKey(pCodigo))
+            Usuario lUsuario = new Usuario() { Codigo = pCodigo, CorreoElectronico = "", NombreCompleto="" };
+
+            if (this.Usuarios.Contains(lUsuario))
             {
-                Usuarios.Remove(pCodigo);
+                this.Usuarios.Remove(lUsuario);
             }
             else
             {
@@ -55,40 +60,64 @@ namespace EJ06
         }
         IList<Usuario> IRepositorioUsuarios.ObtenerTodos()
         {
-            List<Usuario> lLista = (List<Usuario>) this.ObtenerSinOrdenar();
+            List<Usuario> lLista = this.ObtenerSinOrdenar();
             lLista.Sort();
             return lLista;
         }
         
         Usuario IRepositorioUsuarios.ObtenerPorCodigo(string pCodigo)
         {
-            List<Usuario> lLista = (List<Usuario>) this.AsIRepositorioUsuarios.ObtenerTodos();
-            Usuario lUsuario = null;
-            if (Usuarios.ContainsKey(pCodigo))
+            Usuario lResultado = null;
+            Usuario lUsuario = new Usuario() { Codigo = pCodigo, CorreoElectronico = "", NombreCompleto = "" };
+
+            if (Usuarios.Contains(lUsuario))
             {
-                lUsuario = Usuarios[pCodigo];
+                int lIndice = this.Usuarios.IndexOf(lUsuario);
+                lResultado = this.Usuarios[lIndice].Copiar();
             }
             else
             {
                 UsuarioNoEncontradoException excepcion = new UsuarioNoEncontradoException(String.Format("Usuario con el codigo {0} no encontrado", pCodigo));
-                //revisar esto
-                //TODO: DOBLEMENTE REVISAR ESTO
             }
-            return lUsuario;
+            return lResultado;
         }
 
         IList<Usuario> IRepositorioUsuarios.ObtenerOrdenadosPor(IComparer<Usuario> pComparador)
         {
-            List<Usuario> lLista = (List<Usuario>) this.ObtenerSinOrdenar();
+            List<Usuario> lLista = this.ObtenerSinOrdenar();
             lLista.Sort(pComparador);
             return lLista;
         }
 
 
-        private IList<Usuario> ObtenerSinOrdenar()
+        private List<Usuario> ObtenerSinOrdenar()
         {
-            List<Usuario> lLista = this.Usuarios.Values.ToList();
+            List<Usuario> lLista = new List<Usuario>();
+
+            foreach (Usuario lUser in this.Usuarios)
+            {
+                lLista.Add(lUser.Copiar());
+            }
+                
             return lLista;
+        }
+
+        public List<Usuario> BusquedaPorAproximacion(string pBusqueda)
+        {
+            pBusqueda = pBusqueda.ToUpper();
+            List<Usuario> lResultado = new List<Usuario>();
+            int lPor = 0;
+
+            foreach (Usuario lUsuario in this.Usuarios)
+            {
+                lPor = LevenshteingDistance.Calcular(pBusqueda,lUsuario.NombreCompleto);
+                if (lPor < 1)
+                {
+                    lResultado.Add(lUsuario.Copiar());
+                }
+            }
+
+            return lResultado;
         }
     }
 }

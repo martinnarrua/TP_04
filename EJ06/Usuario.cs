@@ -10,7 +10,7 @@ using System.IO;
 
 namespace EJ06
 {
-    // [Serializable]
+    //[Serializable]
     public class Usuario : IComparable<Usuario>, IEquatable<Usuario>
     {
         private string iCodigo;
@@ -24,12 +24,12 @@ namespace EJ06
         /// </summary>
         /// <param name="pUnUsuario"></param>
         /// <returns></returns>
-       public static Usuario Copiar (Usuario pUnUsuario)
+       public Usuario Copiar ()
        {
             Usuario lUsuario = new Usuario();
-            lUsuario.Codigo = pUnUsuario.Codigo;
-            lUsuario.NombreCompleto = pUnUsuario.NombreCompleto;
-            lUsuario.CorreoElectronico = pUnUsuario.CorreoElectronico ;
+            lUsuario.Codigo = this.Codigo;
+            lUsuario.NombreCompleto = this.NombreCompleto;
+            lUsuario.CorreoElectronico = this.CorreoElectronico ;
             return lUsuario;
 
             /*      Otra opcion es usar un metodo Clone que se base en la serializacion del objeto
@@ -70,7 +70,7 @@ namespace EJ06
         /// Implementacion de <see cref="IComparable{T}.CompareTo(T)"/>.
         /// Implementa el ordenamiento por defecto para los objetos de la clase <see cref="Usuario"/>
         /// </summary>
-        /// <param name="pObj">PObjeto a comparar con el actual</param>
+        /// <param name="lUsuario">Usuario a comparar con el actual</param>
         /// <returns></returns>
         int IComparable<Usuario>.CompareTo(Usuario lUsuario)
         {
@@ -145,23 +145,7 @@ namespace EJ06
         /// <returns>Integer HashCode</returns>
         public override int GetHashCode()
         {
-            // El HashCode debe ser rapido de calcular y con pocas colisiones
-            // Buscamos grandes productos semi-aleatorios, por lo tanto somos concientes de que un overflow de integers es posible, el cual no nos afecta
-            unchecked
-            {
-                // Un gran numero primo disminuye las colisiones en grandes conjuntos de objetos
-                const int HashingBase = (int)2166136261; //Primo01, casteado a int
-                const int HashingMultiplier = 16777619; //Primo02
-
-                int hash = HashingBase;
-                //Utilizamos cada propiedad de nuestro objeto, si dicha propiedad es nula, el resultado es 0
-                hash = (hash * HashingMultiplier) ^ (!Object.ReferenceEquals(null, this.Codigo) ? this.Codigo.GetHashCode() : 0);
-                //Sucesivamente vamos acumulando los resultados
-                hash = (hash * HashingMultiplier) ^ (!Object.ReferenceEquals(null, this.NombreCompleto) ? this.NombreCompleto.GetHashCode() : 0);
-                //Por ultimo en vez de usar +, usamos el operador XOR ^ para obtener una implementacion mas performante
-                hash = (hash * HashingMultiplier) ^ (!Object.ReferenceEquals(null, this.CorreoElectronico) ? this.CorreoElectronico.GetHashCode() : 0);
-                return hash;
-            }
+            return !Object.ReferenceEquals(null, this) ? this.Codigo.GetHashCode() : 0;
         }
 
         
