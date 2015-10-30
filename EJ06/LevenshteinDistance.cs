@@ -2,13 +2,13 @@
 
 namespace EJ06
 {
-    public class LevenshteingDistance
+    public class CalculadorDistanciaLevenshtein
     {
         private int[,] d;
         private string cadena1;
         private string cadena2;
 
-        public LevenshteingDistance(string pBusqueda, string nombreCompleto)
+        public CalculadorDistanciaLevenshtein (string pBusqueda, string nombreCompleto)
         {
             // d es una tabla con m+1 renglones y n+1 columnas
             cadena1 = pBusqueda;

@@ -110,8 +110,8 @@ namespace EJ06
 
             foreach (Usuario lUsuario in this.Usuarios)
             {
-                LevenshteingDistance Levenshteing = new LevenshteingDistance(pBusqueda, lUsuario.NombreCompleto);
-                lPor = Levenshteing.Calcular();
+                CalculadorDistanciaLevenshtein lCalculadorDistancia = new CalculadorDistanciaLevenshtein(pBusqueda, lUsuario.NombreCompleto);
+                lPor = lCalculadorDistancia.Calcular();
                 if (lPor < 1)
                 {
                     lResultado.Add(lUsuario.Copiar());
