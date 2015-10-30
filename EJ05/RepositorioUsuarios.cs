@@ -71,8 +71,6 @@ namespace EJ05
             else
             {
                 UsuarioNoEncontradoException excepcion = new UsuarioNoEncontradoException(String.Format("Usuario con el codigo {0} no encontrado", pCodigo));
-                //revisar esto
-                //TODO: DOBLEMENTE REVISAR ESTO
             }
             return lUsuario;
         }

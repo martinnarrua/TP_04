@@ -7,13 +7,14 @@ namespace EJ02.Test
     [TestClass]
     public class DivisionPorCeroTest
     {
-        [TestMethod]
+        //TODO: Que carajo?
+        /*[TestMethod]
         public void DivisionPorCero()
         {
             int dividendo = 0;
             int divisor = 15;
 
            // Assert Matematica.Dividir(dividendo, divisor);
-        }
+        }*/
     }
 }
