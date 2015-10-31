@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EJ07
 {
-    class Evento
+    public class Evento
     {
 
     }

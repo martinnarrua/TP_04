@@ -44,13 +44,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdministradorCalendarios.cs" />
+    <Compile Include="Criteria\AndCriteria.cs" />
     <Compile Include="Calendario.cs" />
+    <Compile Include="Criteria\CriteriaExtensionMethods.cs" />
     <Compile Include="Evento.cs" />
+    <Compile Include="Exceptions\EventoExistenteException.cs" />
+    <Compile Include="Exceptions\CalendarioNoEncontradoException.cs" />
+    <Compile Include="Exceptions\EventoNoEncontradoException.cs" />
+    <Compile Include="Exceptions\CalendarioExistenteException.cs" />
+    <Compile Include="Frecuencia.cs" />
+    <Compile Include="Criteria\ICriteria.cs" />
+    <Compile Include="IRepositorioCalendarios.cs" />
+    <Compile Include="IRepositorioEventos.cs" />
+    <Compile Include="Criteria\NotCriteria.cs" />
+    <Compile Include="Criteria\OrCriteria.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Exceptions\TituloCalendarioInvalidoException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Criteria\Criterion\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

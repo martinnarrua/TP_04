@@ -27,6 +27,8 @@ namespace EJ05
 
         void IRepositorioUsuarios.Agregar(Usuario pUsuario)
         {
+            //TODO:  T:System.ArgumentException:
+            //     An element with the same key already exists in the System.Collections.Generic.SortedDictionary`2.
             Usuarios.Add(pUsuario.Codigo, pUsuario);
         }
 

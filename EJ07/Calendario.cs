@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 namespace EJ07
 {
+    [Serializable]
     public class Calendario
     {
         /// <summary>
@@ -16,37 +19,23 @@ namespace EJ07
         /// <summary>
         /// Representa la fecha de creacion del calendario
         /// </summary>
-        private DateTime iFechaCreacion;
+        private readonly DateTime iFechaCreacion;
 
-        /// <summary>
-        /// Representa la hora de creacion del calendario
-        /// </summary>
-        private TimeSpan iHoraCreacion;
 
         /// <summary>
         /// Representa la fecha de la ultima modificacion del calendario
         /// </summary>
         private DateTime iFechaModificacion;
 
-        /// <summary>
-        /// Representa la hora de la ultima modificacion del calendario
-        /// </summary>
-        private TimeSpan iHoraModificacion;
         public string Titulo
         {
             get { return this.iTitulo; }
             private set { this.iTitulo = value; }
         }
-
         public DateTime FechaCreacion
         {
             get { return this.iFechaCreacion; }
             private set { this.iFechaCreacion = value; }
-        }
-        public TimeSpan HoraCreacion
-        {
-            get { return this.iHoraCreacion; }
-            private set { this.iHoraCreacion = value; }
         }
 
         public DateTime FechaModificacion
@@ -54,11 +43,7 @@ namespace EJ07
             get { return this.iFechaModificacion; }
             set { this.iFechaModificacion = value; }
         }
-        public TimeSpan HoraModificacion
-        {
-            get { return this.iHoraModificacion; }
-            set { this.iHoraModificacion = value; }
-        }
+
 
         /// <summary>
         /// Constructor de la clase <see cref="Calendario"/>
@@ -68,14 +53,24 @@ namespace EJ07
         {
             this.Titulo = pTitulo;
             this.FechaCreacion = DateTime.Now.Date;
-            this.HoraCreacion = DateTime.Now.TimeOfDay;
         }
 
         public void Modificar(string pTitulo)
         {
             this.Titulo = pTitulo;
             this.FechaModificacion = DateTime.Now.Date;
-            this.HoraModificacion = DateTime.Now.TimeOfDay;
+
+        }
+
+        internal Calendario Copiar()
+        {
+            using (var lMemoryStream = new MemoryStream())
+            {
+                var lFormatter = new BinaryFormatter();
+                lFormatter.Serialize(lMemoryStream, this);
+                lMemoryStream.Position = 0;
+                return (Calendario) lFormatter.Deserialize(lMemoryStream);
+            }
         }
     }
 }
