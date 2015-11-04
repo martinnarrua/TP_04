@@ -45,8 +45,8 @@ namespace EJ04
 		/// <param name="pMoneda">Tipo de moneda de la cuenta</param>
         public Cuenta(double pSaldoInicial, Moneda pMoneda)
 		{
-			Saldo = pSaldoInicial;
-			Moneda = pMoneda;
+			this.Saldo = pSaldoInicial;
+			this.Moneda = pMoneda;
 		}
 
         /// <summary>
@@ -56,20 +56,20 @@ namespace EJ04
 		public Cuenta(Moneda pMoneda) : this(0, pMoneda) { }
 
         /// <summary>
-        /// Acredita en la cuenta el monto ingresado. Cambio: 
+        /// Acredita en la cuenta el monto ingresado. 
         /// </summary>
         /// <param name="pSaldo">Monto a acreditar</param>
 		public void AcreditarSaldo (double pSaldo )
 		{
-            if (pSaldo < 0)
+            if (pSaldo < 0)//Se agrega una excepcion en caso de que el monto a acreditar sea menor a $0
             {
-                MontoNegativoException excepcion = new MontoNegativoException("El monto que se desea acreditar no es valido ya que es un valor negativo");
+                MontoNegativoException excepcion = new MontoNegativoException(pSaldo.ToString(),"El monto que se desea acreditar no es valido ya que es un valor negativo");
                 throw excepcion;
             }
             unchecked
             {
                 double lSuma = Saldo + pSaldo;
-                if (lSuma <= Saldo)
+                if (lSuma <= Saldo) //Se agrega una excepcion en caso de que el nuevo saldo no sea soportado por la clase Double
                 {
                     DesbordamientoException lException = new DesbordamientoException("La suma del Monto actual y el monto a Acreditar es mayor que el valor maximo del tipo Double");
                     throw lException;
@@ -79,17 +79,17 @@ namespace EJ04
 		}
 
         /// <summary>
-        /// Debita de la cuenta el monto ingresado. Cambio: incluye una excepcion en caso de que el monto a debitar sea mayor al saldo disponible
+        /// Debita de la cuenta el monto ingresado. 
         /// </summary>
         /// <param name="pSaldo">Monto de debitar</param>
 		public void DebitarSaldo (double pSaldo )
 		{
-            if (pSaldo < 0)
+            if (pSaldo < 0) //Se agrega una excepcion en caso de que el monto a debitar sea menor a $0
             {
-                MontoNegativoException excepcion = new MontoNegativoException("El monto que se desea debitar no es valido ya que es un valor negativo");
+                MontoNegativoException excepcion = new MontoNegativoException(pSaldo.ToString(),"El monto que se desea debitar no es valido ya que es un valor negativo");
                 throw excepcion;
             }
-			if (Saldo < pSaldo)
+			if (Saldo < pSaldo) //Se agrega una excepcion en caso de que se desee debitar mas dinero que el disponible
 			{
                 SaldoInsuficienteException excepcion = new SaldoInsuficienteException("El monto que se desea debitar es mayor que el saldo disponible en la cuenta");
                 throw excepcion;

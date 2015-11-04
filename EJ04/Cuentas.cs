@@ -45,8 +45,8 @@ namespace EJ04
 		{
 			Moneda dolar = new Moneda("USD", "Dolar", "U$S");
 			Moneda peso = new Moneda("ARS", "Peso Argentino", "$");
-			CuentaEnDolares = new Cuenta(dolar);
-			CuentaEnPesos = new Cuenta(peso);
+			this.CuentaEnDolares = new Cuenta(dolar);
+			this.CuentaEnPesos = new Cuenta(peso);
 		}
 	}
 }

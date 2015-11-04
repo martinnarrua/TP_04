@@ -17,12 +17,6 @@ namespace EJ04
         public MontoNegativoException() : base() { }
 
         /// <summary>
-        /// Inicializa una nueva instancia de <see cref="MontoNegativoException"/> con un mensaje de error especifico.
-        /// </summary>
-        /// <param name="pMensaje">Mensaje que explica la causa de la excepcion</param>
-        public MontoNegativoException(string pMensaje) : base(pMensaje) { }
-
-        /// <summary>
         /// Inicializa una nueva instancia de <see cref="MontoNegativoException"/> con un mensaje de error especifico y el nombre del parametro que causo la excepcion
         /// </summary>
         /// <param name="pNombreParametro">Nombre del parametro que causo la excepcion</param>

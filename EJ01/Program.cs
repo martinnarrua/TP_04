@@ -10,6 +10,8 @@ namespace EJ01
     {
         static void Main(string[] argumento )
         {
+            Console.WriteLine("Presione una tecla para comenzar la ejecucion");
+            Console.ReadKey();
             CapaVista vista = new CapaVista();
             vista.Ejecutar();
             Console.ReadKey();

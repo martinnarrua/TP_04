@@ -11,6 +11,11 @@ namespace EJ01
     /// </summary>
     class CapaAplicacionException:ApplicationException
     {
+        /// <summary>
+        /// Constructor de la clase <see cref="CapaAplicacionException"/>
+        /// </summary>
+        /// <param name="mensaje">mensaje que describe la excepcion lanzada</param>
+        /// <param name="exception">excepcion que generó el lanzamiento de esta excepcion</param>
         public CapaAplicacionException(string mensaje, ErrorPuntualException exception):base(mensaje,exception) { }
     }
 }

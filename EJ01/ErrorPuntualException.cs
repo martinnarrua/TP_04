@@ -11,6 +11,10 @@ namespace EJ01
     /// </summary>
     class ErrorPuntualException: ApplicationException
     {
+        /// <summary>
+        /// Constructor de la clase <see cref="ErrorPuntualException"/>
+        /// </summary>
+        /// <param name="mensaje">mensaje que describe la excepcion lanzada</param>
         public ErrorPuntualException(string mensaje): base(mensaje + DateTime.Now) { }
 
     }
