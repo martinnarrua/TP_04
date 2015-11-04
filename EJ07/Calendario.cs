@@ -148,30 +148,27 @@ namespace EJ07
             return this.Eventos.Values.ToList();
         }
 
-        Calendario IRepositorioCalendarios.ObtenerPorNombre(string pNombre)
+        Evento IRepositorioEventos.ObtenerPorNombre(string pNombre)
         {
-            if (this.Calendarios.ContainsKey(pNombre))
+            if (this.Eventos.ContainsKey(pNombre))
             {
-                return this.Calendarios[pNombre];
+                return this.Eventos[pNombre];
             }
             else
             {
-                CalendarioNoEncontradoException lException = new CalendarioNoEncontradoException(String.Format("No se encontro el calendario con el nombre '{0}'", pCalendario.Titulo));
+                EventoNoEncontradoException lException = new EventoNoEncontradoException(String.Format("No se encontro el evento con el nombre '{0}' en este calendario", pNombre));
                 throw lException;
             }
         }
 
-        IList<Calendario> IRepositorioCalendarios.ObtenerOrdenadosPor(IComparer<Calendario> pComparador)
+        IList<Evento> IRepositorioEventos.ObtenerOrdenadosPor(IComparer<Evento> pComparador)
         {
             throw new NotImplementedException();
         }
 
-        IList<Calendario> IRepositorioCalendarios.ObtenerPorCriterio(ICriteria<Calendario> pCriterio)
+        IList<Evento> IRepositorioEventos.ObtenerPorCriterio(ICriteria<Evento> pCriterio)
         {
             throw new NotImplementedException();
         }
-    }
-}
-
     }
 }

@@ -44,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdministradorCalendarios.cs" />
-    <Compile Include="AdministradorEvento.cs" />
     <Compile Include="Criteria\AndCriteria.cs" />
     <Compile Include="Calendario.cs" />
     <Compile Include="Criteria\CriteriaExtensionMethods.cs" />
