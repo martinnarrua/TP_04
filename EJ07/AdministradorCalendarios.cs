@@ -10,7 +10,7 @@ namespace EJ07
 {
     class AdministradorCalendarios : IRepositorioCalendarios
     {
-        private SortedDictionary<string, Calendario> Calendarios { get; set; }        
+        private SortedDictionary<DateTime, Calendario> Calendarios { get; set; }        
 
         void IRepositorioCalendarios.Agregar(Calendario pCalendario)
         {
@@ -26,13 +26,13 @@ namespace EJ07
             {
                 throw (new ArgumentException("pCalendario.Titulo", "No se pudo agregar el calendario, el titulo del mismo esta vacio"));
             }
-            else if (this.Calendarios.ContainsKey(pCalendario.Titulo))
+            else if (this.Calendarios.ContainsKey(pCalendario.FechaCreacion))
             {
-                CalendarioExistenteException lException = new CalendarioExistenteException(String.Format("No se pudo agregar el calendario, ya existe un calendario con el titulo '{0}'", pCalendario.Titulo));
+                CalendarioExistenteException lException = new CalendarioExistenteException(String.Format("No se pudo agregar el calendario, ya existe un calendario con esa fecha de creacioncon el titulo '{0}'", pCalendario.Titulo));
                 throw lException;
             }
 
-            this.Calendarios.Add(pCalendario.Titulo, pCalendario.Copiar());
+            this.Calendarios.Add(pCalendario.FechaCreacion, pCalendario.Copiar());
             
         }
 

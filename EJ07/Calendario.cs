@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using EJ07.Exceptions;
+using EJ07.Criteria;
 
 namespace EJ07
 {
     [Serializable]
-    public class Calendario:IRepositorioEventos
+    public class Calendario : IRepositorioEventos, IEquatable<Calendario>;
     {
         /// <summary>
         /// Representa el titulo utilizado para reconocer el calendario
@@ -20,7 +21,7 @@ namespace EJ07
         /// <summary>
         /// Representa la fecha de creacion del calendario
         /// </summary>
-        private DateTime iFechaCreacion;
+        private readonly DateTime iFechaCreacion;
 
 
         /// <summary>
@@ -28,29 +29,7 @@ namespace EJ07
         /// </summary>
         private DateTime iFechaModificacion;
 
-        private SortedDictionary<string,Evento> iEventos;
-
-        public string Titulo
-        {
-            get { return this.iTitulo; }
-            private set { this.iTitulo = value; }
-        }
-        public DateTime FechaCreacion
-        {
-            get { return this.iFechaCreacion; }
-            private set { this.iFechaCreacion = value; }
-        }
-
-        public DateTime FechaModificacion
-        {
-            get { return this.iFechaModificacion; }
-            set { this.iFechaModificacion = value; }
-        }
-
-        public SortedDictionary<string, Evento> Eventos
-        {
-            get { return this.iEventos; }
-        }
+        private SortedDictionary<string,Evento> Eventos { get; }
 
 
         /// <summary>
@@ -60,8 +39,31 @@ namespace EJ07
         public Calendario(string pTitulo)
         {
             this.Titulo = pTitulo;
-            this.FechaCreacion = DateTime.Now;
+            this.iFechaCreacion = DateTime.Now;
+            this.FechaModificacion = DateTime.Now;
         }
+
+
+        public string Titulo
+        {
+            get { return this.iTitulo; }
+            private set { this.iTitulo = value; }
+        }
+
+        public DateTime FechaCreacion
+        {
+            get { return this.iFechaCreacion; }
+        }
+
+        public DateTime FechaModificacion
+        {
+            get { return this.iFechaModificacion; }
+            set { this.iFechaModificacion = value; }
+        }
+
+
+
+        
 
         public void Modificar(Calendario pCalendario)
         {
@@ -169,6 +171,55 @@ namespace EJ07
         IList<Evento> IRepositorioEventos.ObtenerPorCriterio(ICriteria<Evento> pCriterio)
         {
             throw new NotImplementedException();
+        }
+
+        bool IEquatable<Calendario>.Equals(Calendario pCalendario)
+        {
+            // Si pUsuariopCalendario es (apunta a) null, falso
+            if (Object.ReferenceEquals(null, pCalendario))
+            {
+                return false;
+            }
+
+            // Si pCalendario es (apunta a) this, verdadero
+            if (Object.ReferenceEquals(this, pCalendario))
+            {
+                return true;
+            }
+
+            return (this.FechaCreacion == pCalendario.FechaCreacion);
+        }
+
+        
+        public override bool Equals(object obj)
+        {
+            // Si obj es (apunta a) null, falso
+            if (Object.ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+            // Si obj es (apunta a) this, verdadero
+            if (Object.ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            Calendario lCalendario = obj as Calendario;
+            // Si el casteo con As falla, Falso
+            if (lCalendario == null)
+            {
+                return false;
+            }
+
+            // Aplico logica particular, casteando previamente a Calendario
+            return (this.Equals(lCalendario));
+
+        }
+
+        
+        public override int GetHashCode()
+        {
+            return !Object.ReferenceEquals(null, this) ? this.FechaCreacion.GetHashCode() : 0;
         }
     }
 }

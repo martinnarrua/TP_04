@@ -145,6 +145,7 @@ namespace EJ06
         /// <returns>Integer HashCode</returns>
         public override int GetHashCode()
         {
+
             return !Object.ReferenceEquals(null, this) ? this.Codigo.GetHashCode() : 0;
         }
 
