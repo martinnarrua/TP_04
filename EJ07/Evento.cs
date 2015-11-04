@@ -11,9 +11,11 @@ namespace EJ07
     [Serializable]
     public class Evento
     {
-        private string iCodigo;
+        private readonly string iCodigo;
 
         private string iTitulo;
+
+        private readonly DateTime iFechaCreacion;
 
         private DateTime iFechaComienzo;
 
@@ -26,23 +28,34 @@ namespace EJ07
         public string Codigo
         {
             get { return this.iCodigo; }
-            private set { this.iCodigo = value; }
         }
         public string Titulo
         {
             get { return this.iTitulo; }
-            private set { this.iTitulo = value; }
+            set
+            {
+                this.FechaModificacion = DateTime.Now;
+                this.iTitulo = value;
+            }
         }
 
         public DateTime FechaComienzo
         {
             get { return this.iFechaComienzo; }
-            private set { this.iFechaComienzo = value; }
+            set
+            {
+                this.FechaModificacion = DateTime.Now;
+                this.iFechaComienzo = value;
+            }
         }
         public DateTime FechaFin
         {
             get { return this.iFechaFin; }
-            private set { this.iFechaFin = value; }
+            set
+            {
+                this.FechaModificacion = DateTime.Now;
+                this.iFechaFin = value;
+            }
         }
 
         public DateTime FechaModificacion
@@ -51,6 +64,10 @@ namespace EJ07
             private set { this.iFechaModificacion = value; }
         }
 
+        public DateTime FechaCreacion
+        {
+            get { return this.iFechaCreacion; }
+        }
 
         public FrecuenciaRepeticion Frecuencia
         {
@@ -61,20 +78,11 @@ namespace EJ07
         public Evento(string pTitulo,string pCodigo, DateTime pFechaComienzo, DateTime pFechaFin, FrecuenciaRepeticion pFrecuencia)
         {
             this.Titulo = pTitulo;
-            this.Codigo = pCodigo;
+            this.iCodigo = pCodigo;
             this.FechaComienzo = pFechaComienzo;
             this.FechaFin = pFechaFin;
             this.FechaModificacion = DateTime.Now;
             this.Frecuencia = pFrecuencia;
-        }
-
-        public void Modificar(Evento pEvento)
-        {
-            this.Titulo = pEvento.Titulo;
-            this.FechaComienzo = pEvento.FechaComienzo;
-            this.FechaFin = pEvento.FechaFin;
-            this.FechaModificacion = DateTime.Now;
-            this.Frecuencia = pEvento.Frecuencia;
         }
 
         internal Evento Copiar()

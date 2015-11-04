@@ -11,7 +11,7 @@ namespace EJ07
     {
         void Agregar(Calendario pCalendario);
 
-        void Actualizar(Calendario pCalendario, Calendario pCalendarioModificado);
+        void Actualizar(Calendario pCalendario);
 
         void Eliminar(string pTitulo);
 
