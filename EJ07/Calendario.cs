@@ -11,8 +11,12 @@ using EJ07.Criteria;
 namespace EJ07
 {
     [Serializable]
-    public class Calendario : IRepositorioEventos, IEquatable<Calendario>;
+    public class Calendario : IRepositorioEventos, IEquatable<Calendario>
     {
+        /// <summary>
+        /// Representa el codigo de un calendario
+        /// </summary>
+        private string iCodigo;
         /// <summary>
         /// Representa el titulo utilizado para reconocer el calendario
         /// </summary>
@@ -36,14 +40,19 @@ namespace EJ07
         /// Constructor de la clase <see cref="Calendario"/>
         /// </summary>
         /// <param name="pTitulo"></param>
-        public Calendario(string pTitulo)
+        public Calendario(string pTitulo, string pCodigo)
         {
             this.Titulo = pTitulo;
+            this.Codigo = pCodigo;
             this.iFechaCreacion = DateTime.Now;
             this.FechaModificacion = DateTime.Now;
         }
 
-
+        public string Codigo
+        {
+            get { return this.iCodigo; }
+            set { this.iCodigo = value; }
+        }
         public string Titulo
         {
             get { return this.iTitulo; }
@@ -60,9 +69,6 @@ namespace EJ07
             get { return this.iFechaModificacion; }
             set { this.iFechaModificacion = value; }
         }
-
-
-
         
 
         public void Modificar(Calendario pCalendario)
@@ -127,6 +133,7 @@ namespace EJ07
                 throw lException;
             }
             this.Eventos[pEvento.Titulo].Modificar(pEventoModificado);
+            this.FechaModificacion = DateTime.Now;
 
         }
 
@@ -140,7 +147,7 @@ namespace EJ07
             }
             if (!eliminado)
             {
-                EventoNoEncontradoException lException = new EventoNoEncontradoException(String.Format("No se encontro el evento con el nombre '{0}' en este calendario", pCalendario.Titulo));
+                EventoNoEncontradoException lException = new EventoNoEncontradoException(String.Format("No se encontro el evento con el nombre '{0}' en este calendario", pTitulo));
                 throw lException;
             }
         }
@@ -150,15 +157,15 @@ namespace EJ07
             return this.Eventos.Values.ToList();
         }
 
-        Evento IRepositorioEventos.ObtenerPorNombre(string pNombre)
+        Evento IRepositorioEventos.ObtenerPorCodigo(string pCodigo)
         {
-            if (this.Eventos.ContainsKey(pNombre))
+            if (this.Eventos.ContainsKey(pCodigo))
             {
-                return this.Eventos[pNombre];
+                return this.Eventos[pCodigo];
             }
             else
             {
-                EventoNoEncontradoException lException = new EventoNoEncontradoException(String.Format("No se encontro el evento con el nombre '{0}' en este calendario", pNombre));
+                EventoNoEncontradoException lException = new EventoNoEncontradoException(String.Format("No se encontro el evento con el codigo '{0}' en este calendario", pCodigo));
                 throw lException;
             }
         }
@@ -187,7 +194,7 @@ namespace EJ07
                 return true;
             }
 
-            return (this.FechaCreacion == pCalendario.FechaCreacion);
+            return (this.Codigo == pCalendario.Codigo);
         }
 
         
@@ -219,7 +226,7 @@ namespace EJ07
         
         public override int GetHashCode()
         {
-            return !Object.ReferenceEquals(null, this) ? this.FechaCreacion.GetHashCode() : 0;
+            return !Object.ReferenceEquals(null, this) ? this.Codigo.GetHashCode() : 0;
         }
     }
 }

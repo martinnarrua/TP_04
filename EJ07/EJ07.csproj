@@ -44,6 +44,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdministradorCalendarios.cs" />
+    <Compile Include="Comparers\CalendarCodeAscendingComparer.cs" />
+    <Compile Include="Comparers\CalendarCodeDescendingComparer.cs" />
+    <Compile Include="Comparers\CalendarDateAscendingComparer.cs" />
+    <Compile Include="Comparers\CalendarDateDescendingComparer.cs" />
+    <Compile Include="Comparers\CalendarTitleAscendingComparer.cs" />
+    <Compile Include="Comparers\CalendarTitleDescendingComparer.cs" />
     <Compile Include="Criteria\AndCriteria.cs" />
     <Compile Include="Calendario.cs" />
     <Compile Include="Criteria\CriteriaExtensionMethods.cs" />

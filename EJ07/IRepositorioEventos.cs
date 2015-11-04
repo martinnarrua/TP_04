@@ -17,7 +17,7 @@ namespace EJ07
 
         IList<Evento> ObtenerTodos();
 
-        Evento ObtenerPorNombre(string pNombre);
+        Evento ObtenerPorCodigo(string pCodigo);
 
         IList<Evento> ObtenerOrdenadosPor(IComparer<Evento> pComparador);
 

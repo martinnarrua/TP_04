@@ -10,7 +10,7 @@ namespace EJ07
 {
     class AdministradorCalendarios : IRepositorioCalendarios
     {
-        private SortedDictionary<DateTime, Calendario> Calendarios { get; set; }        
+        private SortedDictionary<string, Calendario> Calendarios { get; set; }        
 
         void IRepositorioCalendarios.Agregar(Calendario pCalendario)
         {
@@ -26,13 +26,12 @@ namespace EJ07
             {
                 throw (new ArgumentException("pCalendario.Titulo", "No se pudo agregar el calendario, el titulo del mismo esta vacio"));
             }
-            else if (this.Calendarios.ContainsKey(pCalendario.FechaCreacion))
+            else if (this.Calendarios.ContainsKey(pCalendario.Codigo))
             {
-                CalendarioExistenteException lException = new CalendarioExistenteException(String.Format("No se pudo agregar el calendario, ya existe un calendario con esa fecha de creacioncon el titulo '{0}'", pCalendario.Titulo));
+                CalendarioExistenteException lException = new CalendarioExistenteException(String.Format("No se pudo agregar el calendario, ya existe un calendario con el codigo '{0}'", pCalendario.Codigo));
                 throw lException;
             }
-
-            this.Calendarios.Add(pCalendario.FechaCreacion, pCalendario.Copiar());
+            this.Calendarios.Add(pCalendario.Codigo, pCalendario.Copiar());
             
         }
 
@@ -58,57 +57,67 @@ namespace EJ07
             {
                 throw (new ArgumentException("pCalendario.Titulo", "No se pudo actualizar el calendario, el titulo del mismo esta vacio"));
             }
-            else if (! this.Calendarios.ContainsKey(pCalendario.Titulo))
+            else if (! this.Calendarios.ContainsKey(pCalendario.Codigo))
             {
-                CalendarioNoEncontradoException lException = new CalendarioNoEncontradoException(String.Format("No se encontro el calendario con el nombre '{0}'", pCalendario.Titulo));
+                CalendarioNoEncontradoException lException = new CalendarioNoEncontradoException(String.Format("No se encontro el calendario con el codigo '{0}'", pCalendario.Codigo));
                 throw lException;
             }
-            this.Calendarios[pCalendario.Titulo].Modificar(pCalendarioModificado);
+            this.Calendarios[pCalendario.Codigo].Modificar(pCalendarioModificado);
 
             //this.Calendarios[pCalendario.Titulo] = pCalendario.Copiar();
         }
 
-        void IRepositorioCalendarios.Eliminar(string pTitulo)
+        void IRepositorioCalendarios.Eliminar(string pCodigo)
         {
             bool eliminado = false;
-            if (this.Calendarios.ContainsKey(pTitulo))
+            if (this.Calendarios.ContainsKey(pCodigo))
             {
-                this.Calendarios.Remove(pTitulo);
+                this.Calendarios.Remove(pCodigo);
                 eliminado = true;
                 }
             if (!eliminado)
             {
-                CalendarioNoEncontradoException lException = new CalendarioNoEncontradoException(String.Format("No se encontro el calendario con el nombre '{0}'", pCalendario.Titulo));
+                CalendarioNoEncontradoException lException = new CalendarioNoEncontradoException(String.Format("No se encontro el calendario con el codigo '{0}'", pCodigo));
                 throw lException;
             }
         }
 
         IList<Calendario> IRepositorioCalendarios.ObtenerTodos()
         {
-            return this.Calendarios.Values.ToList();
+            List<Calendario> lLista = (List<Calendario>)this.ObtenerSinOrdenar();
+            lLista.Sort();
+            return lLista;
         }
 
-        Calendario IRepositorioCalendarios.ObtenerPorNombre(string pNombre)
+        Calendario IRepositorioCalendarios.ObtenerPorCodigo(string pCodigo)
         {
-            if (this.Calendarios.ContainsKey(pNombre))
+            if (this.Calendarios.ContainsKey(pCodigo))
             {
-                return this.Calendarios[pNombre];
+                return this.Calendarios[pCodigo];
             }
             else
             {
-                CalendarioNoEncontradoException lException = new CalendarioNoEncontradoException(String.Format("No se encontro el calendario con el nombre '{0}'", pCalendario.Titulo));
+                CalendarioNoEncontradoException lException = new CalendarioNoEncontradoException(String.Format("No se encontro el calendario con el codigo '{0}'", pCodigo));
                 throw lException;
             }
         }
 
         IList<Calendario> IRepositorioCalendarios.ObtenerOrdenadosPor(IComparer<Calendario> pComparador)
         {
-            throw new NotImplementedException();
+            List<Calendario> lLista = (List<Calendario>)this.ObtenerSinOrdenar();
+            lLista.Sort(pComparador);
+            return lLista;
         }
 
         IList<Calendario> IRepositorioCalendarios.ObtenerPorCriterio(ICriteria<Calendario> pCriterio)
         {
             throw new NotImplementedException();
+        }
+
+        private IList<Calendario> ObtenerSinOrdenar()
+        {
+            List<Calendario> lLista = this.Calendarios.Values.ToList();
+            return lLista;
         }
     }
 }

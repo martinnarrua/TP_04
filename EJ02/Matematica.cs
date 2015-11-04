@@ -8,19 +8,14 @@ namespace EJ02
 {
     public class Matematica
     {
-        public static double Dividir(int dividendo, int divisor)
+        public static double Dividir(int pDividendo, int pDivisor)
         {
-            if (dividendo == 0)
-            {
-                DivisionPorCeroException exception = new DivisionPorCeroException("Usted intento dividir un 0");
-                throw exception;
-            }
-            if (divisor == 0)
+            if (pDivisor == 0)
             {
                 DivisionPorCeroException exception = new DivisionPorCeroException("Usted intento dividir por 0");
                 throw exception;
             }
-            return (dividendo / divisor);
+            return (pDividendo / pDivisor);
 
         }
     }

@@ -11,6 +11,8 @@ namespace EJ07
     [Serializable]
     public class Evento
     {
+        private string iCodigo;
+
         private string iTitulo;
 
         private DateTime iFechaComienzo;
@@ -19,10 +21,13 @@ namespace EJ07
 
         private DateTime iFechaModificacion;
 
-        private int iDuracion;
-
         private FrecuenciaRepeticion iFrecuencia;
 
+        public string Codigo
+        {
+            get { return this.iCodigo; }
+            private set { this.iCodigo = value; }
+        }
         public string Titulo
         {
             get { return this.iTitulo; }
@@ -46,11 +51,6 @@ namespace EJ07
             private set { this.iFechaModificacion = value; }
         }
 
-        public int Duracion
-        {
-            get { return this.iDuracion; }
-            private set { this.iDuracion = value; }
-        }
 
         public FrecuenciaRepeticion Frecuencia
         {
@@ -58,11 +58,13 @@ namespace EJ07
             private set { this.iFrecuencia = value; }
         }
 
-        public Evento(string pTitulo, DateTime pFechaComienzo, int pDuracion, FrecuenciaRepeticion pFrecuencia)
+        public Evento(string pTitulo,string pCodigo, DateTime pFechaComienzo, DateTime pFechaFin, FrecuenciaRepeticion pFrecuencia)
         {
             this.Titulo = pTitulo;
+            this.Codigo = pCodigo;
             this.FechaComienzo = pFechaComienzo;
-            this.Duracion = pDuracion;
+            this.FechaFin = pFechaFin;
+            this.FechaModificacion = DateTime.Now;
             this.Frecuencia = pFrecuencia;
         }
 
@@ -70,10 +72,9 @@ namespace EJ07
         {
             this.Titulo = pEvento.Titulo;
             this.FechaComienzo = pEvento.FechaComienzo;
+            this.FechaFin = pEvento.FechaFin;
             this.FechaModificacion = DateTime.Now;
-            this.Duracion = pEvento.Duracion;
             this.Frecuencia = pEvento.Frecuencia;
-
         }
 
         internal Evento Copiar()

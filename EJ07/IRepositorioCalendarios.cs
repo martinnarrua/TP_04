@@ -17,7 +17,7 @@ namespace EJ07
 
         IList<Calendario> ObtenerTodos();
 
-        Calendario ObtenerPorNombre(string pNombre);
+        Calendario ObtenerPorCodigo(string pCodigo);
 
         IList<Calendario> ObtenerOrdenadosPor(IComparer<Calendario> pComparador);
 
