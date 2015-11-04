@@ -53,7 +53,7 @@
     <Compile Include="Exceptions\EventoExistenteException.cs" />
     <Compile Include="Exceptions\EventoNoEncontradoException.cs" />
     <Compile Include="Exceptions\CalendarioExistenteException.cs" />
-    <Compile Include="Frecuencia.cs" />
+    <Compile Include="FrecuenciaRepeticion.cs" />
     <Compile Include="Criteria\ICriteria.cs" />
     <Compile Include="IRepositorioCalendarios.cs" />
     <Compile Include="IRepositorioEventos.cs" />

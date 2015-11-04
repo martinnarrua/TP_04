@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EJ07
 {
-    public enum FrecuenciaRepeticion
+    internal enum FrecuenciaRepeticion
     {
         Unica,
         Semanal,

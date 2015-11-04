@@ -15,6 +15,8 @@ namespace EJ07
 
         private DateTime iFechaComienzo;
 
+        private DateTime iFechaFin;
+
         private DateTime iFechaModificacion;
 
         private int iDuracion;
@@ -31,6 +33,11 @@ namespace EJ07
         {
             get { return this.iFechaComienzo; }
             private set { this.iFechaComienzo = value; }
+        }
+        public DateTime FechaFin
+        {
+            get { return this.iFechaFin; }
+            private set { this.iFechaFin = value; }
         }
 
         public DateTime FechaModificacion
@@ -63,7 +70,7 @@ namespace EJ07
         {
             this.Titulo = pEvento.Titulo;
             this.FechaComienzo = pEvento.FechaComienzo;
-            this.FechaModificacion = DateTime.Now.Date;
+            this.FechaModificacion = DateTime.Now;
             this.Duracion = pEvento.Duracion;
             this.Frecuencia = pEvento.Frecuencia;
 

@@ -9,15 +9,15 @@ namespace EJ07
 {
     public interface IRepositorioEventos
     {
-        void Agregar(Evento pEvento, Calendario pCalendario);
+        void Agregar(Evento pEvento);
 
-        void Actualizar(Evento pEvento, Evento pEventoModificado, Calendario pCalendario);
+        void Actualizar(Evento pEvento, Evento pEventoModificado);
 
-        void Eliminar(string pTitulo, Calendario pCalendario);
+        void Eliminar(string pTitulo);
 
         IList<Evento> ObtenerTodos();
 
-        Evento ObtenerPorNombre(string pCodigo);
+        Evento ObtenerPorNombre(string pNombre);
 
         IList<Evento> ObtenerOrdenadosPor(IComparer<Evento> pComparador);
 
