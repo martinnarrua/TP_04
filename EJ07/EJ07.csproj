@@ -44,12 +44,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdministradorCalendarios.cs" />
+    <Compile Include="AdministradorEvento.cs" />
     <Compile Include="Criteria\AndCriteria.cs" />
     <Compile Include="Calendario.cs" />
     <Compile Include="Criteria\CriteriaExtensionMethods.cs" />
     <Compile Include="Evento.cs" />
-    <Compile Include="Exceptions\EventoExistenteException.cs" />
     <Compile Include="Exceptions\CalendarioNoEncontradoException.cs" />
+    <Compile Include="Exceptions\EventoExistenteException.cs" />
     <Compile Include="Exceptions\EventoNoEncontradoException.cs" />
     <Compile Include="Exceptions\CalendarioExistenteException.cs" />
     <Compile Include="Frecuencia.cs" />

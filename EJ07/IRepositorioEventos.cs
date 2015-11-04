@@ -9,11 +9,11 @@ namespace EJ07
 {
     public interface IRepositorioEventos
     {
-        void Agregar(Evento pEvento);
+        void Agregar(Evento pEvento, Calendario pCalendario);
 
-        void Actualizar(Evento pEvento);
+        void Actualizar(Evento pEvento, Evento pEventoModificado, Calendario pCalendario);
 
-        void Eliminar(string pCodigo);
+        void Eliminar(string pTitulo, Calendario pCalendario);
 
         IList<Evento> ObtenerTodos();
 

@@ -19,13 +19,15 @@ namespace EJ07
         /// <summary>
         /// Representa la fecha de creacion del calendario
         /// </summary>
-        private readonly DateTime iFechaCreacion;
+        private DateTime iFechaCreacion;
 
 
         /// <summary>
         /// Representa la fecha de la ultima modificacion del calendario
         /// </summary>
         private DateTime iFechaModificacion;
+
+        private SortedDictionary<string,Evento> iEventos;
 
         public string Titulo
         {
@@ -44,6 +46,11 @@ namespace EJ07
             set { this.iFechaModificacion = value; }
         }
 
+        public SortedDictionary<string, Evento> Eventos
+        {
+            get { return this.iEventos; }
+        }
+
 
         /// <summary>
         /// Constructor de la clase <see cref="Calendario"/>
@@ -55,9 +62,9 @@ namespace EJ07
             this.FechaCreacion = DateTime.Now.Date;
         }
 
-        public void Modificar(string pTitulo)
+        public void Modificar(Calendario pCalendario)
         {
-            this.Titulo = pTitulo;
+            this.Titulo = pCalendario.Titulo;
             this.FechaModificacion = DateTime.Now.Date;
 
         }
