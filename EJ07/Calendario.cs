@@ -16,7 +16,7 @@ namespace EJ07
         /// <summary>
         /// Representa el codigo de un calendario
         /// </summary>
-        private string iCodigo;
+        private readonly string iCodigo;
         /// <summary>
         /// Representa el titulo utilizado para reconocer el calendario
         /// </summary>
@@ -43,7 +43,7 @@ namespace EJ07
         public Calendario(string pTitulo, string pCodigo)
         {
             this.Titulo = pTitulo;
-            this.Codigo = pCodigo;
+            this.iCodigo = pCodigo;
             this.iFechaCreacion = DateTime.Now;
             this.FechaModificacion = DateTime.Now;
         }
@@ -51,12 +51,15 @@ namespace EJ07
         public string Codigo
         {
             get { return this.iCodigo; }
-            set { this.iCodigo = value; }
         }
         public string Titulo
         {
             get { return this.iTitulo; }
-            private set { this.iTitulo = value; }
+            set
+            {
+                this.FechaModificacion = DateTime.Now;
+                this.iTitulo = value;
+            }
         }
 
         public DateTime FechaCreacion
@@ -71,12 +74,6 @@ namespace EJ07
         }
         
 
-        public void Modificar(Calendario pCalendario)
-        {
-            this.Titulo = pCalendario.Titulo;
-            this.FechaModificacion = DateTime.Now;
-
-        }
 
         internal Calendario Copiar()
         {
@@ -110,11 +107,11 @@ namespace EJ07
             }
 
             this.Eventos.Add(pEvento.Titulo, pEvento.Copiar());
+            this.FechaModificacion = DateTime.Now;
         }
 
-        void IRepositorioEventos.Actualizar(Evento pEvento, Evento pEventoModificado)
+        void IRepositorioEventos.Actualizar(Evento pEvento)
         {
-
             if (pEvento == null)
             {
                 throw (new ArgumentNullException("pEvento", "No se pudo actualizar el evento, el mismo es invalido"));
@@ -132,24 +129,27 @@ namespace EJ07
                 EventoNoEncontradoException lException = new EventoNoEncontradoException(String.Format("No se encontro el evento con el nombre '{0}' en este calendario", pEvento.Titulo));
                 throw lException;
             }
-            this.Eventos[pEvento.Titulo].Modificar(pEventoModificado);
+            this.Eventos[pEvento.Codigo] = pEvento ;
             this.FechaModificacion = DateTime.Now;
-
         }
 
-        void IRepositorioEventos.Eliminar(string pTitulo)
+        void IRepositorioEventos.Eliminar(string pCodigo)
         {
-            bool eliminado = false;
-            if (this.Eventos.ContainsKey(pTitulo))
+            if (pCodigo == null)
             {
-                this.Eventos.Remove(pTitulo);
-                eliminado = true;
+                throw new ArgumentNullException("pCodigo", "El codigo ingresado es invalido");
             }
-            if (!eliminado)
+            else if (pCodigo == String.Empty)
             {
-                EventoNoEncontradoException lException = new EventoNoEncontradoException(String.Format("No se encontro el evento con el nombre '{0}' en este calendario", pTitulo));
+                throw (new ArgumentException("pCodigo", "El codigo no puede ser vacio"));
+            }
+            else if (!(this.Eventos.ContainsKey(pCodigo)))
+            {
+                EventoNoEncontradoException lException = new EventoNoEncontradoException(String.Format("No se encontro el evento con el codigo '{0}'", pCodigo));
                 throw lException;
             }
+            this.Eventos.Remove(pCodigo);
+            this.FechaModificacion = DateTime.Now;
         }
 
         IList<Evento> IRepositorioEventos.ObtenerTodos()
@@ -159,15 +159,20 @@ namespace EJ07
 
         Evento IRepositorioEventos.ObtenerPorCodigo(string pCodigo)
         {
-            if (this.Eventos.ContainsKey(pCodigo))
+            if (pCodigo == null)
             {
-                return this.Eventos[pCodigo];
+                throw new ArgumentNullException("pCodigo", "El codigo ingresado es invalido");
             }
-            else
+            else if (pCodigo == String.Empty)
             {
-                EventoNoEncontradoException lException = new EventoNoEncontradoException(String.Format("No se encontro el evento con el codigo '{0}' en este calendario", pCodigo));
+                throw (new ArgumentException("pCodigo", "El codigo no puede ser vacio"));
+            }
+            else if (!(this.Eventos.ContainsKey(pCodigo)))
+            {
+                EventoNoEncontradoException lException = new EventoNoEncontradoException(String.Format("No se encontro el evento con el codigo '{0}'", pCodigo));
                 throw lException;
             }
+            return this.Eventos[pCodigo];
         }
 
         IList<Evento> IRepositorioEventos.ObtenerOrdenadosPor(IComparer<Evento> pComparador)

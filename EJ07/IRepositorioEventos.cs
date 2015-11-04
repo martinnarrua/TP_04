@@ -11,9 +11,9 @@ namespace EJ07
     {
         void Agregar(Evento pEvento);
 
-        void Actualizar(Evento pEvento, Evento pEventoModificado);
+        void Actualizar(Evento pEvento);
 
-        void Eliminar(string pTitulo);
+        void Eliminar(string pCodigo);
 
         IList<Evento> ObtenerTodos();
 

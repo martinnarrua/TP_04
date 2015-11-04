@@ -35,19 +35,11 @@ namespace EJ07
             
         }
 
-        void IRepositorioCalendarios.Actualizar(Calendario pCalendario, Calendario pCalendarioModificado)
+        void IRepositorioCalendarios.Actualizar(Calendario pCalendario)
         {
-            /*
-                El calendario tiene titulo, fecha creacion y fecha modificacion.
-                Entonces, la fecha de creacion yo no la deberia poder modificar
-                la fecha de modificacion se deberia actualizar cada vez que se modifique el titulo o uno de los eventos del mismo
-                la fecha de creacion deberia ser read only
-                    
-
-            */
             if (pCalendario == null)
             {
-                throw (new ArgumentNullException("pCalendario", "No se pudo actualiza el calendario, el mismo es invalido"));
+                throw (new ArgumentNullException("pCalendario", "No se pudo actualizar el calendario, el mismo es invalido"));
             }
             else if (pCalendario.Titulo == null)
             {
@@ -57,29 +49,31 @@ namespace EJ07
             {
                 throw (new ArgumentException("pCalendario.Titulo", "No se pudo actualizar el calendario, el titulo del mismo esta vacio"));
             }
-            else if (! this.Calendarios.ContainsKey(pCalendario.Codigo))
+            else if (!this.Calendarios.ContainsKey(pCalendario.Codigo))
             {
                 CalendarioNoEncontradoException lException = new CalendarioNoEncontradoException(String.Format("No se encontro el calendario con el codigo '{0}'", pCalendario.Codigo));
                 throw lException;
             }
-            this.Calendarios[pCalendario.Codigo].Modificar(pCalendarioModificado);
+            this.Calendarios[pCalendario.Codigo] = pCalendario.Copiar();
 
-            //this.Calendarios[pCalendario.Titulo] = pCalendario.Copiar();
         }
 
         void IRepositorioCalendarios.Eliminar(string pCodigo)
         {
-            bool eliminado = false;
-            if (this.Calendarios.ContainsKey(pCodigo))
+            if (pCodigo == null)
             {
-                this.Calendarios.Remove(pCodigo);
-                eliminado = true;
-                }
-            if (!eliminado)
+                throw new ArgumentNullException("pCodigo", "El codigo ingresado es invalido");
+            }
+            else if (pCodigo == String.Empty)
+            {
+                throw (new ArgumentException("pCodigo", "El codigo no puede ser vacio"));
+            }
+            else if (! (this.Calendarios.ContainsKey(pCodigo)))
             {
                 CalendarioNoEncontradoException lException = new CalendarioNoEncontradoException(String.Format("No se encontro el calendario con el codigo '{0}'", pCodigo));
                 throw lException;
             }
+            this.Calendarios.Remove(pCodigo);
         }
 
         IList<Calendario> IRepositorioCalendarios.ObtenerTodos()
@@ -91,15 +85,20 @@ namespace EJ07
 
         Calendario IRepositorioCalendarios.ObtenerPorCodigo(string pCodigo)
         {
-            if (this.Calendarios.ContainsKey(pCodigo))
+            if (pCodigo == null)
             {
-                return this.Calendarios[pCodigo];
+                throw new ArgumentNullException("pCodigo", "El codigo ingresado es invalido");
             }
-            else
+            else if (pCodigo == String.Empty)
+            {
+                throw (new ArgumentException("pCodigo", "El codigo no puede estar vacio"));
+            }
+            else if (!(this.Calendarios.ContainsKey(pCodigo)))
             {
                 CalendarioNoEncontradoException lException = new CalendarioNoEncontradoException(String.Format("No se encontro el calendario con el codigo '{0}'", pCodigo));
                 throw lException;
             }
+            return this.Calendarios[pCodigo];
         }
 
         IList<Calendario> IRepositorioCalendarios.ObtenerOrdenadosPor(IComparer<Calendario> pComparador)
@@ -111,7 +110,8 @@ namespace EJ07
 
         IList<Calendario> IRepositorioCalendarios.ObtenerPorCriterio(ICriteria<Calendario> pCriterio)
         {
-            throw new NotImplementedException();
+            IList<Calendario> lLista = ObtenerSinOrdenar();
+            return pCriterio.SatisfacenCriterio(lLista);
         }
 
         private IList<Calendario> ObtenerSinOrdenar()
