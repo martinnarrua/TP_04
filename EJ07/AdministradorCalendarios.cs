@@ -10,55 +10,7 @@ namespace EJ07
 {
     class AdministradorCalendarios : IRepositorioCalendarios
     {
-        private SortedDictionary<string, Calendario> Calendarios { get; set; }
-
-        public void ModificarCalendario(string pTitulo,string pNuevoTitulo)
-        {
-            bool modificado = false;
-            foreach (Calendario cal in Calendarios)
-            {
-                if(cal.Titulo == pTitulo)
-                {
-                    cal.Modificar(pNuevoTitulo);
-                    modificado = true;
-                } 
-            }
-            if (!modificado)
-            {
-                Exception e = new Exception("No se encontro el calendario especificado");
-                throw e;
-            }
-        }
-
-        public void ListarCalendarios()
-        {
-            foreach (Calendario cal in Calendarios)
-            {
-                Console.WriteLine("Titulo del calendario: {0}",cal.Titulo);
-                Console.WriteLine("Fecha y hora de creacion: {0}, {1}",cal.FechaCreacion,cal.HoraCreacion);
-                Console.WriteLine("Fecha y hora de ultima modificacion: {0}, {1}", cal.FechaModificacion, cal.HoraModificacion);
-                Console.WriteLine();
-                Console.ReadKey();
-            }
-        }
-
-        public void EliminarCalendario(string pTitulo)
-        {
-            bool eliminado = false;
-            foreach (Calendario cal in Calendarios)
-            {
-                if (cal.Titulo == pTitulo)
-                {
-                    Calendarios.Remove(cal);
-                    eliminado = true;
-                }
-            }
-            if (!eliminado)
-            {
-                Exception e = new Exception("No se encontro el calendario especificado");
-                throw e;
-            }
-        }
+        private SortedDictionary<string, Calendario> Calendarios { get; set; }        
 
         void IRepositorioCalendarios.Agregar(Calendario pCalendario)
         {
@@ -84,7 +36,7 @@ namespace EJ07
             
         }
 
-        void IRepositorioCalendarios.Actualizar(Calendario pCalendario)
+        void IRepositorioCalendarios.Actualizar(Calendario pCalendario, Calendario pCalendarioModificado)
         {
             /*
                 El calendario tiene titulo, fecha creacion y fecha modificacion.
@@ -111,23 +63,42 @@ namespace EJ07
                 CalendarioNoEncontradoException lException = new CalendarioNoEncontradoException(String.Format("No se encontro el calendario con el nombre '{0}'", pCalendario.Titulo));
                 throw lException;
             }
+            this.Calendarios[pCalendario.Titulo].Modificar(pCalendarioModificado);
 
-            this.Calendarios[pCalendario.Titulo] = pCalendario.Copiar();
+            //this.Calendarios[pCalendario.Titulo] = pCalendario.Copiar();
         }
 
         void IRepositorioCalendarios.Eliminar(string pTitulo)
         {
-            throw new NotImplementedException();
+            bool eliminado = false;
+            if (this.Calendarios.ContainsKey(pTitulo))
+            {
+                this.Calendarios.Remove(pTitulo);
+                eliminado = true;
+                }
+            if (!eliminado)
+            {
+                CalendarioNoEncontradoException lException = new CalendarioNoEncontradoException(String.Format("No se encontro el calendario con el nombre '{0}'", pCalendario.Titulo));
+                throw lException;
+            }
         }
 
         IList<Calendario> IRepositorioCalendarios.ObtenerTodos()
         {
-            throw new NotImplementedException();
+            return this.Calendarios.Values.ToList();
         }
 
         Calendario IRepositorioCalendarios.ObtenerPorNombre(string pNombre)
         {
-            throw new NotImplementedException();
+            if (this.Calendarios.ContainsKey(pNombre))
+            {
+                return this.Calendarios[pNombre];
+            }
+            else
+            {
+                CalendarioNoEncontradoException lException = new CalendarioNoEncontradoException(String.Format("No se encontro el calendario con el nombre '{0}'", pCalendario.Titulo));
+                throw lException;
+            }
         }
 
         IList<Calendario> IRepositorioCalendarios.ObtenerOrdenadosPor(IComparer<Calendario> pComparador)

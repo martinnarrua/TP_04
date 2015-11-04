@@ -11,13 +11,13 @@ namespace EJ07
     {
         void Agregar(Evento pEvento);
 
-        void Actualizar(Evento pEvento);
+        void Actualizar(Evento pEvento, Evento pEventoModificado);
 
-        void Eliminar(string pCodigo);
+        void Eliminar(string pTitulo);
 
         IList<Evento> ObtenerTodos();
 
-        Evento ObtenerPorNombre(string pCodigo);
+        Evento ObtenerPorNombre(string pNombre);
 
         IList<Evento> ObtenerOrdenadosPor(IComparer<Evento> pComparador);
 
