@@ -55,8 +55,14 @@
     <Compile Include="RepositorioUsuariosTest.cs" />
     <Compile Include="UserEmailDescendingComparerTest.cs" />
     <Compile Include="UserEmailAscendingComparerTest.cs" />
-    <Compile Include="UserFullNameDescendingComparer.cs" />
-    <Compile Include="UserFullNameAscendingComparer.cs" />
+    <Compile Include="UserFullNameAscendingCaseSensitiveComparerTest.cs" />
+    <Compile Include="UserFullNameAscendingNeutralCultureCaseSensitiveComparerTest.cs" />
+    <Compile Include="UserFullNameAscendingNeutralCultureComparerTest.cs" />
+    <Compile Include="UserFullNameDescendingCaseSensitiveComparerTest.cs" />
+    <Compile Include="UserFullNameDescendingNeutralCultureCaseSensitiveComparerTest.cs" />
+    <Compile Include="UserFullNameDescendingNeutralCultureComparerTest.cs" />
+    <Compile Include="UserFullNameDescendingComparerTest.cs" />
+    <Compile Include="UserFullNameAscendingComparerTest.cs" />
     <Compile Include="UserCodeDescendingComparerTest.cs" />
     <Compile Include="UserCodeAscendingComparerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
