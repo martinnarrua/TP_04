@@ -3,13 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EJ06.Exceptions;
 
 namespace EJ06
 {
+    /// <summary>
+    /// Representa un repositorio de usuarios.
+    /// </summary>
     public class RepositorioUsuarios: IRepositorioUsuarios
     {
+        /// <summary>
+        /// Propiedad Privada Usuarios, lista donde se guardan las instancias de Usuario
+        /// </summary>
         private List <Usuario> iUsuarios;
 
+        /// <summary>
+        /// Inicializa una nueva instancia de <see cref="RepositorioUsuarios"/>
+        /// </summary>
         public RepositorioUsuarios()
         {
             this.Usuarios = new List<Usuario>();
@@ -25,39 +35,94 @@ namespace EJ06
             get { return this; }
         }
 
+        /// <summary>
+        /// Agrega un <see cref="Usuario"/> al Repositorio
+        /// </summary>
+        /// <param name="pUsuario">Usuario a agregar</param>
+        /// <exception cref="ArgumentNullException">Si el usuario o el codigo es null</exception>
+        /// <exception cref="ArgumentException">si el codigo es el string vacio</exception>
+        /// <exception cref="UsuarioExistenteException">si el usuario ya existe en el repositorio</exception>
         void IRepositorioUsuarios.Agregar(Usuario pUsuario)
         {
-            Usuario lUsuario = pUsuario.Copiar();
-            this.Usuarios.Add(lUsuario);
+            if (pUsuario == null)
+            {
+                throw (new ArgumentNullException("pUsuario", "No se pudo agregar el usuario, el mismo es invalido"));
+            }
+            else if (pUsuario.Codigo == null)
+            {
+                throw (new ArgumentNullException("pUsuario.Codigo", "No se pudo agregar el usuario, el codigo es invalido"));
+            }
+            else if (pUsuario.Codigo == String.Empty)
+            {
+                throw (new ArgumentException("pUsuario.Codigo", "No se pudo agregar el usuario, el codigo del mismo no puede ser vacio"));
+            }
+            else if (this.Usuarios.Contains(pUsuario))
+            {
+                UsuarioExistenteException lException = new UsuarioExistenteException(String.Format("No se pudo agregar el usuario, ya existe un usuario con el codigo '{0}'", pUsuario.Codigo));
+                throw lException;
+            }
+            Usuarios.Add(pUsuario.Copiar());
         }
 
+        /// <summary>
+        /// Actualiza la informacion de un <see cref="Usuario"/> 
+        /// </summary>
+        /// <param name="pUsuario">Usuario a actualizar</param>
+        /// <exception cref="ArgumentNullException">Si el usuario o el codigo es null</exception>
+        /// <exception cref="ArgumentException">si el codigo es el string vacio</exception>
+        /// <exception cref="UsuarioNoEncontradoException">si el usuario no existe en el repositorio</exception>
         void IRepositorioUsuarios.Actualizar(Usuario pUsuario)
         {
-            if (this.Usuarios.Contains(pUsuario))
+            if (pUsuario == null)
             {
-                int lIndice = this.Usuarios.IndexOf(pUsuario);
-                Usuario lUsuario = pUsuario.Copiar();
-                this.Usuarios[lIndice] = lUsuario;
+                throw (new ArgumentNullException("pUsuario", "No se pudo actualizar el usuario, el mismo es invalido"));
             }
-            else
+            else if (pUsuario.Codigo == null)
             {
-                UsuarioNoEncontradoException excepcion = new UsuarioNoEncontradoException(String.Format("Usuario con el codigo {0} no encontrado", pUsuario.Codigo));
+                throw (new ArgumentNullException("pUsuario.Codigo", "No se pudo actualizar el usuario, el codigo es invalido"));
             }
+            else if (pUsuario.Codigo == String.Empty)
+            {
+                throw (new ArgumentException("pUsuario.Codigo", "No se pudo actualizar el usuario, el codigo del mismo no puede ser vacio"));
+            }
+            else if (!this.Usuarios.Contains(pUsuario))
+            {
+                UsuarioNoEncontradoException lException = new UsuarioNoEncontradoException(String.Format("No se encontro el usuario con codigo '{0}'", pUsuario.Codigo));
+                throw lException;
+            }
+            this.Usuarios[this.Usuarios.IndexOf(pUsuario)] = pUsuario.Copiar();
         }
 
+        /// <summary>
+        /// Elimina un <see cref="Usuario"/> del Repositorio
+        /// </summary>
+        /// <param name="pCodigo">Codigo del usuario a Eliminar</param>
+        /// <exception cref="ArgumentNullException">Si el codigo es null</exception>
+        /// <exception cref="ArgumentException">si el codigo es el string vacio</exception>
+        /// <exception cref="UsuarioNoEncontradoException">si el usuario no existe en el repositorio</exception>
         void IRepositorioUsuarios.Eliminar(string pCodigo)
         {
-            Usuario lUsuario = new Usuario() { Codigo = pCodigo, CorreoElectronico = "", NombreCompleto="" };
-
-            if (this.Usuarios.Contains(lUsuario))
+            Usuario pUsuario = new Usuario() { NombreCompleto = "", Codigo = pCodigo, CorreoElectronico = "" };
+            if (pCodigo == null)
             {
-                this.Usuarios.Remove(lUsuario);
+                throw (new ArgumentNullException("pCodigo", "No se pudo eliminar el usuario, el codigo es invalido"));
             }
-            else
+            else if (pCodigo == String.Empty)
             {
-                UsuarioNoEncontradoException excepcion = new UsuarioNoEncontradoException(String.Format("Usuario con el codigo {0} no encontrado", pCodigo));
+                throw (new ArgumentException("Codigo", "No se pudo eliminar el usuario, el codigo del mismo no puede ser vacio"));
             }
+            else if (!this.Usuarios.Contains(pUsuario))
+            {
+                UsuarioNoEncontradoException lException = new UsuarioNoEncontradoException(String.Format("No se encontro el usuario con codigo '{0}'", pCodigo));
+                throw lException;
+            }
+            this.Usuarios.RemoveAt(this.Usuarios.IndexOf(pUsuario));
+      
         }
+        /// <summary>
+        /// Obtiene todos las instancias de <see cref="Usuario"/> contenidas en el repositorio
+        /// </summary>
+        /// <returns>Lista de todos los usuarios</returns>
         IList<Usuario> IRepositorioUsuarios.ObtenerTodos()
         {
             List<Usuario> lLista = this.ObtenerSinOrdenar();
@@ -101,18 +166,19 @@ namespace EJ06
                 
             return lLista;
         }
-
+        /*
         public List<Usuario> BusquedaPorAproximacion(string pBusqueda)
         {
             pBusqueda = pBusqueda.ToUpper();
             List<Usuario> lResultado = new List<Usuario>();
             double lPor = 0;
             double min = 1;
+            double distancia;
 
             foreach (Usuario lUsuario in this.Usuarios)
             {
                 CalculadorDistanciaLevenshtein lCalculadorDistancia = new CalculadorDistanciaLevenshtein(pBusqueda, lUsuario.NombreCompleto);
-                lPor = lCalculadorDistancia.Calcular();
+                lPor = lCalculadorDistancia.Calcular(out distancia);
                 if (lPor < 1)
                 {
                     if (lPor < min)
@@ -128,15 +194,14 @@ namespace EJ06
             }
             return lResultado;
         }
+        */
         
-        /*
         public List<Usuario> BusquedaPorAproximacion(string pBusqueda)
         {
-            pBusqueda = pBusqueda.ToUpper();
-            SortedDictionary<double, Usuario> lResultadoParcial = new SortedDictionary<double, Usuario>();
+            Dictionary<double, Usuario> lResultadoParcial = new Dictionary<double, Usuario>();
             List<Usuario> lResultado = new List<Usuario>();
             double lPor = 0;
-
+            double suma =0;
             foreach (Usuario lUsuario in this.Usuarios)
             {
                 CalculadorDistanciaLevenshtein lCalculadorDistancia = new CalculadorDistanciaLevenshtein(pBusqueda, lUsuario.NombreCompleto);
@@ -146,10 +211,20 @@ namespace EJ06
                     lResultadoParcial.Add(lPor,lUsuario.Copiar());
                 }
             }
-            double min = lResultadoParcial.First().Key;
-            foreach (key)
+            foreach (double por in lResultadoParcial.Keys)
+            {
+                suma += por;
+            }
+            double prom = suma / lResultadoParcial.Count;
+            foreach (KeyValuePair<double, Usuario> Par in lResultadoParcial)
+            {
+                if (Par.Key < prom)
+                {
+                    lResultado.Add(Par.Value);
+                }
+            }
             return lResultado;
         }
-        */
+        
     }
 }

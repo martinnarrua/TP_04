@@ -75,6 +75,7 @@ namespace EJ04.Test
                 Cuentas cuentas = new Cuentas();
                 cuentas.CuentaEnPesos.AcreditarSaldo(100);
                 cuentas.CuentaEnPesos.DebitarSaldo(200);
+                Assert.Fail();
             }
             catch (SaldoInsuficienteException) { }
         }

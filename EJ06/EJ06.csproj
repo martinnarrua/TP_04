@@ -56,7 +56,8 @@
     <Compile Include="Comparers\UserFullNameDescendingNeutralCultureCaseSensitiveComparer.cs" />
     <Compile Include="Comparers\UserFullNameDescendingNeutralCultureComparer.cs" />
     <Compile Include="Comparers\UserNullComparer.cs" />
-    <Compile Include="ICalculadorDistancia.cs" />
+    <Compile Include="Exceptions\UsuarioExistenteException.cs" />
+    <Compile Include="Exceptions\UsuarioNoEncontradoException.cs" />
     <Compile Include="IRepositorioUsuarios.cs" />
     <Compile Include="LevenshteinDistance.cs" />
     <Compile Include="Program.cs" />
