@@ -4,14 +4,15 @@ using EJ05;
 using System.Threading.Tasks;
 using System.Globalization;
 using System.Threading;
+using System.Collections.Generic;
 
 namespace EJ05.Test
 {
     [TestClass]
     public class UserEmailAscendingComparerTest
     {
-       /* [TestMethod]
-        public void Compare_With0001_0005_ReturnsMenor()
+        [TestMethod]
+        public void Compare_WithRama_Martin_ReturnsMayor()
         {
             string lNombreCompleto1 = "Ramiro Rivera";
             string lNombreCompleto2 = "Martín Arrúa";
@@ -20,11 +21,11 @@ namespace EJ05.Test
             string lCorreoElectronico1 = "Ramarivera@gmail.com";
             string lCorreoElectronico2 = "Martin94.profugo@hotmail.com";
             int lResultado;
-            int lResultadoEsperado = -1;
+            int lResultadoEsperado = 1;
 
             Usuario lUsuario1 = new Usuario { Codigo = lCodigo1, NombreCompleto = lNombreCompleto1, CorreoElectronico = lCorreoElectronico1 };
             Usuario lUsuario2 = new Usuario { Codigo = lCodigo2, NombreCompleto = lNombreCompleto2, CorreoElectronico = lCorreoElectronico2 };
-            UserCodeAscendingComparer lComparer = new UserCodeAscendingComparer();
+            IComparer<Usuario> lComparer = new UserEmailAscendingComparer();
 
             lResultado = lComparer.Compare(lUsuario1, lUsuario2);
           
@@ -32,7 +33,7 @@ namespace EJ05.Test
         }
 
         [TestMethod]
-        public void Compare_With0007_0004_ReturnsMayor()
+        public void Compare_WithMartin_Rama_ReturnsMenor()
         {
             string lNombreCompleto1 = "Ramiro Rivera";
             string lNombreCompleto2 = "Martín Arrúa";
@@ -41,15 +42,15 @@ namespace EJ05.Test
             string lCorreoElectronico1 = "Ramarivera@gmail.com";
             string lCorreoElectronico2 = "Martin94.profugo@hotmail.com";
             int lResultado;
-            int lResultadoEsperado = 1;
+            int lResultadoEsperado = -1;
 
             Usuario lUsuario1 = new Usuario { Codigo = lCodigo1, NombreCompleto = lNombreCompleto1, CorreoElectronico = lCorreoElectronico1 };
             Usuario lUsuario2 = new Usuario { Codigo = lCodigo2, NombreCompleto = lNombreCompleto2, CorreoElectronico = lCorreoElectronico2 };
-            UserCodeAscendingComparer lComparer = new UserCodeAscendingComparer();
+            IComparer<Usuario> lComparer = new UserEmailAscendingComparer();
 
-            lResultado = lComparer.Compare(lUsuario1, lUsuario2);
+            lResultado = lComparer.Compare(lUsuario2, lUsuario1);
 
             Assert.AreEqual(lResultadoEsperado, lResultado);
-        }*/
+        }
     }
 }

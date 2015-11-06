@@ -4,6 +4,7 @@ using EJ05;
 using System.Threading.Tasks;
 using System.Globalization;
 using System.Threading;
+using System.Collections.Generic;
 
 namespace EJ05.Test
 {
@@ -24,7 +25,7 @@ namespace EJ05.Test
 
             Usuario lUsuario1 = new Usuario { Codigo = lCodigo1, NombreCompleto = lNombreCompleto1, CorreoElectronico = lCorreoElectronico1 };
             Usuario lUsuario2 = new Usuario { Codigo = lCodigo2, NombreCompleto = lNombreCompleto2, CorreoElectronico = lCorreoElectronico2 };
-            UserCodeAscendingComparer lComparer = new UserCodeAscendingComparer();
+            IComparer<Usuario> lComparer = new UserCodeAscendingComparer();
 
             lResultado = lComparer.Compare(lUsuario1, lUsuario2);
           
@@ -45,7 +46,7 @@ namespace EJ05.Test
 
             Usuario lUsuario1 = new Usuario { Codigo = lCodigo1, NombreCompleto = lNombreCompleto1, CorreoElectronico = lCorreoElectronico1 };
             Usuario lUsuario2 = new Usuario { Codigo = lCodigo2, NombreCompleto = lNombreCompleto2, CorreoElectronico = lCorreoElectronico2 };
-            UserCodeAscendingComparer lComparer = new UserCodeAscendingComparer();
+            IComparer<Usuario> lComparer = new UserCodeAscendingComparer();
 
             lResultado = lComparer.Compare(lUsuario1, lUsuario2);
 
