@@ -4,14 +4,15 @@ using EJ05;
 using System.Threading.Tasks;
 using System.Globalization;
 using System.Threading;
+using System.Collections.Generic;
 
 namespace EJ05.Test
 {
     [TestClass]
     public class UserEmailDescendingComparerTest
     {
-        /*[TestMethod]
-        public void Compare_With0001_0005_ReturnsMenor()
+        [TestMethod]
+        public void Compare_WithRama_Martin_ReturnsMenor()
         {
             string lNombreCompleto1 = "Ramiro Rivera";
             string lNombreCompleto2 = "Martín Arrúa";
@@ -24,15 +25,15 @@ namespace EJ05.Test
 
             Usuario lUsuario1 = new Usuario { Codigo = lCodigo1, NombreCompleto = lNombreCompleto1, CorreoElectronico = lCorreoElectronico1 };
             Usuario lUsuario2 = new Usuario { Codigo = lCodigo2, NombreCompleto = lNombreCompleto2, CorreoElectronico = lCorreoElectronico2 };
-            UserCodeAscendingComparer lComparer = new UserCodeAscendingComparer();
+            IComparer<Usuario> lComparer = new UserEmailDescendingComparer();
 
             lResultado = lComparer.Compare(lUsuario1, lUsuario2);
-          
+
             Assert.AreEqual(lResultadoEsperado, lResultado);
         }
 
         [TestMethod]
-        public void Compare_With0007_0004_ReturnsMayor()
+        public void Compare_WithMartin_Rama_ReturnsMayor()
         {
             string lNombreCompleto1 = "Ramiro Rivera";
             string lNombreCompleto2 = "Martín Arrúa";
@@ -45,11 +46,11 @@ namespace EJ05.Test
 
             Usuario lUsuario1 = new Usuario { Codigo = lCodigo1, NombreCompleto = lNombreCompleto1, CorreoElectronico = lCorreoElectronico1 };
             Usuario lUsuario2 = new Usuario { Codigo = lCodigo2, NombreCompleto = lNombreCompleto2, CorreoElectronico = lCorreoElectronico2 };
-            UserCodeAscendingComparer lComparer = new UserCodeAscendingComparer();
+            IComparer<Usuario> lComparer = new UserEmailDescendingComparer();
 
-            lResultado = lComparer.Compare(lUsuario1, lUsuario2);
+            lResultado = lComparer.Compare(lUsuario2, lUsuario1);
 
             Assert.AreEqual(lResultadoEsperado, lResultado);
-        }*/
+        }
     }
 }
