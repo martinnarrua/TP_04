@@ -11,19 +11,30 @@ using System.IO;
 namespace EJ06
 {
     //[Serializable]
+    /// <summary>
+    /// Representa un Usuario dentro de una organzacion.
+    /// </summary>
     public class Usuario : IComparable<Usuario>, IEquatable<Usuario>
     {
+        /// <summary>
+        /// Representa el codigo identificatorio del usuario
+        /// </summary>
         private string iCodigo;
 
+        /// <summary>
+        /// Almacena el nombre del usuario
+        /// </summary>
         private string iNombreCompleto;
 
+        /// <summary>
+        /// Almacena el correo electronico del usuario
+        /// </summary>
         private string iCorreoElectronico;
 
         /// <summary>
-        /// 
+        /// Realiza una copia profunda <see cref="Usuario"/>
         /// </summary>
-        /// <param name="pUnUsuario"></param>
-        /// <returns></returns>
+        /// <returns>Copia profunda de <see cref="Usuario"/></returns>
        public Usuario Copiar ()
        {
             Usuario lUsuario = new Usuario();
@@ -48,18 +59,27 @@ namespace EJ06
 
         }
 
+        /// <summary>
+        /// Propiedad Codigo
+        /// </summary>
         public string Codigo
         {
             get { return this.iCodigo; }
             set { this.iCodigo = value; }
         }
 
+        /// <summary>
+        /// Propiedad NombreCompleto
+        /// </summary>
         public string NombreCompleto
         {
             get { return this.iNombreCompleto; }
             set { this.iNombreCompleto = value; }
         }
 
+        /// <summary>
+        /// Propiedad CorreoElectronico
+        /// </summary>
         public string CorreoElectronico
         {
             get { return this.iCorreoElectronico; }
