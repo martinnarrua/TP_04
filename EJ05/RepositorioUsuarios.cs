@@ -51,7 +51,7 @@ namespace EJ05
                 UsuarioExistenteException lException = new UsuarioExistenteException(String.Format("No se pudo agregar el usuario, ya existe un usuario con el codigo '{0}'", pUsuario.Codigo));
                 throw lException;
             }
-            Usuarios.Add(pUsuario.Codigo, pUsuario);
+            this.Usuarios.Add(pUsuario.Codigo, pUsuario);
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace EJ05
                 UsuarioNoEncontradoException lException = new UsuarioNoEncontradoException(String.Format("No se encontro el usuario con codigo '{0}'", pUsuario.Codigo));
                 throw lException;
             }
-                Usuarios[pUsuario.Codigo] = pUsuario;
+                this.Usuarios[pUsuario.Codigo] = pUsuario;
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace EJ05
                 UsuarioNoEncontradoException lException = new UsuarioNoEncontradoException(String.Format("No se encontro el usuario con codigo '{0}'", pCodigo));
                 throw lException;
             }
-            Usuarios.Remove(pCodigo);
+            this.Usuarios.Remove(pCodigo);
         }
 
         /// <summary>

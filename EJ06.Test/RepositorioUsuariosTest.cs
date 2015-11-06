@@ -22,7 +22,7 @@ namespace EJ06.Test
 
             List<Usuario> lista = lRepositorio.BusquedaPorAproximacion("ti");
 
-            Assert.AreEqual(, lista.Count);
+            Assert.AreEqual(2, lista.Count);
         }
     }
 }
