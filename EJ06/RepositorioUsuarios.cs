@@ -134,7 +134,7 @@ namespace EJ06
         /// Permite obtener la instancia de <see cref="Usuario"/> cuyo codigo es igual a <paramref name="pCodigo"/>
         /// </summary>
         /// <param name="pCodigo">Codigo del usuario que se desea obtener</param>
-        /// <returns>null  si no se encontro el usuario, el usuario en caso contrario</returns>
+        /// <returns>el usuario en caso de encontrarlo</returns>
         /// <exception cref="ArgumentNullException">Si el codigo es null</exception>
         /// <exception cref="ArgumentException">si el codigo es el string vacio</exception>
         /// <exception cref="UsuarioNoEncontradoException">si el usuario no existe en el repositorio</exception>

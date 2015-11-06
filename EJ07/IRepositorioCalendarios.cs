@@ -8,7 +8,7 @@ using EJ07.Criteria;
 namespace EJ07
 {
     /// <summary>
-    /// Interfaz para los . Define operaciones comunes a los mismos
+    /// Interfaz para los repositorios de calendario . Define operaciones comunes a los mismos
     /// </summary>
     public interface IRepositorioCalendarios
     {
