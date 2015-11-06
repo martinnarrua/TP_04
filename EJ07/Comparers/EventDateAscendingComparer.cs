@@ -9,12 +9,12 @@ using System.Threading;
 namespace EJ07.Comparers
 {
     /// <summary>
-    /// Comparador de <see cref="Evento"/> por codigo, utilizandose para un ordenamiento por codigo ascendente
+    /// Comparador de <see cref="Evento"/> por fecha de creacion, utilizandose para un ordenamiento por fecha de creacion ascendente
     /// </summary>
-    internal class EventCodeAscendingComparer : IComparer<Evento>
+    internal class EventDateAscendingComparer : IComparer<Evento>
     {
         /// <summary>
-        /// Compara dos <see cref="Evento"/> segun su codigo, teniendo en cuenta la cultura actual e ignorando la capitalizacion
+        /// Compara dos <see cref="Evento"/> segun su fecha de creacion
         /// </summary>
         /// <param name="pEvento1">Primer <see cref="Evento"/></param>
         /// <param name="pEvento2">Segundo <see cref="Evento"/></param>
@@ -36,7 +36,7 @@ namespace EJ07.Comparers
             {
                 return 1;
             }
-            return String.Compare(pEvento1.Codigo, pEvento2.Codigo, true, Thread.CurrentThread.CurrentCulture);
+            return DateTime.Compare(pEvento1.FechaCreacion, pEvento2.FechaCreacion);
         }
 
     }

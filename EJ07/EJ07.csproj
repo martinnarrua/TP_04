@@ -51,6 +51,11 @@
     <Compile Include="Comparers\CalendarTitleAscendingComparer.cs" />
     <Compile Include="Comparers\CalendarTitleDescendingComparer.cs" />
     <Compile Include="Comparers\EventCodeAscendingComparer.cs" />
+    <Compile Include="Comparers\EventCodeDescendingComparer.cs" />
+    <Compile Include="Comparers\EventDateAscendingComparer.cs" />
+    <Compile Include="Comparers\EventDateDescendingComparer.cs" />
+    <Compile Include="Comparers\EventTitleAscendingComparar.cs" />
+    <Compile Include="Comparers\EventTitleDescendingComparer.cs" />
     <Compile Include="Criteria\AndCriteria.cs" />
     <Compile Include="Calendario.cs" />
     <Compile Include="Criteria\CriteriaExtensionMethods.cs" />

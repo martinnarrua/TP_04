@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 using System.Globalization;
 using System.Threading;
 
+
 namespace EJ07.Comparers
 {
     /// <summary>
-    /// Comparador de <see cref="Evento"/> por codigo, utilizandose para un ordenamiento por codigo ascendente
+    /// Comparador de <see cref="Evento"/> por titulo, utilizandose para un ordenamiento por titulo ascendente
     /// </summary>
-    internal class EventCodeAscendingComparer : IComparer<Evento>
+    internal class EventTitleAscendingComparer : IComparer<Evento>
     {
         /// <summary>
-        /// Compara dos <see cref="Evento"/> segun su codigo, teniendo en cuenta la cultura actual e ignorando la capitalizacion
+        /// Compara dos <see cref="Evento"/> segun su titulo, teniendo en cuenta la cultura actual e ignorando la capitalizacion
         /// </summary>
         /// <param name="pEvento1">Primer <see cref="Evento"/></param>
         /// <param name="pEvento2">Segundo <see cref="Evento"/></param>
@@ -36,7 +37,7 @@ namespace EJ07.Comparers
             {
                 return 1;
             }
-            return String.Compare(pEvento1.Codigo, pEvento2.Codigo, true, Thread.CurrentThread.CurrentCulture);
+            return String.Compare(pEvento1.Titulo, pEvento2.Titulo, true, Thread.CurrentThread.CurrentCulture);
         }
 
     }
