@@ -12,7 +12,7 @@ namespace EJ05
     /// Comparador Nulo de <see cref="Usuario"/>. Al utilizarse no afecta el ordenamiento actual.
     /// Implementacion del patron Null Object
     /// </summary>
-    internal class UserNullComparer : IComparer<Usuario>
+    public class UserNullComparer : IComparer<Usuario>
     {
         /// <summary>
         /// Compara dos <see cref="Usuario"/>

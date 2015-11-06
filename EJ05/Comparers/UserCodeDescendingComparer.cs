@@ -11,7 +11,7 @@ namespace EJ05
     /// <summary>
     /// Comparador de <see cref="Usuario"/> por codigo, utilizandose para un ordenamiento por codigo descendente
     /// </summary>
-    internal class UserCodeDescendingComparer : IComparer<Usuario>
+    public class UserCodeDescendingComparer : IComparer<Usuario>
     {
         /// <summary>
         /// Compara dos <see cref="Usuario"/> segun su codigo, teniendo en cuenta la cultura actual e ignorando la capitalizacion

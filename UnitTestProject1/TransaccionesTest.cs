@@ -8,7 +8,7 @@ namespace EJ04.Test
     public class TransaccionesTest
     {
         [TestMethod]
-        public void AcreditarSaldoTest()
+        public void AcreditarSaldo_WithCaminoFeliz()
         {
             Cuentas cuentas = new Cuentas();
             double saldo = 100;
@@ -18,7 +18,7 @@ namespace EJ04.Test
         }
 
         [TestMethod]
-        public void DebitarSaldoTest()
+        public void DebitarSaldo_WithCaminoFeliz()
         {
             Cuentas cuentas = new Cuentas();
             double saldo = 100;
@@ -29,7 +29,7 @@ namespace EJ04.Test
         }
 
         [TestMethod]
-        public void MontoNegativoExceptionEnAcreditarTest()
+        public void AcreditarSaldo_WithMontoNegativo_Fails()
         {
             try
             {
@@ -42,7 +42,7 @@ namespace EJ04.Test
         }
 
         [TestMethod]
-        public void MontoNegativoExceptionEnDebitarTest()
+        public void DebitarSaldo_WithMontoNegativo_Fails()
         {
             try
             {
@@ -54,21 +54,22 @@ namespace EJ04.Test
             catch (MontoNegativoException) { }
         }
 
-       /* [TestMethod]
-        public void DesbordamientoExceptionTest()
+       [TestMethod]
+        public void AcreditarSaldo_WithSaldoDesbordante_Fails()
         {
             try
             {
                 Cuentas cuentas = new Cuentas();
                 double saldo = double.MaxValue;
+                cuentas.CuentaEnPesos.AcreditarSaldo(10);
                 cuentas.CuentaEnPesos.AcreditarSaldo(saldo);
                 Assert.Fail();
             }
             catch (DesbordamientoException) {}
         }
-        */
+        
         [TestMethod]
-        public void SaldoInsuficienteExceptionTest()
+        public void DebitarSaldo_WithSaldoInsuficiente_Fails()
         {
             try
             {
