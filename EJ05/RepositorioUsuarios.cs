@@ -142,7 +142,7 @@ namespace EJ05
                 UsuarioNoEncontradoException lException = new UsuarioNoEncontradoException(String.Format("No se encontro el usuario con codigo '{0}'", pCodigo));
                 throw lException;
             }
-            return Usuarios[pCodigo];
+            return this.Usuarios[pCodigo];
         }
 
         /// <summary>

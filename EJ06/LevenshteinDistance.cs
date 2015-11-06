@@ -2,12 +2,31 @@
 
 namespace EJ06
 {
+    /// <summary>
+    /// Clase que implementa el algoritmo de Distancia de Levenshtein. Más información https://es.wikipedia.org/wiki/Distancia_de_Levenshtein
+    /// </summary>
     public class CalculadorDistanciaLevenshtein
     {
+        /// <summary>
+        /// Matriz cuya dimension estará dada por la longitud de las cadenas
+        /// </summary>
         private int[,] d;
+
+        /// <summary>
+        /// Cadena para comparar con otra
+        /// </summary>
         private string cadena1;
+
+        /// <summary>
+        /// Cadena para comparar con otra
+        /// </summary>
         private string cadena2;
 
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        /// <param name="pBusqueda">cadena por la que buscamos similitud</param>
+        /// <param name="nombreCompleto">cadena en la que buscamos similitud</param>
         public CalculadorDistanciaLevenshtein (string pBusqueda, string nombreCompleto)
         {
             // d es una tabla con m+1 renglones y n+1 columnas
@@ -15,7 +34,11 @@ namespace EJ06
             cadena2 = nombreCompleto.ToUpper();
             d = new int[cadena1.Length + 1, cadena2.Length + 1];
         }
-            
+
+        /// <summary>
+        /// Mediante el algoritmo de Distancia de Levenshtein obtiene la cantidad de operaciones necesarias para que las cadenas sean iguales, y con ello el porcentaje de proximidad entre las cadenas
+        /// </summary>
+        /// <returns>Porcentaje de proximidad entre las cadenas</returns>           
         public double Calcular()
         {
             double porcentaje = 0;
