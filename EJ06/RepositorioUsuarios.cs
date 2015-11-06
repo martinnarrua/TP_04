@@ -107,6 +107,7 @@ namespace EJ06
             pBusqueda = pBusqueda.ToUpper();
             List<Usuario> lResultado = new List<Usuario>();
             double lPor = 0;
+            double min = 1;
 
             foreach (Usuario lUsuario in this.Usuarios)
             {
@@ -114,11 +115,41 @@ namespace EJ06
                 lPor = lCalculadorDistancia.Calcular();
                 if (lPor < 1)
                 {
-                    lResultado.Add(lUsuario.Copiar());
+                    if (lPor < min)
+                    {
+                        min = lPor;
+                        lResultado.Clear() ;
+                    }
+                    if(lPor == min)
+                    {
+                        lResultado.Add(lUsuario.Copiar());
+                    }
                 }
             }
-
             return lResultado;
         }
+        
+        /*
+        public List<Usuario> BusquedaPorAproximacion(string pBusqueda)
+        {
+            pBusqueda = pBusqueda.ToUpper();
+            SortedDictionary<double, Usuario> lResultadoParcial = new SortedDictionary<double, Usuario>();
+            List<Usuario> lResultado = new List<Usuario>();
+            double lPor = 0;
+
+            foreach (Usuario lUsuario in this.Usuarios)
+            {
+                CalculadorDistanciaLevenshtein lCalculadorDistancia = new CalculadorDistanciaLevenshtein(pBusqueda, lUsuario.NombreCompleto);
+                lPor = lCalculadorDistancia.Calcular();
+                if (lPor < 1)
+                {
+                    lResultadoParcial.Add(lPor,lUsuario.Copiar());
+                }
+            }
+            double min = lResultadoParcial.First().Key;
+            foreach (key)
+            return lResultado;
+        }
+        */
     }
 }

@@ -11,8 +11,8 @@ namespace EJ06
         public CalculadorDistanciaLevenshtein (string pBusqueda, string nombreCompleto)
         {
             // d es una tabla con m+1 renglones y n+1 columnas
-            cadena1 = pBusqueda;
-            cadena2 = nombreCompleto;
+            cadena1 = pBusqueda.ToUpper();
+            cadena2 = nombreCompleto.ToUpper();
             d = new int[cadena1.Length + 1, cadena2.Length + 1];
         }
             

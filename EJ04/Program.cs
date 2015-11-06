@@ -62,18 +62,44 @@ namespace EJ04
                         Console.WriteLine();
                         break;
                     case 2:
-                        Console.Write("Ingrese el saldo a Acreditar: ");
-                        aux = double.Parse(Console.ReadLine());
-                        Console.Write(cFachada.AcreditarSaldo(pCodigoCuenta, aux) ? "La operacion se realizo correctamente" : "La operacion no pudo realizarse");
-                        Console.ReadKey();
-                        Console.WriteLine();
+                        try
+                        {
+                            Console.Write("Ingrese el saldo a Acreditar: ");
+                            aux = double.Parse(Console.ReadLine());
+                            Console.Write(cFachada.AcreditarSaldo(pCodigoCuenta, aux) ? "La operacion se realizo correctamente" : "La operacion no pudo realizarse");
+                            Console.ReadKey();
+                            Console.WriteLine();
+                        }
+                        catch (MontoNegativoException e)
+                        {
+                            Console.WriteLine(e.Message);
+                            Console.ReadKey();
+                        }
+                        catch(DesbordamientoException e)
+                        {
+                            Console.WriteLine(e.Message);
+                            Console.ReadKey();
+                        }
                         break;
                     case 3:
-                        Console.Write("Ingrese el saldo a Debitar: ");
-                        aux = double.Parse(Console.ReadLine());
-                        Console.Write(cFachada.DebitarSaldo(pCodigoCuenta, aux) ? "La operacion se realizo correctamente" : "La operacion no pudo realizarse");
-                        Console.ReadKey();
-                        Console.WriteLine();
+                        try
+                        {
+                            Console.Write("Ingrese el saldo a Debitar: ");
+                            aux = double.Parse(Console.ReadLine());
+                            Console.Write(cFachada.DebitarSaldo(pCodigoCuenta, aux) ? "La operacion se realizo correctamente" : "La operacion no pudo realizarse");
+                            Console.ReadKey();
+                            Console.WriteLine();
+                        }
+                        catch (MontoNegativoException e)
+                        {
+                            Console.WriteLine(e.Message);
+                            Console.ReadKey();
+                        }
+                        catch(SaldoInsuficienteException e)
+                        {
+                            Console.WriteLine(e.Message);
+                            Console.ReadKey();
+                        }
                         break;
                     case 0:
                         seguir = false;

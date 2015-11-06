@@ -1,23 +1,16 @@
 ﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using EJ06;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace EJ06
+namespace EJ06.Test
 {
-    class Program
+    [TestClass]
+    public class RepositorioUsuariosTest
     {
-        static void Main(string[] args)
+        [TestMethod]
+        public void BusquedaPorAproximacionTest()
         {
-            /* CalculadorDistanciaLevenshtein calculador = new CalculadorDistanciaLevenshtein("ti", "Martin Arrúa");
-             CalculadorDistanciaLevenshtein calculador1 = new CalculadorDistanciaLevenshtein("ti", "Agustina Mannise");
-             CalculadorDistanciaLevenshtein calculador2 = new CalculadorDistanciaLevenshtein("ti", "Ramiro Rivera");
-             Console.WriteLine(calculador.Calcular().ToString());
-             Console.WriteLine(calculador1.Calcular().ToString());
-             Console.WriteLine(calculador2.Calcular().ToString());
-             Console.ReadKey();*/
-
             Usuario lUsuario1 = new Usuario { Codigo = "AAAA", NombreCompleto = "Martin Arrúa", CorreoElectronico = "Martin94.profugo@hotmail.com" };
             Usuario lUsuario2 = new Usuario { Codigo = "MMMM", NombreCompleto = "Ramiro Rivera", CorreoElectronico = "Ramarivera@gmail.com" };
             Usuario lUsuario3 = new Usuario { Codigo = "ZZZZ", NombreCompleto = "Agustina Mannise", CorreoElectronico = "Agusmn95@gmail.com" };
@@ -28,6 +21,8 @@ namespace EJ06
             lRepositorio.Agregar(lUsuario2);
 
             List<Usuario> lista = lRepositorio.BusquedaPorAproximacion("ti");
+
+            Assert.AreEqual(, lista.Count);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace EJ04
     /// <summary>
     /// Representa una excepcion que se arroja cuando el monto pasado como parametro a un metodo  de una <see cref="Cuenta"/>es negativo
     /// </summary>
-    class MontoNegativoException : ArgumentOutOfRangeException
+    public class MontoNegativoException : ArgumentOutOfRangeException
     {
         /// <summary>
         /// Inicializa una nueva instancia de <see cref="MontoNegativoException"/>. Constructor por defecto
@@ -21,6 +21,6 @@ namespace EJ04
         /// </summary>
         /// <param name="pNombreParametro">Nombre del parametro que causo la excepcion</param>
         /// <param name="pMensaje">Mensaje que explica la causa de la excepcion</param>
-        public MontoNegativoException(string pMensaje, string pNombreParametro) : base(pNombreParametro,pMensaje) { }
+        public MontoNegativoException(string pNombreParametro, string pMensaje) : base(pNombreParametro,pMensaje) { }
     }
 }

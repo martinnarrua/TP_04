@@ -9,7 +9,7 @@ namespace EJ04
     /// <summary>
     /// Representa en par de cuentas, una en pesos y otra en dolares
     /// </summary>
-	class Cuentas
+	public class Cuentas
 	{
         /// <summary>
         /// Representa una cuenta en dolares

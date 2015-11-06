@@ -19,5 +19,7 @@ namespace EJ06
         Usuario ObtenerPorCodigo(string pCodigo);
 
         IList<Usuario> ObtenerOrdenadosPor(IComparer<Usuario> pComparador);
+
+        List<Usuario> BusquedaPorAproximacion(string pBusqueda);
     }
 }

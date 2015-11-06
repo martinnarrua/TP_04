@@ -9,7 +9,7 @@ namespace EJ04
     /// <summary>
     /// Representa un tipo de moneda
     /// </summary>
-    class Moneda
+    public class Moneda
     {
         /// <summary>
         /// Representa el codigo ISO de la moneda

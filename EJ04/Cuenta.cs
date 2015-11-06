@@ -9,7 +9,7 @@ namespace EJ04
     /// <summary>
     /// Representa una cuenta, en pesos o dolares, la cual tiene un saldo
     /// </summary>
-    class Cuenta
+    public class Cuenta
     {
         /// <summary>
         /// Representa de qué moneda es la cuenta, si pesos o dolares

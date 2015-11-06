@@ -9,7 +9,7 @@ namespace EJ04
     /// <summary>
     /// Representa una excepcion que se arroja cuando el saldo de una <see cref="Cuenta"/> es insuficiente para realizar un debito
     /// </summary>
-    class SaldoInsuficienteException : Exception
+    public class SaldoInsuficienteException : Exception
     {
         /// <summary>
         /// Inicializa una nueva instancia de <see cref="SaldoInsuficienteException"/>. Constructor por defecto

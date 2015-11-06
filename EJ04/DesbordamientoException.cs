@@ -9,7 +9,7 @@ namespace EJ04
     /// <summary>
     /// Representa una excepcion que se arroja cuando el saldo actual de una <see cref="Cuenta"/> mas el monto que se desea acreditar genera un desbordamiento.
     /// </summary>
-    class DesbordamientoException : OverflowException
+    public class DesbordamientoException : OverflowException
     {
         /// <summary>
         /// Inicializa una nueva instancia de <see cref="DesbordamientoException"/>. Constructor por defecto
