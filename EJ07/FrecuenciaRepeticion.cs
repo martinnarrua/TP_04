@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace EJ07
 {
+    /// <summary>
+    /// Clase enumerada que representa las frecuencias de repeticion de los eventos
+    /// </summary>
     public enum FrecuenciaRepeticion
     {
         Unica,

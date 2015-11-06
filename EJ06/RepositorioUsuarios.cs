@@ -129,24 +129,39 @@ namespace EJ06
             lLista.Sort();
             return lLista;
         }
-        
+
+        /// <summary>
+        /// Permite obtener la instancia de <see cref="Usuario"/> cuyo codigo es igual a <paramref name="pCodigo"/>
+        /// </summary>
+        /// <param name="pCodigo">Codigo del usuario que se desea obtener</param>
+        /// <returns>null  si no se encontro el usuario, el usuario en caso contrario</returns>
+        /// <exception cref="ArgumentNullException">Si el codigo es null</exception>
+        /// <exception cref="ArgumentException">si el codigo es el string vacio</exception>
+        /// <exception cref="UsuarioNoEncontradoException">si el usuario no existe en el repositorio</exception>
         Usuario IRepositorioUsuarios.ObtenerPorCodigo(string pCodigo)
         {
-            Usuario lResultado = null;
-            Usuario lUsuario = new Usuario() { Codigo = pCodigo, CorreoElectronico = "", NombreCompleto = "" };
-
-            if (Usuarios.Contains(lUsuario))
+            Usuario pUsuario = new Usuario() { NombreCompleto = "", Codigo = pCodigo, CorreoElectronico = "" };
+            if (pCodigo == null)
             {
-                int lIndice = this.Usuarios.IndexOf(lUsuario);
-                lResultado = this.Usuarios[lIndice].Copiar();
+                throw (new ArgumentNullException("pCodigo", "No se pudo obtener el usuario, el codigo es invalido"));
             }
-            else
+            else if (pCodigo == String.Empty)
             {
-                UsuarioNoEncontradoException excepcion = new UsuarioNoEncontradoException(String.Format("Usuario con el codigo {0} no encontrado", pCodigo));
+                throw (new ArgumentException("Codigo", "No se pudo oteber el usuario, el codigo no puede ser vacio"));
             }
-            return lResultado;
+            else if (!this.Usuarios.Contains(pUsuario))
+            {
+                UsuarioNoEncontradoException lException = new UsuarioNoEncontradoException(String.Format("No se encontro el usuario con codigo '{0}'", pCodigo));
+                throw lException;
+            }
+            return this.Usuarios[this.Usuarios.IndexOf(pUsuario)];
         }
 
+        /// <summary>
+        /// Obtiene ordenadas las instancias de <see cref="Usuario"/> contenidas en el repositorio
+        /// </summary>
+        /// <param name="pComparador">Implementador de <see cref="IComparer{Usuario}"/>, el cual define el criterio del ordenamiento</param>
+        /// <returns>Lista de todos los usuarios ordenados</returns>
         IList<Usuario> IRepositorioUsuarios.ObtenerOrdenadosPor(IComparer<Usuario> pComparador)
         {
             List<Usuario> lLista = this.ObtenerSinOrdenar();
@@ -154,7 +169,10 @@ namespace EJ06
             return lLista;
         }
 
-
+        /// <summary>
+        /// Permite obtener una lista de todos los <see cref="Usuario"/>, sin ordenar
+        /// </summary>
+        /// <returns>Lista de Usuarios</returns>
         private List<Usuario> ObtenerSinOrdenar()
         {
             List<Usuario> lLista = new List<Usuario>();
@@ -166,43 +184,20 @@ namespace EJ06
                 
             return lLista;
         }
-        /*
-        public List<Usuario> BusquedaPorAproximacion(string pBusqueda)
-        {
-            pBusqueda = pBusqueda.ToUpper();
-            List<Usuario> lResultado = new List<Usuario>();
-            double lPor = 0;
-            double min = 1;
-            double distancia;
 
-            foreach (Usuario lUsuario in this.Usuarios)
-            {
-                CalculadorDistanciaLevenshtein lCalculadorDistancia = new CalculadorDistanciaLevenshtein(pBusqueda, lUsuario.NombreCompleto);
-                lPor = lCalculadorDistancia.Calcular(out distancia);
-                if (lPor < 1)
-                {
-                    if (lPor < min)
-                    {
-                        min = lPor;
-                        lResultado.Clear() ;
-                    }
-                    if(lPor == min)
-                    {
-                        lResultado.Add(lUsuario.Copiar());
-                    }
-                }
-            }
-            return lResultado;
-        }
-        */
-        
+        /// <summary>
+        /// Obtiene las instancias de <see cref="Usuario"/> cuyos nombres tienen mayor similitud con la cadena ingresada
+        /// </summary>
+        /// <param name="pBusqueda">Cadena con la que se busca similitud</param>
+        /// <returns>Lista de <see cref="Usuario"/> cuyos nombres tienen mayor similitud con la cadena ingresada</returns>
         public List<Usuario> BusquedaPorAproximacion(string pBusqueda)
         {
             Dictionary<double, Usuario> lResultadoParcial = new Dictionary<double, Usuario>();
             List<Usuario> lResultado = new List<Usuario>();
             double lPor = 0;
             double suma =0;
-            foreach (Usuario lUsuario in this.Usuarios)
+            foreach (Usuario lUsuario in this.Usuarios) //En primer lugar se obtiene un diccionario preeliminar, que contiene como valor 
+                                                        //aquellas instancias de Usuario cuyos porcentajes de proximidad (Clave) son menores a 1
             {
                 CalculadorDistanciaLevenshtein lCalculadorDistancia = new CalculadorDistanciaLevenshtein(pBusqueda, lUsuario.NombreCompleto);
                 lPor = lCalculadorDistancia.Calcular();
@@ -211,12 +206,13 @@ namespace EJ06
                     lResultadoParcial.Add(lPor,lUsuario.Copiar());
                 }
             }
-            foreach (double por in lResultadoParcial.Keys)
+            foreach (double por in lResultadoParcial.Keys) //Luego se haya el promedio de los porcentajes menores a 1 obtenidos
             {
                 suma += por;
             }
             double prom = suma / lResultadoParcial.Count;
-            foreach (KeyValuePair<double, Usuario> Par in lResultadoParcial)
+            foreach (KeyValuePair<double, Usuario> Par in lResultadoParcial) //Finalmente el metodo de volvera una lista de instancias de Usuario cuyos porcentajes de proximidad 
+                                                                             //sean menores al promedio, es decir, solo aquellos cuyo nombre es más similar a la cadena ingresada
             {
                 if (Par.Key < prom)
                 {

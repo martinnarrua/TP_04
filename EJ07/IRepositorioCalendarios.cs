@@ -7,6 +7,9 @@ using EJ07.Criteria;
 
 namespace EJ07
 {
+    /// <summary>
+    /// Interfaz para los . Define operaciones comunes a los mismos
+    /// </summary>
     public interface IRepositorioCalendarios
     {
         void Agregar(Calendario pCalendario);
