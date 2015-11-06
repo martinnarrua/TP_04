@@ -41,5 +41,3 @@ namespace EJ07.Comparers
 
     }
 }
-
-

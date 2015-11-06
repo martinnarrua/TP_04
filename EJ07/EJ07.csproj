@@ -50,6 +50,7 @@
     <Compile Include="Comparers\CalendarDateDescendingComparer.cs" />
     <Compile Include="Comparers\CalendarTitleAscendingComparer.cs" />
     <Compile Include="Comparers\CalendarTitleDescendingComparer.cs" />
+    <Compile Include="Comparers\EventCodeAscendingComparer.cs" />
     <Compile Include="Criteria\AndCriteria.cs" />
     <Compile Include="Calendario.cs" />
     <Compile Include="Criteria\CriteriaExtensionMethods.cs" />
