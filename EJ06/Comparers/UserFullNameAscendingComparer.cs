@@ -11,7 +11,7 @@ namespace EJ06
     /// <summary>
     /// Comparador de <see cref="Usuario"/> por nombre completo, utilizandose para un ordenamiento por nombre completo en orden alfabetico
     /// </summary>
-    internal class UserFullNameAscendingComparer : IComparer<Usuario>
+    public class UserFullNameAscendingComparer : IComparer<Usuario>
     {
         /// <summary>
         /// Compara dos <see cref="Usuario"/> segun su nombre completo, teniendo en cuenta la cultura actual e ignorando la capitalizacion

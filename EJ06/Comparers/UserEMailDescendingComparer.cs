@@ -11,7 +11,7 @@ namespace EJ06
     /// <summary>
     /// Comparador de <see cref="Usuario"/> por correo electronico, utilizandose para un ordenamiento por correo electronico en orden alfabetico
     /// </summary>
-    internal class UserEmailDescendingComparer : IComparer<Usuario>
+    public class UserEmailDescendingComparer : IComparer<Usuario>
     {
         /// <summary>
         /// Compara dos <see cref="Usuario"/> segun su correo electronico, teniendo en cuenta la cultura actual e ignorando la capitalizacion
