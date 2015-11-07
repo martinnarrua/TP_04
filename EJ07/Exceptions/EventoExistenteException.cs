@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EJ07.Exceptions
 {
-    class EventoExistenteException : System.Exception
+    public class EventoExistenteException : System.Exception
     {
         public EventoExistenteException() : base() { }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EJ07.Exceptions
 {
-    class CalendarioNoEncontradoException : System.Exception
+    public class CalendarioNoEncontradoException : System.Exception
     {
         public CalendarioNoEncontradoException() : base() { }
 

@@ -4,11 +4,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace EJ07.Test
 {
     [TestClass]
-    public class UnitTest1
+    public class AdministradorCalendariosTest
     {
-        [TestMethod]
+       /* [TestMethod]
         public void TestMethod1()
         {
-        }
+        }*/
     }
 }

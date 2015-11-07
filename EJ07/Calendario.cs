@@ -15,7 +15,7 @@ namespace EJ07
     /// <summary>
     /// Representa un calendario electronico
     /// </summary>
-    public class Calendario : IRepositorioEventos, IEquatable<Calendario>
+    public class Calendario :  IEquatable<Calendario>
     {
         /// <summary>
         /// Representa el codigo de un calendario
@@ -49,6 +49,7 @@ namespace EJ07
         {
             this.Titulo = pTitulo;
             this.iCodigo = pCodigo;
+            this.Eventos = new SortedDictionary<string, Evento>();
             this.iFechaCreacion = DateTime.Now;
             this.FechaModificacion = DateTime.Now;
         }
@@ -113,7 +114,7 @@ namespace EJ07
         /// <exception cref="ArgumentNullException">Si el evento, el titulo o el codigo es null</exception>
         /// <exception cref="ArgumentException">si el titulo o el codigo es el string vacio</exception>
         /// <exception cref="EventoExistenteException">si el evento ya existe en el calendario</exception>
-        void IRepositorioEventos.Agregar(Evento pEvento)
+        public void Agregar(Evento pEvento)
         {
             if (pEvento == null)
             {
@@ -152,7 +153,7 @@ namespace EJ07
         /// <exception cref="ArgumentNullException">Si el evento, el titulo o el codigo es null</exception>
         /// <exception cref="ArgumentException">si el titulo o el codigo es el string vacio</exception>
         /// <exception cref="EventoNoEncontradoException">si el evento no existe en el calendario</exception>
-        void IRepositorioEventos.Actualizar(Evento pEvento)
+        public void Actualizar(Evento pEvento)
         {
             if (pEvento == null)
             {
@@ -190,7 +191,7 @@ namespace EJ07
         /// <exception cref="ArgumentNullException">Si el codigo es null</exception>
         /// <exception cref="ArgumentException">si el codigo es el string vacio</exception>
         /// <exception cref="UsuarioNoEncontradoException">si el usuario no existe en el repositorio</exception>
-        void IRepositorioEventos.Eliminar(string pCodigo)
+        public void Eliminar(string pCodigo)
         {
             if (pCodigo == null)
             {
@@ -213,7 +214,7 @@ namespace EJ07
         /// Obtiene todos las instancias de <see cref="Evento"/> contenidas en el calendario
         /// </summary>
         /// <returns>Lista de todos los eventos</returns>
-        IList<Evento> IRepositorioEventos.ObtenerTodos()
+        public IList<Evento> ObtenerTodos()
         {
             return this.Eventos.Values.ToList();
         }
@@ -226,7 +227,7 @@ namespace EJ07
         /// <exception cref="ArgumentNullException">Si el codigo es null</exception>
         /// <exception cref="ArgumentException">si el codigo es el string vacio</exception>
         /// <exception cref="EventoNoEncontradoException">si el evento no existe en el calendario</exception>
-        Evento IRepositorioEventos.ObtenerPorCodigo(string pCodigo)
+        public Evento ObtenerPorCodigo(string pCodigo)
         {
             if (pCodigo == null)
             {
@@ -249,7 +250,7 @@ namespace EJ07
         /// </summary>
         /// <param name="pComparador">Implementador de <see cref="IComparer{Evento}"/>, el cual define el criterio del ordenamiento</param>
         /// <returns>Lista de todos los eventos ordenados</returns>
-        IList<Evento> IRepositorioEventos.ObtenerOrdenadosPor(IComparer<Evento> pComparador)
+        public IList<Evento> ObtenerOrdenadosPor(IComparer<Evento> pComparador)
         {
             List<Evento> lLista = (List<Evento>)this.ObtenerSinOrdenar();
             lLista.Sort(pComparador);
@@ -261,9 +262,9 @@ namespace EJ07
         /// </summary>
         /// <param name="pCriterio"></param>
         /// <returns></returns>
-        IList<Evento> IRepositorioEventos.ObtenerPorCriterio(ICriteria<Evento> pCriterio)
+        public IList<Evento> ObtenerPorCriterio(ICriteria<Evento> pCriterio)
         {
-            throw new NotImplementedException();
+            return pCriterio.SatisfacenCriterio(this.ObtenerSinOrdenar());
         }
 
         /// <summary>
@@ -295,7 +296,10 @@ namespace EJ07
                 return true;
             }
 
-            return (this.Codigo == pCalendario.Codigo);
+            return (this.Codigo == pCalendario.Codigo &&
+                    this.Eventos == pCalendario.Eventos &&
+                    this.FechaCreacion == pCalendario.FechaCreacion &&
+                    this.FechaModificacion == pCalendario.FechaModificacion);
         }
 
         /// <summary>
@@ -324,7 +328,10 @@ namespace EJ07
             }
 
             // Aplico logica particular, casteando previamente a Calendario
-            return (this.Equals(lCalendario));
+            return (this.Codigo == lCalendario.Codigo &&
+                     this.Eventos == lCalendario.Eventos &&
+                     this.FechaCreacion == lCalendario.FechaCreacion &&
+                     this.FechaModificacion == lCalendario.FechaModificacion);
 
         }
 

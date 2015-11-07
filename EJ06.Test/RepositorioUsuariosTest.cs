@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using EJ06;
 using System.Collections.Generic;
-using System.Linq;
 using EJ06.Exceptions;
 
 namespace EJ05.Test
