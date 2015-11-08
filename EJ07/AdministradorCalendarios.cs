@@ -11,12 +11,20 @@ namespace EJ07
     /// <summary>
     /// Representa un administrador de calendarios
     /// </summary>
-    class AdministradorCalendarios : IRepositorioCalendarios
+    public class AdministradorCalendarios : IRepositorioCalendarios
     {
         /// <summary>
         /// Diccionario que contiene todos los calendarios del administrador
         /// </summary>
         private SortedDictionary<string, Calendario> Calendarios { get; set; }
+
+        /// <summary>
+        /// Inicializa una nueva instancia de <see cref="AdministradorCalendarios"/>
+        /// </summary>
+        public AdministradorCalendarios()
+        {
+            this.Calendarios = new SortedDictionary<string, Calendario>();
+        }
 
         /// <summary>
         /// Agrega un <see cref="Calendario"/> al Administardor
@@ -168,16 +176,7 @@ namespace EJ07
             return lLista;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="pCriterio"></param>
-        /// <returns></returns>
-        IList<Calendario> IRepositorioCalendarios.ObtenerPorCriterio(ICriteria<Calendario> pCriterio)
-        {
-            IList<Calendario> lLista = ObtenerSinOrdenar();
-            return pCriterio.SatisfacenCriterio(lLista);
-        }
+        
 
         /// <summary>
         /// Permite obtener una lista de todos los <see cref="Calendario"/>, sin ordenar

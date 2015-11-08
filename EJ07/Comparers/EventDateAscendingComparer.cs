@@ -11,7 +11,7 @@ namespace EJ07.Comparers
     /// <summary>
     /// Comparador de <see cref="Evento"/> por fecha de creacion, utilizandose para un ordenamiento por fecha de creacion ascendente
     /// </summary>
-    internal class EventDateAscendingComparer : IComparer<Evento>
+    public class EventDateAscendingComparer : IComparer<Evento>
     {
         /// <summary>
         /// Compara dos <see cref="Evento"/> segun su fecha de creacion
@@ -36,7 +36,7 @@ namespace EJ07.Comparers
             {
                 return 1;
             }
-            return DateTime.Compare(pEvento1.FechaCreacion, pEvento2.FechaCreacion);
+            return DateTime.Compare(pEvento1.FechaComienzo, pEvento2.FechaComienzo);
         }
 
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EJ07.Criteria.Criterion
 {
-    class BeforeDateCriterion : ICriteria<Evento>
+    public class BeforeDateCriterion : ICriteria<Evento>
     {
         private DateTime iFecha;
 
@@ -22,7 +22,7 @@ namespace EJ07.Criteria.Criterion
                              where ent.FechaComienzo <= this.iFecha
                              select ent;
 
-            return (IList<Evento>)lResultado;
+            return lResultado.ToList();
         }
     }
 }

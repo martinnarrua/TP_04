@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EJ07.Criteria.Criterion
 {
-    class FrequencyCriterion : ICriteria<Evento>
+    public class FrequencyCriterion : ICriteria<Evento>
     {
         private FrecuenciaRepeticion iFrecuencia;
 
@@ -22,7 +22,7 @@ namespace EJ07.Criteria.Criterion
                              where ent.Frecuencia == this.iFrecuencia
                              select ent;
 
-            return (IList<Evento>) lResultado;
+            return lResultado.ToList();
         }
     }
 }

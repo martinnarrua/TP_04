@@ -71,7 +71,6 @@
     <Compile Include="FrecuenciaRepeticion.cs" />
     <Compile Include="Criteria\ICriteria.cs" />
     <Compile Include="IRepositorioCalendarios.cs" />
-    <Compile Include="IRepositorioEventos.cs" />
     <Compile Include="Criteria\NotCriteria.cs" />
     <Compile Include="Criteria\OrCriteria.cs" />
     <Compile Include="Program.cs" />

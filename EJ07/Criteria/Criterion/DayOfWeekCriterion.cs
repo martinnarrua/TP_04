@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EJ07.Criteria.Criterion
 {
-    class DayOfWeekCriterion : ICriteria<Evento>
+    public  class DayOfWeekCriterion : ICriteria<Evento>
     {
         private DayOfWeek iDiaSemana;
 
@@ -21,7 +21,7 @@ namespace EJ07.Criteria.Criterion
                             where ent.FechaComienzo.DayOfWeek == iDiaSemana
                             select ent;
 
-            return (IList<Evento>)lResultado;
+            return lResultado.ToList();
 
         }
     }

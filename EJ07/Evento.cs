@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using EJ07.Comparers;
 
 namespace EJ07
 {
@@ -13,7 +14,7 @@ namespace EJ07
     /// <summary>
     /// Representa un evento que se almacena en un calendario
     /// </summary>
-    public class Evento : IEquatable<Evento>
+    public class Evento : IEquatable<Evento>, IComparable<Evento>
     {
         /// <summary>
         /// Representa el codigo del evento
@@ -151,7 +152,7 @@ namespace EJ07
         /// Realiza una copia profunda de <see cref="Evento"/>
         /// </summary>
         /// <returns>Copia profunda de <see cref="Evento"/></returns>
-        internal Evento Copiar()
+        public Evento Copiar()
         {
             using (var lMemoryStream = new MemoryStream())
             {
@@ -222,6 +223,17 @@ namespace EJ07
                     this.FechaFin == pEvento.FechaFin &&
                     this.FechaModificacion == pEvento.FechaModificacion &&
                     this.Frecuencia == pEvento.Frecuencia);
+        }
+
+        /// <summary>
+        /// Implementacion de <see cref="IComparable{T}.CompareTo(T)"/>.
+        /// Implementa el ordenamiento por defecto para los objetos de la clase <see cref="Evento"/>
+        /// </summary>
+        /// <param name="pEvento">Evento a comparar con el actual</param>
+        /// <returns>Un entero que indica la posicion en el ordenamiento</returns>
+        int IComparable<Evento>.CompareTo(Evento pEvento)
+        {
+            return (new EventCodeAscendingComparer()).Compare(this, pEvento);
         }
     }
 }

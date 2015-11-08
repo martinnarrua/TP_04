@@ -43,20 +43,6 @@ namespace EJ06
             lUsuario.CorreoElectronico = this.CorreoElectronico ;
             return lUsuario;
 
-            /*      Otra opcion es usar un metodo Clone que se base en la serializacion del objeto
-            public Usuario Clone()
-            {
-                using (var lMemoryStream = new MemoryStream())
-                {
-                    var lFormatter = new BinaryFormatter();
-                    lFormatter.Serialize(lMemoryStream, this);
-                    lMemoryStream.Position = 0;
-
-                    return (Usuario)lFormatter.Deserialize(lMemoryStream);
-                }
-            } 
-            */
-
         }
 
         /// <summary>
@@ -133,7 +119,9 @@ namespace EJ06
             }
 
             // Aplico logica particular, casteando previamente a Fecha
-            return (this.Codigo == lUsuario.Codigo);
+            return (this.Codigo == lUsuario.Codigo &&
+                    this.NombreCompleto == lUsuario.NombreCompleto &&
+                    this.CorreoElectronico == lUsuario.CorreoElectronico);
         }
 
         /// <summary>
@@ -156,7 +144,9 @@ namespace EJ06
             }
 
             // Aplico logica particular
-            return (this.Codigo == pUsuario.Codigo);
+            return (this.Codigo == pUsuario.Codigo &&
+                   this.NombreCompleto == pUsuario.NombreCompleto &&
+                   this.CorreoElectronico == pUsuario.CorreoElectronico);
         }
        
         /// <summary>

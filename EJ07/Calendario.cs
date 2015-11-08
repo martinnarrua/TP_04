@@ -7,15 +7,16 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using EJ07.Exceptions;
 using EJ07.Criteria;
+using EJ07.Comparers;
 
 namespace EJ07
 {
-    
+
     [Serializable]
     /// <summary>
     /// Representa un calendario electronico
     /// </summary>
-    public class Calendario :  IEquatable<Calendario>
+    public class Calendario : IEquatable<Calendario>, IComparable<Calendario>
     {
         /// <summary>
         /// Representa el codigo de un calendario
@@ -39,7 +40,7 @@ namespace EJ07
         /// <summary>
         /// Diccionario que contiene los eventos del calendario
         /// </summary>
-        private SortedDictionary<string,Evento> Eventos { get; }
+        private SortedDictionary<string, Evento> Eventos { get; }
 
         /// <summary>
         /// Constructor de la clase <see cref="Calendario"/>
@@ -53,6 +54,20 @@ namespace EJ07
             this.iFechaCreacion = DateTime.Now;
             this.FechaModificacion = DateTime.Now;
         }
+
+        /// <summary>
+        /// Constructor privado de la clase <see cref="Calendario"/>
+        /// </summary>
+        /// <param name="pTitulo"></param>
+        private Calendario(string pTitulo, string pCodigo, DateTime pFechaCreacion, DateTime pFechaModificacion, SortedDictionary<string, Evento> pEventos)
+        {
+            this.Titulo = pTitulo;
+            this.iCodigo = pCodigo;
+            this.Eventos = pEventos;
+            this.iFechaCreacion = pFechaCreacion;
+            this.iFechaModificacion = pFechaModificacion;
+        }
+
 
         /// <summary>
         /// Propiedad Codigo
@@ -89,22 +104,23 @@ namespace EJ07
         public DateTime FechaModificacion
         {
             get { return this.iFechaModificacion; }
-            set { this.iFechaModificacion = value; }
+           private set { this.iFechaModificacion = value; }
         }
 
         /// <summary>
         /// Realiza una copia profunda de <see cref="Calendario"/>
         /// </summary>
         /// <returns>Copia profunda de <see cref="Calendario"/></returns>
-        internal Calendario Copiar()
+        public Calendario Copiar()
         {
-            using (var lMemoryStream = new MemoryStream())
+            SortedDictionary<string, Evento> lDiccionario = new SortedDictionary<string, Evento>();
+
+            foreach (KeyValuePair<string, Evento> kpv in this.Eventos)
             {
-                var lFormatter = new BinaryFormatter();
-                lFormatter.Serialize(lMemoryStream, this);
-                lMemoryStream.Position = 0;
-                return (Calendario) lFormatter.Deserialize(lMemoryStream);
+                lDiccionario.Add(kpv.Key, kpv.Value);
             }
+
+            return  new Calendario(this.iTitulo, this.iCodigo, this.iFechaCreacion, this.iFechaModificacion, lDiccionario);
         }
 
         /// <summary>
@@ -296,10 +312,14 @@ namespace EJ07
                 return true;
             }
 
-            return (this.Codigo == pCalendario.Codigo &&
-                    this.Eventos == pCalendario.Eventos &&
+            bool lCamposIguales = (this.Codigo == pCalendario.Codigo &&
                     this.FechaCreacion == pCalendario.FechaCreacion &&
                     this.FechaModificacion == pCalendario.FechaModificacion);
+
+
+            return lCamposIguales && this.Eventos.Count == pCalendario.Eventos.Count && !this.Eventos.Except(pCalendario.Eventos).Any();
+            // Dos diccionarios son iguales si tienen la misma cantidad de pares llave valor y
+            // si no hay ningun par que este en uno pero no en el otro
         }
 
         /// <summary>
@@ -328,10 +348,14 @@ namespace EJ07
             }
 
             // Aplico logica particular, casteando previamente a Calendario
-            return (this.Codigo == lCalendario.Codigo &&
-                     this.Eventos == lCalendario.Eventos &&
-                     this.FechaCreacion == lCalendario.FechaCreacion &&
-                     this.FechaModificacion == lCalendario.FechaModificacion);
+            bool lCamposIguales = (this.Codigo == lCalendario.Codigo &&
+                    this.FechaCreacion == lCalendario.FechaCreacion &&
+                    this.FechaModificacion == lCalendario.FechaModificacion);
+
+
+            return lCamposIguales && this.Eventos.Count == lCalendario.Eventos.Count && !this.Eventos.Except(lCalendario.Eventos).Any();
+                // Dos diccionarios son iguales si tienen la misma cantidad de pares llave valor y
+                // si no hay ningun par que este en uno pero no en el otro
 
         }
 
@@ -342,6 +366,18 @@ namespace EJ07
         public override int GetHashCode()
         {
             return !Object.ReferenceEquals(null, this) ? this.Codigo.GetHashCode() : 0;
+        }
+
+
+        /// <summary>
+        /// Implementacion de <see cref="IComparable{T}.CompareTo(T)"/>.
+        /// Implementa el ordenamiento por defecto para los objetos de la clase <see cref="Calendario"/>
+        /// </summary>
+        /// <param name="pCalendario">Calendario a comparar con el actual</param>
+        /// <returns>Un entero que indica la posicion en el ordenamiento</returns>
+        int IComparable<Calendario>.CompareTo(Calendario pCalendario)
+        {
+            return (new CalendarCodeAscendingComparer()).Compare(this, pCalendario);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace EJ07.Comparers
     /// <summary>
     /// Comparador de <see cref="Evento"/> por fecha de creacion, utilizandose para un ordenamiento por fecha de creacion descendente
     /// </summary>
-    internal class EventDateDescendingComparer : IComparer<Evento>
+    public class EventDateDescendingComparer : IComparer<Evento>
     {
         /// <summary>
         /// Compara dos <see cref="Evento"/> segun su fecha de creacion
