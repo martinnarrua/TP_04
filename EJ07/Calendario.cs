@@ -44,9 +44,10 @@ namespace EJ07
         private SortedDictionary<string, Evento> Eventos { get; }
 
         /// <summary>
-        /// Constructor de la clase <see cref="Calendario"/>
+        /// Inicializa una nueva instancia de la clase <see cref="Calendario"/>
         /// </summary>
-        /// <param name="pTitulo"></param>
+        /// <param name="pTitulo">Titulo del Calendario</param>
+        /// <param name="pCodigo">Codigo del Calendario</param>
         public Calendario(string pTitulo, string pCodigo)
         {
             this.Titulo = pTitulo;
@@ -59,7 +60,11 @@ namespace EJ07
         /// <summary>
         /// Constructor privado de la clase <see cref="Calendario"/>
         /// </summary>
-        /// <param name="pTitulo"></param>
+        /// <param name="pTitulo">Titulo del Calendario</param>
+        /// <param name="pCodigo">Codigo del Calendario</param>
+        /// <param name="pFechaCreacion">Fecha de Creacion del Calendario</param>
+        /// <param name="pFechaModificacion">Fecha de Modificacion del Calendario</param>
+        /// <param name="pEventos">Eventos contenidos en el Calendario</param>
         private Calendario(string pTitulo, string pCodigo, DateTime pFechaCreacion, DateTime pFechaModificacion, SortedDictionary<string, Evento> pEventos)
         {
             this.Titulo = pTitulo;

@@ -145,7 +145,7 @@ namespace EJ07
         /// <returns>el calendario en caso de encontrarse</returns>
         /// <exception cref="ArgumentNullException">Si el codigo es null</exception>
         /// <exception cref="ArgumentException">si el codigo es el string vacio</exception>
-        /// <exception cref="CalendarioNoEncontradoException">si el calendario no existe en el administrador/exception>
+        /// <exception cref="CalendarioNoEncontradoException">si el calendario no existe en el administrador</exception>
         Calendario IRepositorioCalendarios.ObtenerPorCodigo(string pCodigo)
         {
             if (pCodigo == null)
