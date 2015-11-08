@@ -6,6 +6,8 @@ using EJ07.Exceptions;
 using EJ07.Comparers;
 using EJ07.Criteria;
 using EJ07.Criteria.Criterion;
+using System.Linq;
+using EJ07.Helpers;
 
 namespace EJ07.Test
 {
@@ -125,7 +127,7 @@ namespace EJ07.Test
         }
 
         #endregion
-        #region Agregar Test
+        #region Actualizar Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
@@ -254,7 +256,7 @@ namespace EJ07.Test
             Assert.IsTrue(true);
         }
         #endregion
-        #region Agregar Test
+        #region Eliminar Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
@@ -343,7 +345,7 @@ namespace EJ07.Test
         }
 
         #endregion
-        #region Agregar Test
+        #region ObtenerPorCodigo Test
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
@@ -432,7 +434,7 @@ namespace EJ07.Test
         }
 
         #endregion
-        #region Agregar Test
+        #region ObtenerOrdenadosPor Test
         [TestMethod]
         public void ObtenerOrdenadosPor_WithCodAscSort()
         {
@@ -718,9 +720,5 @@ namespace EJ07.Test
         }
 
         #endregion
-        #region Agregar Test
-        #endregion
-
-
     }
 }

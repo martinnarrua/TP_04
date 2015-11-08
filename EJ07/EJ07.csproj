@@ -70,6 +70,7 @@
     <Compile Include="Exceptions\CalendarioExistenteException.cs" />
     <Compile Include="FrecuenciaRepeticion.cs" />
     <Compile Include="Criteria\ICriteria.cs" />
+    <Compile Include="Helpers\SortedDictionaryExtensionMethods.cs" />
     <Compile Include="IRepositorioCalendarios.cs" />
     <Compile Include="Criteria\NotCriteria.cs" />
     <Compile Include="Criteria\OrCriteria.cs" />

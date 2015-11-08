@@ -8,6 +8,7 @@ using System.IO;
 using EJ07.Exceptions;
 using EJ07.Criteria;
 using EJ07.Comparers;
+using EJ07.Helpers;
 
 namespace EJ07
 {
@@ -317,9 +318,8 @@ namespace EJ07
                     this.FechaModificacion == pCalendario.FechaModificacion);
 
 
-            return lCamposIguales && this.Eventos.Count == pCalendario.Eventos.Count && !this.Eventos.Except(pCalendario.Eventos).Any();
-            // Dos diccionarios son iguales si tienen la misma cantidad de pares llave valor y
-            // si no hay ningun par que este en uno pero no en el otro
+            return lCamposIguales && this.Eventos.EsIgual(pCalendario.Eventos);
+
         }
 
         /// <summary>
@@ -353,9 +353,7 @@ namespace EJ07
                     this.FechaModificacion == lCalendario.FechaModificacion);
 
 
-            return lCamposIguales && this.Eventos.Count == lCalendario.Eventos.Count && !this.Eventos.Except(lCalendario.Eventos).Any();
-                // Dos diccionarios son iguales si tienen la misma cantidad de pares llave valor y
-                // si no hay ningun par que este en uno pero no en el otro
+            return lCamposIguales && this.Eventos.EsIgual(lCalendario.Eventos);
 
         }
 
