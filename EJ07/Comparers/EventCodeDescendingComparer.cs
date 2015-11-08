@@ -11,7 +11,7 @@ namespace EJ07.Comparers
     /// <summary>
     /// Comparador de <see cref="Evento"/> por codigo, utilizandose para un ordenamiento por codigo descendente
     /// </summary>
-    internal class EventCodeDescendingComparer : IComparer<Evento>
+    public class EventCodeDescendingComparer : IComparer<Evento>
     {
         /// <summary>
         /// Compara dos <see cref="Evento"/> segun su codigo, teniendo en cuenta la cultura actual e ignorando la capitalizacion

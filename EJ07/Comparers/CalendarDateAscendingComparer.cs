@@ -11,7 +11,7 @@ namespace EJ07.Comparers
     /// <summary>
     /// Comparador de <see cref="Calendario"/> por fecha de creacion, utilizandose para un ordenamiento por fecha de creacion ascendente
     /// </summary>
-    internal class CalendarDateAscendingComparer : IComparer<Calendario>
+    public class CalendarDateAscendingComparer : IComparer<Calendario>
     {
         /// <summary>
         /// Compara dos <see cref="Calendario"/> segun su fecha de creacion

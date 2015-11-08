@@ -30,11 +30,7 @@ namespace EJ06
             get { return this.iUsuarios; }
             set { this.iUsuarios = value; }
         }
-        private IRepositorioUsuarios AsIRepositorioUsuarios
-        {
-            get { return this; }
-        }
-
+    
         /// <summary>
         /// Agrega un <see cref="Usuario"/> al Repositorio
         /// </summary>

@@ -59,6 +59,10 @@
     <Compile Include="Criteria\AndCriteria.cs" />
     <Compile Include="Calendario.cs" />
     <Compile Include="Criteria\CriteriaExtensionMethods.cs" />
+    <Compile Include="Criteria\Criterion\AfterDateCriterion.cs" />
+    <Compile Include="Criteria\Criterion\BeforeDateCriterion.cs" />
+    <Compile Include="Criteria\Criterion\DayOfWeekCriterion.cs" />
+    <Compile Include="Criteria\Criterion\FrequencyCriterion.cs" />
     <Compile Include="Evento.cs" />
     <Compile Include="Exceptions\CalendarioNoEncontradoException.cs" />
     <Compile Include="Exceptions\EventoExistenteException.cs" />
@@ -66,8 +70,8 @@
     <Compile Include="Exceptions\CalendarioExistenteException.cs" />
     <Compile Include="FrecuenciaRepeticion.cs" />
     <Compile Include="Criteria\ICriteria.cs" />
+    <Compile Include="Helpers\SortedDictionaryExtensionMethods.cs" />
     <Compile Include="IRepositorioCalendarios.cs" />
-    <Compile Include="IRepositorioEventos.cs" />
     <Compile Include="Criteria\NotCriteria.cs" />
     <Compile Include="Criteria\OrCriteria.cs" />
     <Compile Include="Program.cs" />
@@ -77,9 +81,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Criteria\Criterion\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

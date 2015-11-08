@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EJ07.Exceptions
 {
-    class EventoNoEncontradoException : System.Exception
+    public class EventoNoEncontradoException : System.Exception
     {
         public EventoNoEncontradoException() : base() { }
 

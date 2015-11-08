@@ -15,10 +15,10 @@ namespace EJ02.Test
 
             Assert.AreEqual(2, Matematica.Dividir(dividendo, divisor));
         }
-        
+
         [TestMethod]
-         public void DivisionPorCeroTest()
-         {
+        public void DivisionPorCeroTest()
+        {
             try
             {
                 int dividendo = 10;
@@ -28,6 +28,6 @@ namespace EJ02.Test
 
             }
             catch (DivisionPorCeroException) { }
-         }
+        }
     }
 }

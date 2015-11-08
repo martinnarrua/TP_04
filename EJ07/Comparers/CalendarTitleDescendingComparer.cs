@@ -11,7 +11,7 @@ namespace EJ07.Comparers
     /// <summary>
     /// Comparador de <see cref="Calendario"/> por titulo, utilizandose para un ordenamiento por titulo descendente
     /// </summary>
-    internal class CalendarTitleDescendingComparer : IComparer<Calendario>
+    public class CalendarTitleDescendingComparer : IComparer<Calendario>
     {
         /// <summary>
         /// Compara dos <see cref="Calendario"/> segun su titulo, teniendo en cuenta la cultura actual e ignorando la capitalizacion

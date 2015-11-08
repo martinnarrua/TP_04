@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using EJ06;
 using System.Collections.Generic;
-using System.Linq;
+using EJ06;
+using EJ06.Comparers;
 using EJ06.Exceptions;
 
 namespace EJ05.Test
@@ -503,7 +503,7 @@ namespace EJ05.Test
         }
 
         [TestMethod]
-        public void ObtenerPorCodigo_WithCaminoFeliz_Fails()
+        public void ObtenerPorCodigo_WithCaminoFeliz()
         {
             Usuario lUsuario1 = new Usuario { Codigo = "MMMM", NombreCompleto = "Martin Arrúa", CorreoElectronico = "Martin94.profugo@hotmail.com" };
             Usuario lUsuario2 = new Usuario { Codigo = "RRRR", NombreCompleto = "Ramiro Rivera", CorreoElectronico = "Ramarivera@gmail.com" };

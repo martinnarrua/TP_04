@@ -3,7 +3,7 @@
 namespace EJ07.Exceptions
 {
 
-    class TituloCalendarioInvalidoException : System.Exception
+    public class TituloCalendarioInvalidoException : System.Exception
     {
         public TituloCalendarioInvalidoException() : base() { }
 

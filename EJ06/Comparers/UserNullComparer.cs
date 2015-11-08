@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Globalization;
 using System.Threading;
 
-namespace EJ06
+namespace EJ06.Comparers
 {
     /// <summary>
     /// Comparador Nulo de <see cref="Usuario"/>. Al utilizarse no afecta el ordenamiento actual.

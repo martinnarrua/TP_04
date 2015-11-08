@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4A271592-53F1-4895-A527-3F62BD180348}</ProjectGuid>
+    <ProjectGuid>{566D5E1B-1BEF-44D8-B9F9-D31172A3A17A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EJ02.Test</RootNamespace>

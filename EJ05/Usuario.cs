@@ -59,7 +59,7 @@ namespace EJ05
         /// Implementacion de <see cref="IComparable{T}.CompareTo(T)"/>.
         /// Implementa el ordenamiento por defecto para los objetos de la clase <see cref="Usuario"/>
         /// </summary>
-        /// <param name="Usuario">Usuario a comparar con el actual</param>
+        /// <param name="lUsuario">Usuario a comparar con el actual</param>
         /// <returns>Valor entero que indica la relacion en el ordenamiento</returns>
         int IComparable<Usuario>.CompareTo(Usuario lUsuario)
         {

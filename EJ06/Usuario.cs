@@ -43,20 +43,6 @@ namespace EJ06
             lUsuario.CorreoElectronico = this.CorreoElectronico ;
             return lUsuario;
 
-            /*      Otra opcion es usar un metodo Clone que se base en la serializacion del objeto
-            public Usuario Clone()
-            {
-                using (var lMemoryStream = new MemoryStream())
-                {
-                    var lFormatter = new BinaryFormatter();
-                    lFormatter.Serialize(lMemoryStream, this);
-                    lMemoryStream.Position = 0;
-
-                    return (Usuario)lFormatter.Deserialize(lMemoryStream);
-                }
-            } 
-            */
-
         }
 
         /// <summary>
@@ -94,7 +80,7 @@ namespace EJ06
         /// <returns></returns>
         int IComparable<Usuario>.CompareTo(Usuario lUsuario)
         {
-            return (new UserCodeAscendingComparer()).Compare(this, lUsuario);
+            return (new Comparers.UserCodeAscendingComparer()).Compare(this, lUsuario);
         }
 
         #region Usuario - Metodos Sobrecargados (Equals, ToString, GetHashCode)

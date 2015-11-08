@@ -5,15 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using EJ07.Comparers;
 
 namespace EJ07
 {
-    
+
     [Serializable]
     /// <summary>
     /// Representa un evento que se almacena en un calendario
     /// </summary>
-    public class Evento
+    public class Evento : IEquatable<Evento>, IComparable<Evento>
     {
         /// <summary>
         /// Representa el codigo del evento
@@ -120,18 +121,22 @@ namespace EJ07
         public FrecuenciaRepeticion Frecuencia
         {
             get { return this.iFrecuencia; }
-            private set { this.iFrecuencia = value; }
+            set
+            {
+                this.FechaModificacion = DateTime.Now;
+                this.iFrecuencia = value;
+            }
         }
 
         /// <summary>
-        /// Constructor de la clase
+        /// Inicializa una nueva instancia de <see cref="Evento"/>
         /// </summary>
         /// <param name="pTitulo">Titulo del evento</param>
         /// <param name="pCodigo">Codigo del evento</param>
         /// <param name="pFechaComienzo">Fecha de comienzo del evento</param>
         /// <param name="pFechaFin">Fecha de fin del evento</param>
         /// <param name="pFrecuencia">Frecuencia de repeticion del evento</param>
-        public Evento(string pTitulo,string pCodigo, DateTime pFechaComienzo, DateTime pFechaFin, FrecuenciaRepeticion pFrecuencia)
+        public Evento(string pTitulo, string pCodigo, DateTime pFechaComienzo, DateTime pFechaFin, FrecuenciaRepeticion pFrecuencia)
         {
             this.Titulo = pTitulo;
             this.iCodigo = pCodigo;
@@ -142,11 +147,12 @@ namespace EJ07
             this.Frecuencia = pFrecuencia;
         }
 
+
         /// <summary>
         /// Realiza una copia profunda de <see cref="Evento"/>
         /// </summary>
         /// <returns>Copia profunda de <see cref="Evento"/></returns>
-        internal Evento Copiar()
+        public Evento Copiar()
         {
             using (var lMemoryStream = new MemoryStream())
             {
@@ -156,5 +162,79 @@ namespace EJ07
                 return (Evento)lFormatter.Deserialize(lMemoryStream);
             }
         }
+
+
+
+        public override bool Equals(object obj)
+        {
+
+            // Si obj es (apunta a) null, falso
+            if (Object.ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+            // Si obj es (apunta a) this, verdadero
+            if (Object.ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            Evento lEvento = obj as Evento;
+            // Si el casteo con As falla, Falso
+            if (lEvento == null)
+            {
+                return false;
+            }
+
+
+            return (this.Titulo == lEvento.Titulo &&
+                    this.Codigo == lEvento.Codigo &&
+                    this.FechaCreacion == lEvento.FechaCreacion &&
+                    this.FechaComienzo == lEvento.FechaComienzo &&
+                    this.FechaFin == lEvento.FechaFin &&
+                    this.FechaModificacion == lEvento.FechaModificacion &&
+                    this.Frecuencia == lEvento.Frecuencia);
+        }
+
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            return !Object.ReferenceEquals(null, this) ? this.Codigo.GetHashCode() : 0;
+        }
+
+        bool IEquatable<Evento>.Equals(Evento pEvento)
+        {
+            // Si pEvento es (apunta a) null, falso
+            if (Object.ReferenceEquals(null, pEvento))
+            {
+                return false;
+            }
+
+            // Si pEvento es (apunta a) this, verdadero
+            if (Object.ReferenceEquals(this, pEvento))
+            {
+                return true;
+            }
+
+            return (this.Titulo == pEvento.Titulo &&
+                    this.Codigo == pEvento.Codigo &&
+                    this.FechaCreacion == pEvento.FechaCreacion &&
+                    this.FechaComienzo == pEvento.FechaComienzo &&
+                    this.FechaFin == pEvento.FechaFin &&
+                    this.FechaModificacion == pEvento.FechaModificacion &&
+                    this.Frecuencia == pEvento.Frecuencia);
+        }
+
+        /// <summary>
+        /// Implementacion de <see cref="IComparable{T}.CompareTo(T)"/>.
+        /// Implementa el ordenamiento por defecto para los objetos de la clase <see cref="Evento"/>
+        /// </summary>
+        /// <param name="pEvento">Evento a comparar con el actual</param>
+        /// <returns>Un entero que indica la posicion en el ordenamiento</returns>
+        int IComparable<Evento>.CompareTo(Evento pEvento)
+        {
+            return (new EventCodeAscendingComparer()).Compare(this, pEvento);
+        }
     }
 }
+

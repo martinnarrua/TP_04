@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Globalization;
 using System.Threading;
 
-namespace EJ06
+namespace EJ06.Comparers
 {
     /// <summary>
     /// Comparador de <see cref="Usuario"/> por nombre completo, utilizandose para un ordenamiento por nombre completo en orden alfabetico inverso

@@ -24,6 +24,5 @@ namespace EJ07
 
         IList<Calendario> ObtenerOrdenadosPor(IComparer<Calendario> pComparador);
 
-        IList<Calendario> ObtenerPorCriterio(ICriteria<Calendario> pCriterio);
     }
 }

@@ -164,7 +164,6 @@ namespace EJ05
         private IList<Usuario> ObtenerSinOrdenar()
         {
             List<Usuario> lLista = this.Usuarios.Values.ToList();
-            //TODO: Ver si cuando el diccionario no tiene nada values que devuelve, porque si devuelve null estamos al hornix
             return lLista;
         }
     }
