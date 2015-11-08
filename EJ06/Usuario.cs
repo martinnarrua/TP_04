@@ -119,9 +119,7 @@ namespace EJ06
             }
 
             // Aplico logica particular, casteando previamente a Fecha
-            return (this.Codigo == lUsuario.Codigo &&
-                    this.NombreCompleto == lUsuario.NombreCompleto &&
-                    this.CorreoElectronico == lUsuario.CorreoElectronico);
+            return (this.Codigo == lUsuario.Codigo);
         }
 
         /// <summary>
@@ -144,9 +142,7 @@ namespace EJ06
             }
 
             // Aplico logica particular
-            return (this.Codigo == pUsuario.Codigo &&
-                   this.NombreCompleto == pUsuario.NombreCompleto &&
-                   this.CorreoElectronico == pUsuario.CorreoElectronico);
+            return (this.Codigo == pUsuario.Codigo);
         }
        
         /// <summary>
