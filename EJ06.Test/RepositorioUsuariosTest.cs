@@ -1,7 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using EJ06;
 using System.Collections.Generic;
+using EJ06;
+using EJ06.Comparers;
 using EJ06.Exceptions;
 
 namespace EJ05.Test

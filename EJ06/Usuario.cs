@@ -80,7 +80,7 @@ namespace EJ06
         /// <returns></returns>
         int IComparable<Usuario>.CompareTo(Usuario lUsuario)
         {
-            return (new UserCodeAscendingComparer()).Compare(this, lUsuario);
+            return (new Comparers.UserCodeAscendingComparer()).Compare(this, lUsuario);
         }
 
         #region Usuario - Metodos Sobrecargados (Equals, ToString, GetHashCode)
